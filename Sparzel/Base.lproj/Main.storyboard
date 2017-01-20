@@ -45,6 +45,7 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fvg-gp-kNV"/>
+                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="Eug-p0-Yg2"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASb-hH-9VH" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
@@ -64,6 +65,7 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="15l-DW-e3W"/>
+                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="2kP-RA-RMN"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ctt-C9-CFv" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
@@ -83,6 +85,7 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3lM-Ik-QjU"/>
+                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="Mui-gs-h0D"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -107,6 +110,7 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zam-F1-7R9"/>
+                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="Nbt-Or-Zx3"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKM-eO-dTi" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
@@ -126,6 +130,7 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Ar-oa-d8P"/>
+                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="A3u-LF-HXd"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0xx-ht-AeB" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
@@ -145,6 +150,7 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1i8-GW-gas"/>
+                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="36l-5n-bWC"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -169,6 +175,7 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xcM-GS-99d"/>
+                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="ZPt-5y-HJu"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JlT-u2-DLD" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
@@ -188,6 +195,7 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sSy-hf-62a"/>
+                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="1im-Dr-tRX"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ff3-OC-2uj" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
@@ -207,6 +215,7 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W1D-V9-ck3"/>
+                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="z03-l0-i7c"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -231,6 +240,7 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tRA-2r-hed"/>
+                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="YFg-y7-hbW"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ylo-EK-rIY" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
@@ -250,6 +260,7 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QB1-6L-J5I"/>
+                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="Ci4-fx-h2m"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pck-JX-Woh" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
@@ -267,7 +278,8 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="deleteButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qj1-IS-iN8"/>
+                                                    <action selector="deleteButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="UWe-aW-jMf"/>
+                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="7a5-gT-hDN"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -277,39 +289,6 @@
                                     <constraint firstAttribute="height" constant="256" id="z4X-2s-153"/>
                                 </constraints>
                             </stackView>
-                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1280" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kRN-df-fvf">
-                                <rect key="frame" x="47" y="260" width="100" height="56"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="textColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="36"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                                <connections>
-                                    <action selector="textFieldEdited:" destination="BYZ-38-t0r" eventType="editingChanged" id="tIg-6a-cZw"/>
-                                    <action selector="touchTextField:" destination="BYZ-38-t0r" eventType="touchDown" id="cwR-yL-Ntu"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="720" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="leP-mR-kXD">
-                                <rect key="frame" x="227" y="260" width="100" height="56"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="textColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="36"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                                <connections>
-                                    <action selector="textFieldEdited:" destination="BYZ-38-t0r" eventType="editingChanged" id="aUr-8V-E4R"/>
-                                    <action selector="touchTextField:" destination="BYZ-38-t0r" eventType="touchDown" id="pSL-Ny-FfX"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="16" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AQw-Li-B3Q">
-                                <rect key="frame" x="47" y="140" width="100" height="56"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="textColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="36"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                                <connections>
-                                    <action selector="textFieldEdited:" destination="BYZ-38-t0r" eventType="editingChanged" id="oV7-vC-4kN"/>
-                                    <action selector="touchTextField:" destination="BYZ-38-t0r" eventType="touchDown" id="ZpK-hN-dnt"/>
-                                </connections>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="×" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k9i-3v-NMK">
                                 <rect key="frame" x="181.5" y="278" width="11" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -336,17 +315,34 @@
                                 <color key="textColor" red="0.54664200539999996" green="0.61849999430000002" blue="0.69348919389999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="9" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1oO-Ji-x8o">
+                            <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1280" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="SP0-LT-xdD">
+                                <rect key="frame" x="47" y="260" width="100" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="37"/>
+                                <color key="textColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="720" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EnO-fh-fbh">
+                                <rect key="frame" x="227" y="260" width="100" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="37"/>
+                                <color key="textColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="16" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="pEs-lZ-ygP">
+                                <rect key="frame" x="47" y="140" width="100" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="37"/>
+                                <color key="textColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="9" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="Njf-mP-2GI">
                                 <rect key="frame" x="227" y="140" width="100" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="37"/>
                                 <color key="textColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="36"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                                <connections>
-                                    <action selector="textFieldEdited:" destination="BYZ-38-t0r" eventType="editingChanged" id="DFD-GV-zsr"/>
-                                    <action selector="touchTextField:" destination="BYZ-38-t0r" eventType="touchDown" id="Ffu-60-Okq"/>
-                                </connections>
-                            </textField>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -364,10 +360,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="hField" destination="leP-mR-kXD" id="YJk-h1-a1I"/>
-                        <outlet property="wField" destination="kRN-df-fvf" id="NZb-qd-fJw"/>
-                        <outlet property="xField" destination="AQw-Li-B3Q" id="rMs-wq-IbA"/>
-                        <outlet property="yField" destination="1oO-Ji-x8o" id="P4F-Dw-Aqt"/>
+                        <outlet property="deleteButton" destination="Pck-JX-Woh" id="Krm-JR-RAq"/>
+                        <outlet property="hField" destination="EnO-fh-fbh" id="tir-ru-4iu"/>
+                        <outlet property="wField" destination="SP0-LT-xdD" id="i3C-CI-sRh"/>
+                        <outlet property="xField" destination="pEs-lZ-ygP" id="ccp-9o-7yo"/>
+                        <outlet property="yField" destination="Njf-mP-2GI" id="7rz-tv-Vdr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
