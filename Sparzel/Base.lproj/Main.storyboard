@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="IbD-cF-ctT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,10 +10,69 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Splach View Controller-->
+        <scene sceneID="fmf-Wg-rlj">
+            <objects>
+                <viewController id="IbD-cF-ctT" customClass="SplachViewController" customModule="Sparzel" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mUF-Gu-aMe"/>
+                        <viewControllerLayoutGuide type="bottom" id="TUH-ZN-I0Q"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eWf-2X-Apl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R1Y-E2-1EZ">
+                                <rect key="frame" x="0.0" y="20" width="375" height="659"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app-icon-256" translatesAutoresizingMaskIntoConstraints="NO" id="ihP-VI-kGg">
+                                        <rect key="frame" x="87" y="109" width="200" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="FkB-XZ-vbf"/>
+                                            <constraint firstAttribute="width" constant="200" id="eUz-vm-rGb"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by Artem Misesin and Alex Suprun" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1I-XZ-f4X">
+                                        <rect key="frame" x="8" y="575" width="359" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="6DD-iM-mrV"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="ihP-VI-kGg" firstAttribute="top" secondItem="R1Y-E2-1EZ" secondAttribute="top" constant="109" id="69m-Ud-d8O"/>
+                                    <constraint firstItem="ihP-VI-kGg" firstAttribute="leading" secondItem="R1Y-E2-1EZ" secondAttribute="leading" constant="87" id="Aua-Sk-lJL"/>
+                                    <constraint firstAttribute="bottom" secondItem="v1I-XZ-f4X" secondAttribute="bottom" constant="63" id="FHX-g4-CKO"/>
+                                    <constraint firstAttribute="trailing" secondItem="ihP-VI-kGg" secondAttribute="trailing" constant="88" id="npF-uf-WmZ"/>
+                                    <constraint firstItem="v1I-XZ-f4X" firstAttribute="leading" secondItem="R1Y-E2-1EZ" secondAttribute="leadingMargin" id="ofK-uV-t0f"/>
+                                    <constraint firstItem="v1I-XZ-f4X" firstAttribute="centerX" secondItem="ihP-VI-kGg" secondAttribute="centerX" id="x5K-Jj-rOh"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="R1Y-E2-1EZ" firstAttribute="leading" secondItem="eWf-2X-Apl" secondAttribute="leading" id="6iE-Pg-aeG"/>
+                            <constraint firstItem="R1Y-E2-1EZ" firstAttribute="top" secondItem="mUF-Gu-aMe" secondAttribute="bottom" id="jCF-w7-Wj8"/>
+                            <constraint firstAttribute="trailing" secondItem="R1Y-E2-1EZ" secondAttribute="trailing" id="vzM-6b-vqH"/>
+                            <constraint firstAttribute="bottom" secondItem="R1Y-E2-1EZ" secondAttribute="bottom" constant="-12" id="y2R-Dh-Vrb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="roundedView" destination="R1Y-E2-1EZ" id="ahD-NU-eh8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t7a-ez-tWI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-872.79999999999995" y="129.98500749625188"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Sparzel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="main" id="BYZ-38-t0r" customClass="ViewController" customModule="Sparzel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -22,357 +81,430 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="2dO-AW-f6D">
-                                <rect key="frame" x="0.0" y="411" width="375" height="256"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KhP-2S-s09">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="9db-pP-iNJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FaB-FA-fZ8">
+                                        <rect key="frame" x="16" y="16" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="AcH-SK-h3K"/>
+                                            <constraint firstAttribute="width" constant="20" id="gwY-aU-F1B"/>
+                                        </constraints>
+                                        <state key="normal" title="Settings" image="settings-icon">
+                                            <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i4Q-XK-WxD">
+                                        <rect key="frame" x="339" y="16" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="Eer-BU-IFl"/>
+                                            <constraint firstAttribute="width" constant="20" id="jyJ-Ix-SGg"/>
+                                        </constraints>
+                                        <state key="normal" title="Info" image="help-icon"/>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xzY-vA-6Kw">
+                                        <rect key="frame" x="16" y="84" width="343" height="120"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gj0-9E-bKR" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="125" height="64"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                                <state key="normal" title="7">
-                                                    <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="0.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fvg-gp-kNV"/>
-                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="Eug-p0-Yg2"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASb-hH-9VH" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
-                                                <rect key="frame" x="125" y="0.0" width="125" height="64"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                                <state key="normal" title="8">
-                                                    <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="0.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="15l-DW-e3W"/>
-                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="2kP-RA-RMN"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ctt-C9-CFv" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
-                                                <rect key="frame" x="250" y="0.0" width="125" height="64"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                                <state key="normal" title="9">
-                                                    <color key="titleColor" red="0.2499319314956665" green="0.28186866641044617" blue="0.3152008056640625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="0.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3lM-Ik-QjU"/>
-                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="Mui-gs-h0D"/>
-                                                </connections>
-                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="pEs-lZ-ygP">
+                                                <rect key="frame" x="0.0" y="32" width="159" height="56"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="56" id="nAq-3l-igN"/>
+                                                    <constraint firstAttribute="width" constant="159" id="sZ7-oQ-vvQ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
+                                                <color key="textColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0W2-s9-fBf">
+                                                <rect key="frame" x="159" y="32" width="25" height="56"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="56" id="GMn-PH-SDA"/>
+                                                    <constraint firstAttribute="width" constant="25" id="Ucy-vV-9V4"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.54664200539999996" green="0.61849999430000002" blue="0.69348919389999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="Njf-mP-2GI">
+                                                <rect key="frame" x="184" y="32" width="159" height="56"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="159" id="ErR-EM-Hdg"/>
+                                                    <constraint firstAttribute="height" constant="56" id="TQZ-y4-vGZ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
+                                                <color key="textColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="aze-nY-MqS">
-                                        <rect key="frame" x="0.0" y="64" width="375" height="64"/>
+                                        <color key="backgroundColor" red="0.96447199583053589" green="0.96855705976486206" blue="0.97672098875045776" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="0W2-s9-fBf" firstAttribute="leading" secondItem="pEs-lZ-ygP" secondAttribute="trailing" id="6RF-iW-tYq"/>
+                                            <constraint firstAttribute="trailing" secondItem="Njf-mP-2GI" secondAttribute="trailing" id="J5T-6H-Kcf"/>
+                                            <constraint firstItem="0W2-s9-fBf" firstAttribute="top" secondItem="xzY-vA-6Kw" secondAttribute="top" constant="32" id="NMq-Go-JH7"/>
+                                            <constraint firstItem="pEs-lZ-ygP" firstAttribute="leading" secondItem="xzY-vA-6Kw" secondAttribute="leading" id="NYc-0F-nRf"/>
+                                            <constraint firstItem="Njf-mP-2GI" firstAttribute="top" secondItem="xzY-vA-6Kw" secondAttribute="top" constant="32" id="TpU-iN-e8a"/>
+                                            <constraint firstItem="pEs-lZ-ygP" firstAttribute="top" secondItem="xzY-vA-6Kw" secondAttribute="top" constant="32" id="hrp-1a-uU2"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="×" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k9i-3v-NMK">
+                                        <rect key="frame" x="175" y="236" width="25" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="25" id="Pml-OY-ADO"/>
+                                            <constraint firstAttribute="height" constant="56" id="aB2-hQ-Ljv"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.54664200539999996" green="0.61849999430000002" blue="0.69348919389999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1280" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="SP0-LT-xdD">
+                                        <rect key="frame" x="16" y="236" width="159" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="159" id="1Rp-DU-oS3"/>
+                                            <constraint firstAttribute="height" constant="56" id="OVM-rP-pGr"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
+                                        <color key="textColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="2dO-AW-f6D" userLabel="Keyboard">
+                                        <rect key="frame" x="0.0" y="391" width="375" height="256"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEt-aN-5M2" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="125" height="64"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                                <state key="normal" title="4">
-                                                    <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="0.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zam-F1-7R9"/>
-                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="Nbt-Or-Zx3"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKM-eO-dTi" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
-                                                <rect key="frame" x="125" y="0.0" width="125" height="64"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                                <state key="normal" title="5">
-                                                    <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="0.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Ar-oa-d8P"/>
-                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="A3u-LF-HXd"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0xx-ht-AeB" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
-                                                <rect key="frame" x="250" y="0.0" width="125" height="64"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                                <state key="normal" title="6">
-                                                    <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="0.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1i8-GW-gas"/>
-                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="36l-5n-bWC"/>
-                                                </connections>
-                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="9db-pP-iNJ" userLabel="Top">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gj0-9E-bKR" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="125" height="64"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                        <state key="normal" title="7">
+                                                            <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fvg-gp-kNV"/>
+                                                            <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="Eug-p0-Yg2"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASb-hH-9VH" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
+                                                        <rect key="frame" x="125" y="0.0" width="125" height="64"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                        <state key="normal" title="8">
+                                                            <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="15l-DW-e3W"/>
+                                                            <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="2kP-RA-RMN"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ctt-C9-CFv" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
+                                                        <rect key="frame" x="250" y="0.0" width="125" height="64"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                        <state key="normal" title="9">
+                                                            <color key="titleColor" red="0.2499319314956665" green="0.28186866641044617" blue="0.3152008056640625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3lM-Ik-QjU"/>
+                                                            <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="Mui-gs-h0D"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="aze-nY-MqS" userLabel="Middle Top">
+                                                <rect key="frame" x="0.0" y="64" width="375" height="64"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEt-aN-5M2" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="125" height="64"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                        <state key="normal" title="4">
+                                                            <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zam-F1-7R9"/>
+                                                            <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="Nbt-Or-Zx3"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKM-eO-dTi" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
+                                                        <rect key="frame" x="125" y="0.0" width="125" height="64"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                        <state key="normal" title="5">
+                                                            <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1Ar-oa-d8P"/>
+                                                            <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="A3u-LF-HXd"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0xx-ht-AeB" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
+                                                        <rect key="frame" x="250" y="0.0" width="125" height="64"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                        <state key="normal" title="6">
+                                                            <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1i8-GW-gas"/>
+                                                            <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="36l-5n-bWC"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="HCM-AA-mdd" userLabel="Middle Bottom">
+                                                <rect key="frame" x="0.0" y="128" width="375" height="64"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BUb-6S-di9" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="125" height="64"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                        <state key="normal" title="1">
+                                                            <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xcM-GS-99d"/>
+                                                            <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="ZPt-5y-HJu"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JlT-u2-DLD" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
+                                                        <rect key="frame" x="125" y="0.0" width="125" height="64"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                        <state key="normal" title="2">
+                                                            <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sSy-hf-62a"/>
+                                                            <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="1im-Dr-tRX"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ff3-OC-2uj" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
+                                                        <rect key="frame" x="250" y="0.0" width="125" height="64"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                        <state key="normal" title="3">
+                                                            <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W1D-V9-ck3"/>
+                                                            <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="z03-l0-i7c"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="UKo-tf-6nP" userLabel="Bottom">
+                                                <rect key="frame" x="0.0" y="192" width="375" height="64"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2b-Yt-qt2" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="125" height="64"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                        <state key="normal" title=".">
+                                                            <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tRA-2r-hed"/>
+                                                            <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="YFg-y7-hbW"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ylo-EK-rIY" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
+                                                        <rect key="frame" x="125" y="0.0" width="125" height="64"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                        <state key="normal" title="0">
+                                                            <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QB1-6L-J5I"/>
+                                                            <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="Ci4-fx-h2m"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pck-JX-Woh" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
+                                                        <rect key="frame" x="250" y="0.0" width="125" height="64"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                        <state key="normal" image="delete-icon">
+                                                            <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="deleteButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="UWe-aW-jMf"/>
+                                                            <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="7a5-gT-hDN"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="256" id="SXN-7W-1JN"/>
+                                        </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="HCM-AA-mdd">
-                                        <rect key="frame" x="0.0" y="128" width="375" height="64"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BUb-6S-di9" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="125" height="64"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                                <state key="normal" title="1">
-                                                    <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="0.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xcM-GS-99d"/>
-                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="ZPt-5y-HJu"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JlT-u2-DLD" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
-                                                <rect key="frame" x="125" y="0.0" width="125" height="64"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                                <state key="normal" title="2">
-                                                    <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="0.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sSy-hf-62a"/>
-                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="1im-Dr-tRX"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ff3-OC-2uj" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
-                                                <rect key="frame" x="250" y="0.0" width="125" height="64"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                                <state key="normal" title="3">
-                                                    <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="0.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W1D-V9-ck3"/>
-                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="z03-l0-i7c"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="UKo-tf-6nP">
-                                        <rect key="frame" x="0.0" y="192" width="375" height="64"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2b-Yt-qt2" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="125" height="64"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                                <state key="normal" title=".">
-                                                    <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="0.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tRA-2r-hed"/>
-                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="YFg-y7-hbW"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ylo-EK-rIY" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
-                                                <rect key="frame" x="125" y="0.0" width="125" height="64"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                                <state key="normal" title="0">
-                                                    <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="0.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="touchDigit:forEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QB1-6L-J5I"/>
-                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="Ci4-fx-h2m"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pck-JX-Woh" customClass="CustomButton" customModule="Sparzel" customModuleProvider="target">
-                                                <rect key="frame" x="250" y="0.0" width="125" height="64"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <state key="normal" image="delete-icon">
-                                                    <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="0.5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="deleteButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="UWe-aW-jMf"/>
-                                                    <action selector="touchDownDigit:" destination="BYZ-38-t0r" eventType="touchDown" id="7a5-gT-hDN"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="720" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EnO-fh-fbh">
+                                        <rect key="frame" x="200" y="236" width="159" height="56"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="159" id="1Af-TQ-HWy"/>
+                                            <constraint firstAttribute="height" constant="56" id="qJS-G8-WA9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
+                                        <color key="textColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
+                                <color key="backgroundColor" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="256" id="z4X-2s-153"/>
+                                    <constraint firstAttribute="trailing" secondItem="EnO-fh-fbh" secondAttribute="trailing" constant="16" id="0f7-Gb-sl2"/>
+                                    <constraint firstItem="xzY-vA-6Kw" firstAttribute="leading" secondItem="KhP-2S-s09" secondAttribute="leading" constant="16" id="45d-Ty-YSa"/>
+                                    <constraint firstAttribute="bottom" secondItem="2dO-AW-f6D" secondAttribute="bottom" id="FEh-WF-BEo"/>
+                                    <constraint firstItem="2dO-AW-f6D" firstAttribute="leading" secondItem="KhP-2S-s09" secondAttribute="leading" id="Hi5-64-Z24"/>
+                                    <constraint firstAttribute="trailing" secondItem="i4Q-XK-WxD" secondAttribute="trailing" constant="16" id="INJ-jm-uBM"/>
+                                    <constraint firstItem="k9i-3v-NMK" firstAttribute="top" secondItem="KhP-2S-s09" secondAttribute="top" constant="236" id="IQ3-5H-maA"/>
+                                    <constraint firstItem="FaB-FA-fZ8" firstAttribute="leading" secondItem="KhP-2S-s09" secondAttribute="leading" constant="16" id="O5u-Rm-twn"/>
+                                    <constraint firstItem="FaB-FA-fZ8" firstAttribute="top" secondItem="KhP-2S-s09" secondAttribute="top" constant="16" id="Rj1-5y-HNY"/>
+                                    <constraint firstItem="2dO-AW-f6D" firstAttribute="top" secondItem="xzY-vA-6Kw" secondAttribute="bottom" constant="187" id="WMH-1Z-7VE"/>
+                                    <constraint firstItem="i4Q-XK-WxD" firstAttribute="top" secondItem="KhP-2S-s09" secondAttribute="top" constant="16" id="Ylu-Il-4pn"/>
+                                    <constraint firstAttribute="trailing" secondItem="xzY-vA-6Kw" secondAttribute="trailing" constant="16" id="ecr-cK-DiO"/>
+                                    <constraint firstAttribute="trailing" secondItem="2dO-AW-f6D" secondAttribute="trailing" id="jSe-hb-QtU"/>
+                                    <constraint firstItem="EnO-fh-fbh" firstAttribute="top" secondItem="xzY-vA-6Kw" secondAttribute="bottom" constant="32" id="kIo-xE-nYS"/>
+                                    <constraint firstItem="SP0-LT-xdD" firstAttribute="leading" secondItem="KhP-2S-s09" secondAttribute="leading" constant="16" id="sfI-GG-PPY"/>
+                                    <constraint firstItem="xzY-vA-6Kw" firstAttribute="top" secondItem="i4Q-XK-WxD" secondAttribute="bottom" constant="48" id="vV9-Ar-dNk"/>
+                                    <constraint firstItem="SP0-LT-xdD" firstAttribute="top" secondItem="xzY-vA-6Kw" secondAttribute="bottom" constant="32" id="vqO-Oo-caF"/>
                                 </constraints>
-                            </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="×" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k9i-3v-NMK">
-                                <rect key="frame" x="181.5" y="278" width="11" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.54664200539999996" green="0.61849999430000002" blue="0.69348919389999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FaB-FA-fZ8">
-                                <rect key="frame" x="16" y="28" width="29" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="29" id="SwC-43-sdn"/>
-                                </constraints>
-                                <state key="normal" image="settings-icon"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i4Q-XK-WxD">
-                                <rect key="frame" x="330" y="28" width="29" height="22"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="29" id="Y9h-n6-con"/>
-                                </constraints>
-                                <state key="normal" image="help-icon"/>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=":" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0W2-s9-fBf">
-                                <rect key="frame" x="184.5" y="158" width="5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.54664200539999996" green="0.61849999430000002" blue="0.69348919389999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1280" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="SP0-LT-xdD">
-                                <rect key="frame" x="47" y="260" width="100" height="56"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="37"/>
-                                <color key="textColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="720" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EnO-fh-fbh">
-                                <rect key="frame" x="227" y="260" width="100" height="56"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="37"/>
-                                <color key="textColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="16" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="pEs-lZ-ygP">
-                                <rect key="frame" x="47" y="140" width="100" height="56"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="37"/>
-                                <color key="textColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="9" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="Njf-mP-2GI">
-                                <rect key="frame" x="227" y="140" width="100" height="56"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="37"/>
-                                <color key="textColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.96447199579999998" green="0.96855705979999995" blue="0.97672098880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="2dO-AW-f6D" secondAttribute="trailing" id="1Ze-EA-rEH"/>
-                            <constraint firstItem="i4Q-XK-WxD" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="7QU-6v-S5B"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="2dO-AW-f6D" secondAttribute="bottom" id="DHe-dT-UvK"/>
-                            <constraint firstItem="k9i-3v-NMK" firstAttribute="top" secondItem="0W2-s9-fBf" secondAttribute="bottom" constant="99" id="IZs-Ww-xvE"/>
-                            <constraint firstItem="0W2-s9-fBf" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="138" id="Y73-b9-EUg"/>
-                            <constraint firstItem="k9i-3v-NMK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iWT-Av-slv"/>
-                            <constraint firstItem="i4Q-XK-WxD" firstAttribute="baseline" secondItem="FaB-FA-fZ8" secondAttribute="baseline" id="kbH-yR-mOy"/>
-                            <constraint firstItem="0W2-s9-fBf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rgD-7o-do4"/>
-                            <constraint firstItem="FaB-FA-fZ8" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="uJA-dK-xsr"/>
-                            <constraint firstItem="2dO-AW-f6D" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="uRe-vo-uzg"/>
-                            <constraint firstItem="FaB-FA-fZ8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="uwC-C3-8io"/>
+                            <constraint firstItem="KhP-2S-s09" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Aa5-iu-X61"/>
+                            <constraint firstAttribute="trailing" secondItem="KhP-2S-s09" secondAttribute="trailing" id="Cqj-Pt-hiw"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="KhP-2S-s09" secondAttribute="bottom" id="Dwu-Lh-D4j"/>
+                            <constraint firstItem="k9i-3v-NMK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="H5x-zJ-6mo"/>
+                            <constraint firstItem="KhP-2S-s09" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="lXw-ca-dIp"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="deleteButton" destination="Pck-JX-Woh" id="Krm-JR-RAq"/>
+                        <outlet property="divSymbol" destination="0W2-s9-fBf" id="gXS-XG-BfS"/>
+                        <outlet property="eightButton" destination="ASb-hH-9VH" id="kcI-V6-Ydz"/>
+                        <outlet property="fiveButton" destination="IKM-eO-dTi" id="yNg-S5-IJT"/>
+                        <outlet property="fourButton" destination="MEt-aN-5M2" id="Gwm-ZT-U4v"/>
                         <outlet property="hField" destination="EnO-fh-fbh" id="tir-ru-4iu"/>
+                        <outlet property="multiSymbol" destination="k9i-3v-NMK" id="nfJ-lj-Et2"/>
+                        <outlet property="nineButton" destination="ctt-C9-CFv" id="kOz-nG-zeZ"/>
+                        <outlet property="oneButton" destination="BUb-6S-di9" id="ZfD-Uy-xdK"/>
+                        <outlet property="pointButton" destination="P2b-Yt-qt2" id="2PY-gw-hCu"/>
+                        <outlet property="roundedView" destination="KhP-2S-s09" id="qrF-8A-Zcn"/>
+                        <outlet property="sevenButton" destination="Gj0-9E-bKR" id="xQe-Yt-0ER"/>
+                        <outlet property="shadowView" destination="xzY-vA-6Kw" id="Nkt-Jf-heu"/>
+                        <outlet property="sixButton" destination="0xx-ht-AeB" id="72J-Nz-JEo"/>
+                        <outlet property="threeButton" destination="Ff3-OC-2uj" id="dI8-1s-01G"/>
+                        <outlet property="twoButton" destination="JlT-u2-DLD" id="M5V-J1-rHT"/>
                         <outlet property="wField" destination="SP0-LT-xdD" id="i3C-CI-sRh"/>
                         <outlet property="xField" destination="pEs-lZ-ygP" id="ccp-9o-7yo"/>
                         <outlet property="yField" destination="Njf-mP-2GI" id="7rz-tv-Vdr"/>
+                        <outlet property="zeroButton" destination="Ylo-EK-rIY" id="Fz9-3B-SOJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-36" y="91.304347826086968"/>
+            <point key="canvasLocation" x="-36" y="129.98500749625188"/>
         </scene>
     </scenes>
     <resources>
+        <image name="app-icon-256" width="256" height="256"/>
         <image name="delete-icon" width="21" height="16"/>
         <image name="help-icon" width="20" height="20"/>
         <image name="settings-icon" width="20" height="20"/>

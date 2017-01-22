@@ -14,6 +14,9 @@
 		C64809541E3189FE00F3EF12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C64809521E3189FE00F3EF12 /* LaunchScreen.storyboard */; };
 		C648095F1E318B2C00F3EF12 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648095D1E318B2C00F3EF12 /* CustomButton.swift */; };
 		C64809601E318B2C00F3EF12 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648095E1E318B2C00F3EF12 /* extensions.swift */; };
+		C66A3B7E1E32A3DE0001BC80 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C66A3B7D1E32A3DE0001BC80 /* Default-568h@2x.png */; };
+		C66A3B811E32A6350001BC80 /* RatioEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66A3B801E32A6350001BC80 /* RatioEvaluator.swift */; };
+		C66A3B831E33A8520001BC80 /* SplachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66A3B821E33A8520001BC80 /* SplachViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		C64809551E3189FE00F3EF12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C648095D1E318B2C00F3EF12 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		C648095E1E318B2C00F3EF12 /* extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
+		C66A3B7D1E32A3DE0001BC80 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		C66A3B801E32A6350001BC80 /* RatioEvaluator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatioEvaluator.swift; sourceTree = "<group>"; };
+		C66A3B821E33A8520001BC80 /* SplachViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplachViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +48,7 @@
 		C648093D1E3189FD00F3EF12 = {
 			isa = PBXGroup;
 			children = (
+				C66A3B7D1E32A3DE0001BC80 /* Default-568h@2x.png */,
 				C64809481E3189FE00F3EF12 /* Sparzel */,
 				C64809471E3189FE00F3EF12 /* Products */,
 			);
@@ -58,16 +65,26 @@
 		C64809481E3189FE00F3EF12 /* Sparzel */ = {
 			isa = PBXGroup;
 			children = (
+				C66A3B7F1E32A3F90001BC80 /* Supporting files */,
+				C648094B1E3189FE00F3EF12 /* ViewController.swift */,
+				C66A3B801E32A6350001BC80 /* RatioEvaluator.swift */,
+				C648094D1E3189FE00F3EF12 /* Main.storyboard */,
+			);
+			path = Sparzel;
+			sourceTree = "<group>";
+		};
+		C66A3B7F1E32A3F90001BC80 /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
 				C648095D1E318B2C00F3EF12 /* CustomButton.swift */,
 				C648095E1E318B2C00F3EF12 /* extensions.swift */,
 				C64809491E3189FE00F3EF12 /* AppDelegate.swift */,
-				C648094B1E3189FE00F3EF12 /* ViewController.swift */,
-				C648094D1E3189FE00F3EF12 /* Main.storyboard */,
 				C64809501E3189FE00F3EF12 /* Assets.xcassets */,
 				C64809521E3189FE00F3EF12 /* LaunchScreen.storyboard */,
 				C64809551E3189FE00F3EF12 /* Info.plist */,
+				C66A3B821E33A8520001BC80 /* SplachViewController.swift */,
 			);
-			path = Sparzel;
+			name = "Supporting files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C64809541E3189FE00F3EF12 /* LaunchScreen.storyboard in Resources */,
+				C66A3B7E1E32A3DE0001BC80 /* Default-568h@2x.png in Resources */,
 				C64809511E3189FE00F3EF12 /* Assets.xcassets in Resources */,
 				C648094F1E3189FE00F3EF12 /* Main.storyboard in Resources */,
 			);
@@ -144,7 +162,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C648094C1E3189FE00F3EF12 /* ViewController.swift in Sources */,
+				C66A3B831E33A8520001BC80 /* SplachViewController.swift in Sources */,
 				C648094A1E3189FE00F3EF12 /* AppDelegate.swift in Sources */,
+				C66A3B811E32A6350001BC80 /* RatioEvaluator.swift in Sources */,
 				C648095F1E318B2C00F3EF12 /* CustomButton.swift in Sources */,
 				C64809601E318B2C00F3EF12 /* extensions.swift in Sources */,
 			);
