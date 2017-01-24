@@ -8,20 +8,21 @@
 
 import UIKit
 
+//var pressedButtonColor: UIColor = UIColor(hexString: "#FFE6E1", alpha: 1)
+//var pressedButtonTextColor: UIColor = UIColor(hexString: "#AA3821", alpha: 1)
+//var pressedButtonBorder: UIColor = UIColor(hexString: "#FFA694", alpha: 1)
+//var symbolsColor: UIColor = UIColor(hexString: "#8FA1B3", alpha: 1)
+//var mainTextColor: UIColor = UIColor(hexString: "#404850", alpha: 1)
+//var buttonBorder: UIColor = UIColor(hexString: "EEF0F4", alpha: 1)
+//var mainTint: UIColor = UIColor(hexString: "#F6F7F9", alpha: 1)
+//var labelsBackground: UIColor = UIColor(hexString: "#FF5533", alpha: 0.1)
+//var deleteColor: UIColor = UIColor(hexString: "#FF5533", alpha: 1)
+
 class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     var evaluator = RatioEvaluator()
     
     //setting up the colors
-    var pressedButtonColor: UIColor = UIColor(hexString: "#FFE6E1", alpha: 1)
-    var pressedButtonTextColor: UIColor = UIColor(hexString: "#AA3821", alpha: 1)
-    var pressedButtonBorder: UIColor = UIColor(hexString: "#FFA694", alpha: 1)
-    var symbolsColor: UIColor = UIColor(hexString: "#8FA1B3", alpha: 1)
-    var mainTextColor: UIColor = UIColor(hexString: "#404850", alpha: 1)
-    var buttonBorder: UIColor = UIColor(hexString: "EEF0F4", alpha: 1)
-    var mainTint: UIColor = UIColor(hexString: "#F6F7F9", alpha: 1)
-    var labelsBackground: UIColor = UIColor(hexString: "#FF5533", alpha: 0.1)
-    var deleteColor: UIColor = UIColor(hexString: "#FF5533", alpha: 1)
     
     //instantiating subviews
     @IBOutlet weak var xField: UILabel!
@@ -54,12 +55,38 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var shadowView: UIView!
     
+    @IBOutlet weak var keyboard: UIStackView!
+    
+    @IBOutlet weak var sevenStack: UIStackView!
+    @IBOutlet weak var fourStack: UIStackView!
+    @IBOutlet weak var oneStack: UIStackView!
+    @IBOutlet weak var zeroStack: UIStackView!
+    
+    var reversedKeyboard = false
+    
     //supporting variables
     var activeTextField: UILabel?
     var previousActive: UILabel?
     var secondTapDone = false
     var isTyping = false
     var pointEntered: [Bool] = []
+    
+    //temporary features
+    @IBAction func tempKeyboardSwitch() {
+        if !reversedKeyboard {
+            keyboard.addArrangedSubview(sevenStack)
+            keyboard.addArrangedSubview(fourStack)
+            keyboard.addArrangedSubview(oneStack)
+            reversedKeyboard = true
+        } else {
+            keyboard.addArrangedSubview(oneStack)
+            keyboard.addArrangedSubview(fourStack)
+            keyboard.addArrangedSubview(sevenStack)
+            reversedKeyboard = false
+        }
+        keyboard.addArrangedSubview(zeroStack)
+        
+    }
     
     //tapping the textfields
     func handleTap(recognizer: UITapGestureRecognizer) {
@@ -73,6 +100,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         } else {
             if secondTapDone {
                 secondTapDone = false
+                isTyping = false
                 setDeleteButtonImage(path: "delete-icon-bright")
             } else {
                 secondTapDone = true
@@ -84,11 +112,11 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         if !secondTapDone {
             for view in textfields {
                 if view != activeTextField {
-                    view.textColor = mainTextColor
+                    view.textColor = ColorConstants.mainTextColor
                     view.backgroundColor = UIColor.clear
                 } else {
-                    view.textColor = deleteColor
-                    view.backgroundColor = labelsBackground
+                    view.textColor = ColorConstants.deleteColor
+                    view.backgroundColor = ColorConstants.labelsBackground
                 }
             }
         } else {
@@ -98,21 +126,30 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
                 if view == activeTextField {
                     view.backgroundColor = UIColor.clear
                 } else {
-                    view.textColor = mainTextColor
+                    view.textColor = ColorConstants.mainTextColor
                     view.backgroundColor = UIColor.clear
                 }
             }
         }
         
         previousActive = activeTextField
+        print("Second tap done \(secondTapDone)")
+        print("Is typing \(isTyping)")
     }
     
     //button view, when finger is down on the screen
     @IBAction func touchDownDigit(_ sender: CustomButton) {
-        sender.backgroundColor = pressedButtonColor
-        sender.setTitleColor(pressedButtonTextColor, for: .normal)
-        sender.borderColor = pressedButtonBorder
+        sender.backgroundColor = ColorConstants.pressedButtonColor
+        sender.setTitleColor(ColorConstants.pressedButtonTextColor, for: .normal)
+        sender.borderColor = ColorConstants.pressedButtonBorder
     }
+    
+    @IBAction func dragAwayOffDigit(_ sender: CustomButton) {
+        sender.backgroundColor = ColorConstants.defaultButtonBackground
+        sender.setTitleColor(ColorConstants.mainTextColor, for: UIControlState.normal)
+        sender.borderColor = ColorConstants.buttonBorder
+    }
+    
     
     //pressing the button on a numpad
     @IBAction func touchDigit(_ sender: CustomButton, forEvent event: UIEvent) {
@@ -120,15 +157,14 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         let digit = sender.titleLabel!.text!
         
         //button view, when finger is released
-        sender.backgroundColor = UIColor.white
-        sender.setTitleColor(mainTextColor, for: UIControlState.normal)
-        sender.borderColor = buttonBorder
+        sender.backgroundColor = ColorConstants.defaultButtonBackground
+        sender.setTitleColor(ColorConstants.mainTextColor, for: UIControlState.normal)
+        sender.borderColor = ColorConstants.buttonBorder
         
         if let tappedField = activeTextField {
             
             //adding a digit to the display
-            if !(tappedField.text == "0" && digit == "0") && !(tappedField.text == "0" && digit == ".") && !(pointEntered[tappedField.tag] && digit == ".") && !(!secondTapDone && digit == "."){
-                
+            if !(tappedField.text! == "0" && digit == "0") && !(tappedField.text == "0" && digit == ".") && !(pointEntered[tappedField.tag - 1] && digit == ".") && !(!secondTapDone && digit == ".") && (tappedField.text?.characters.count)! <= 5 {
                 if !secondTapDone {
                     activeTextField?.backgroundColor = UIColor.clear
                     setDeleteButtonImage(path: "delete-icon")
@@ -151,11 +187,13 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
                 secondTapDone = true
             }
         }
+        print("Second tap done \(secondTapDone)")
+        print("Is typing \(isTyping)")
     }
     
     @IBAction func deleteButtonTapped() {
-        deleteButton.backgroundColor = UIColor.white
-        deleteButton.borderColor = buttonBorder
+        deleteButton.backgroundColor = ColorConstants.defaultButtonBackground
+        deleteButton.borderColor = ColorConstants.buttonBorder
         if let tappedField = activeTextField {
             if !secondTapDone {
                 tappedField.text = "0"
@@ -172,6 +210,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
             }
             generalEvaluation(with: tappedField)
         }
+        print("Second tap done \(secondTapDone)")
+        print("Is typing \(isTyping)")
     }
     
     override func viewDidLoad() {
@@ -185,33 +225,39 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         shadowView.layer.shadowOpacity = 0.03
         shadowView.layer.shadowRadius = 0.5
         
-        divSymbol.textColor = symbolsColor
-        multiSymbol.textColor = symbolsColor
+        divSymbol.textColor = ColorConstants.symbolsColor
+        multiSymbol.textColor = ColorConstants.symbolsColor
         
         textfields = [xField, yField, wField, hField]
         mainButtons = [zeroButton, oneButton, twoButton, threeButton, fourButton, fiveButton, sixButton, sevenButton, eightButton, nineButton, deleteButton, pointButton]
 
         for button in mainButtons {
-            button.borderColor = mainTint
-            button.backgroundColor = .white
-            button.titleLabel?.textColor = mainTextColor
+            button.borderColor = ColorConstants.mainTint
+            button.backgroundColor = ColorConstants.defaultButtonBackground
+            button.titleLabel?.textColor = ColorConstants.mainTextColor
         }
         
         //setting up textfields
-        for view in textfields {
+        for (index, view) in textfields.enumerated() {
             view.isUserInteractionEnabled = true
             let recognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
             recognizer.delegate = self
             view.addGestureRecognizer(recognizer)
             
+            if index == 2 {
+                handleTap(recognizer: recognizer)
+            }
+            
             pointEntered.append(false)
             
 //            let carriageView = UIView()
 //            
-//            carriageView.frame = CGRect(x: view.frame.width - 2, y: 0, width: 2, height: view.frame.height)
+//            carriageView.frame = CGRect(x: view.frame.width + 2, y: 0, width: 2, height: view.frame.height)
 //            carriageView.backgroundColor = deleteColor;
 //            
 //            view.addSubview(carriageView)
+            
+            view.sizeToFit()
             
             view.layer.masksToBounds = true
             view.layer.cornerRadius = 4
@@ -230,25 +276,45 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func generalEvaluation(with tappedField: UILabel) {
-        if tappedField.text != "0" && xField.text != "0" && yField.text != "0"{
-            switch tappedField.tag {
-            case 1:
-                wField.text = evaluator.evaluate(tappedValue: tappedField.text!, hField!.text!, yField!.text!, reversed: false)
-            case 2:
-                hField.text = evaluator.evaluate(tappedValue: tappedField.text!, wField!.text!, xField!.text!, reversed: false)
-            case 3:
-                hField.text = evaluator.evaluate(tappedValue: tappedField.text!, xField!.text!, yField!.text!, reversed: true)
-            case 4:
-                wField.text = evaluator.evaluate(tappedValue: tappedField.text!, yField!.text!, xField!.text!, reversed: true)
-            default: break
-            }
+        let values = (xField!.text!, yField!.text!, wField!.text!, hField!.text!)
+        //if tappedField.text != "0" && xField.text != "0" && yField.text != "0"{
+        if tappedField.tag != 4 {
+            hField.text = evaluator.evaluate(values: values, field: tappedField.tag)
+        } else {
+            wField.text = evaluator.evaluate(values: values, field: tappedField.tag)
         }
+//            case 1:
+//                wField.text = evaluator.evaluate(tappedValue: tappedField.text!, hField!.text!, yField!.text!, field: 1)
+//            case 2:
+//                hField.text = evaluator.evaluate(tappedValue: tappedField.text!, wField!.text!, xField!.text!, field: 2)
+//            case 3:
+//                hField.text = evaluator.evaluate(tappedValue: tappedField.text!, xField!.text!, yField!.text!, field: 3)
+//            case 4:
+//                wField.text = evaluator.evaluate(tappedValue: tappedField.text!, yField!.text!, xField!.text!, field: 4)
+//            default: break
+//            }
+        //}
     }
     
     func setDeleteButtonImage(path: String){
         if let image = UIImage(named: path) {
             deleteButton.setImage(image, for: .normal)
         }
+    }
+    
+    func cancelSelection() {
+        secondTapDone = false
+        isTyping = false
+        activeTextField = nil
+        previousActive = nil
+        setDeleteButtonImage(path: "delete-icon")
+        for view in textfields {
+            if view != activeTextField {
+                view.textColor = ColorConstants.mainTextColor
+                view.backgroundColor = UIColor.clear
+            }
+        }
+        print("tap")
     }
 }
 
