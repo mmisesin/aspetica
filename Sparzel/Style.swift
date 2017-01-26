@@ -19,4 +19,7 @@ struct ColorConstants {
     static let mainTint = UIColor(hexString: "#F6F7F9", alpha: 1)
     static let labelsBackground = UIColor(hexString: "#FF5533", alpha: 0.1)
     static let deleteColor = UIColor(hexString: "#FF5533", alpha: 1)
+    static let cellTextColor = UIColor(hexString: "#5F6B77", alpha: 1)
+    static let deleteIconColor = UIColor(hexString: "F65C3C", alpha: 1)
+    static let deleteIconDarkColor = UIColor(hexString: "DE4B34", alpha: 1)
 }

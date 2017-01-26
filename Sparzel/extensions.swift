@@ -42,3 +42,43 @@ extension Double {
         return (self * divisor).rounded() / divisor
     }
 }
+
+extension Bundle {
+    var releaseVersionNumber: String? {
+        return infoDictionary?["CFBundleShortVersionString"] as? String
+    }
+    var buildVersionNumber: String? {
+        return infoDictionary?["CFBundleVersion"] as? String
+    }
+}
+
+protocol DismissalDelegate : class
+{
+    func finishedShowing(viewController: UIViewController);
+}
+
+protocol Dismissable : class
+{
+    weak var dismissalDelegate : DismissalDelegate? { get set }
+}
+
+extension DismissalDelegate where Self: UIViewController
+{
+    func finishedShowing(viewController: UIViewController) {
+        //if viewController.isBeingPresented && viewController.presentingViewController == self
+        //{
+            self.dismiss(animated: true, completion: nil)
+            return
+        //}
+    }
+}
+
+extension String {
+    mutating func stripFromCharacter(char:String) {
+        let c = self.characters
+        if var ix = c.index(of: ".") {
+            ix = c.index(after: ix)
+            self = String(c.suffix(from: ix))
+        }
+    }
+}

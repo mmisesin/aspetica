@@ -9,6 +9,7 @@
 import Foundation
 
 class RatioEvaluator {
+    
     func evaluate(values: (a: String, b: String, c: String, d: String), field: Int) -> String {
         var result = 0.0
         switch field{
