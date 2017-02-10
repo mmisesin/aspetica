@@ -23,7 +23,7 @@ class RatioEvaluator {
             temp = temp.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range:nil)
             return temp
         } else {
-            var temp = forTailingZero(temp: result.roundTo(places: 2))
+            let temp = forTailingZero(temp: result.roundTo(places: 2))
             //temp = remove(from: temp)
             return temp
         }

@@ -291,6 +291,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
                             carriages[tappedField.tag - 1].backgroundColor = .clear
                             secondTapDone = false
                             isTyping = false
+                            stopAnimation(view.tag - 1)
                         } else {
                             tappedField.text = "0"
                             pointEntered[tappedField.tag - 1] = false

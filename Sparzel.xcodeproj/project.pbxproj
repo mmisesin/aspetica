@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C6201F301E4DEDD300ABEACF /* altSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6201F2F1E4DEDD300ABEACF /* altSettingsViewController.swift */; };
 		C648094A1E3189FE00F3EF12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64809491E3189FE00F3EF12 /* AppDelegate.swift */; };
 		C648094C1E3189FE00F3EF12 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648094B1E3189FE00F3EF12 /* ViewController.swift */; };
 		C648094F1E3189FE00F3EF12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C648094D1E3189FE00F3EF12 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C6201F2F1E4DEDD300ABEACF /* altSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = altSettingsViewController.swift; sourceTree = "<group>"; };
 		C64809461E3189FE00F3EF12 /* Sparzel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sparzel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C64809491E3189FE00F3EF12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C648094B1E3189FE00F3EF12 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				C6FC34C81E37ADF7008D8D9A /* Style.swift */,
 				C66A3B801E32A6350001BC80 /* RatioEvaluator.swift */,
 				C648094D1E3189FE00F3EF12 /* Main.storyboard */,
+				C6201F2F1E4DEDD300ABEACF /* altSettingsViewController.swift */,
 				C66A3B841E36943E0001BC80 /* SettingsViewController.swift */,
 				C65D26241E3A3F22000A4744 /* Launch Screen.storyboard */,
 			);
@@ -163,6 +166,7 @@
 				C648094C1E3189FE00F3EF12 /* ViewController.swift in Sources */,
 				C66A3B851E36943E0001BC80 /* SettingsViewController.swift in Sources */,
 				C648094A1E3189FE00F3EF12 /* AppDelegate.swift in Sources */,
+				C6201F301E4DEDD300ABEACF /* altSettingsViewController.swift in Sources */,
 				C66A3B811E32A6350001BC80 /* RatioEvaluator.swift in Sources */,
 				C648095F1E318B2C00F3EF12 /* CustomClasses.swift in Sources */,
 				C64809601E318B2C00F3EF12 /* extensions.swift in Sources */,
