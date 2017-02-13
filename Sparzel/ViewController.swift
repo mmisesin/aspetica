@@ -434,7 +434,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         (textfields[0].text!, textfields[1].text!, textfields[2].text!, textfields[3].text!) = evaluator.fetchData()
         
         for view in textfields {
-            print(view.text)
+
             if view.text == "🗿"{
                 reevaluate = true
             }
