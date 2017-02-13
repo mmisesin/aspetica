@@ -20,7 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C64809461E3189FE00F3EF12 /* Sparzel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sparzel.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C64809461E3189FE00F3EF12 /* Aspetica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aspetica.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C64809491E3189FE00F3EF12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C648094B1E3189FE00F3EF12 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C648094E1E3189FE00F3EF12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -48,7 +48,7 @@
 		C648093D1E3189FD00F3EF12 = {
 			isa = PBXGroup;
 			children = (
-				C64809481E3189FE00F3EF12 /* Sparzel */,
+				C64809481E3189FE00F3EF12 /* Aspetica */,
 				C64809471E3189FE00F3EF12 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,12 +56,12 @@
 		C64809471E3189FE00F3EF12 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C64809461E3189FE00F3EF12 /* Sparzel.app */,
+				C64809461E3189FE00F3EF12 /* Aspetica.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C64809481E3189FE00F3EF12 /* Sparzel */ = {
+		C64809481E3189FE00F3EF12 /* Aspetica */ = {
 			isa = PBXGroup;
 			children = (
 				C66A3B7F1E32A3F90001BC80 /* Supporting files */,
@@ -72,6 +72,7 @@
 				C66A3B841E36943E0001BC80 /* SettingsViewController.swift */,
 				C65D26241E3A3F22000A4744 /* Launch Screen.storyboard */,
 			);
+			name = Aspetica;
 			path = Sparzel;
 			sourceTree = "<group>";
 		};
@@ -90,9 +91,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C64809451E3189FD00F3EF12 /* Sparzel */ = {
+		C64809451E3189FD00F3EF12 /* Aspetica */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C64809581E3189FE00F3EF12 /* Build configuration list for PBXNativeTarget "Sparzel" */;
+			buildConfigurationList = C64809581E3189FE00F3EF12 /* Build configuration list for PBXNativeTarget "Aspetica" */;
 			buildPhases = (
 				C64809421E3189FD00F3EF12 /* Sources */,
 				C64809431E3189FD00F3EF12 /* Frameworks */,
@@ -102,9 +103,9 @@
 			);
 			dependencies = (
 			);
-			name = Sparzel;
+			name = Aspetica;
 			productName = Sparzel;
-			productReference = C64809461E3189FE00F3EF12 /* Sparzel.app */;
+			productReference = C64809461E3189FE00F3EF12 /* Aspetica.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -124,7 +125,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C64809411E3189FD00F3EF12 /* Build configuration list for PBXProject "Sparzel" */;
+			buildConfigurationList = C64809411E3189FD00F3EF12 /* Build configuration list for PBXProject "Aspetica" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -137,7 +138,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C64809451E3189FD00F3EF12 /* Sparzel */,
+				C64809451E3189FD00F3EF12 /* Aspetica */,
 			);
 		};
 /* End PBXProject section */
@@ -288,6 +289,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = sparzel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -302,13 +304,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = sparzel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C64809411E3189FD00F3EF12 /* Build configuration list for PBXProject "Sparzel" */ = {
+		C64809411E3189FD00F3EF12 /* Build configuration list for PBXProject "Aspetica" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C64809561E3189FE00F3EF12 /* Debug */,
@@ -317,7 +320,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C64809581E3189FE00F3EF12 /* Build configuration list for PBXNativeTarget "Sparzel" */ = {
+		C64809581E3189FE00F3EF12 /* Build configuration list for PBXNativeTarget "Aspetica" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C64809591E3189FE00F3EF12 /* Debug */,

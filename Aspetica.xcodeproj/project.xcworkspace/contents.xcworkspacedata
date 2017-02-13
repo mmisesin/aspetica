@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Sparzel.xcodeproj">
+      location = "self:/Users/artemmisesin/Developer/Sparzel/Aspetica.xcodeproj">
    </FileRef>
 </Workspace>
