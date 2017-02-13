@@ -13,7 +13,7 @@ var roundedValues = true
 var nightMode = false
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Dismissable, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate {
-
+    
     private var labels = [
         ["Round Values", "Dark Theme"], ["Send Feedback", /*"Rate Sparzel",*/ "Share Sparzel"]
     ]
@@ -42,7 +42,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         UIView.animate(withDuration: 1.0, animations:{
             (self.dismissalDelegate as! ViewController).dimView.layer.opacity = 0.3
         })
-//        self.performSegue(withIdentifier: "toMain", sender: self)
+        //        self.performSegue(withIdentifier: "toMain", sender: self)
     }
     @IBAction func swipeDown(_ sender: UISwipeGestureRecognizer) {
         dismissalDelegate?.finishedShowing(viewController: self)
@@ -75,7 +75,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewWillAppear(_ animated: Bool) {
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -88,11 +88,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func switchChanged(sender: UISwitch!) {
         switch sender.tag {
         case 1:
-//            bottomBorders.removeAll()
-//            topBorders.removeAll()
-//            for cell in tableView.visibleCells {
-//                cell.willRemoveSubview(botto)
-//            }
+            //            bottomBorders.removeAll()
+            //            topBorders.removeAll()
+            //            for cell in tableView.visibleCells {
+            //                cell.willRemoveSubview(botto)
+            //            }
             if nightMode{
                 nightMode = false
                 ColorConstants.defaultMode()
@@ -100,9 +100,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 nightMode = true
                 ColorConstants.nightMode()
             }
-//            UIView.animate(withDuration: 0.5, animations: {self.colorAnimated()
-//            })
-//            manualAnimation()
+            //            UIView.animate(withDuration: 0.5, animations: {self.colorAnimated()
+            //            })
+            //            manualAnimation()
             colorSetup()
             tableView.reloadData()
         case 0:
@@ -142,47 +142,47 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         }
         let selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath)!
         selectedCell.backgroundColor = ColorConstants.onTapColor
-            switch indexPath.row {
-            case 1:
-                let firstActivityItem = "Aspetica — Aspect Ratio Calculator"
-                let secondActivityItem : NSURL = NSURL(string: "http://aspetica.sooprun.com")!
-                // If you want to put an image
-                
-                let activityViewController : UIActivityViewController = UIActivityViewController(
-                    activityItems: [firstActivityItem, secondActivityItem], applicationActivities: nil)
-                
-                activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
-                
-                // Anything you want to exclude
-                activityViewController.excludedActivityTypes = [
-                    UIActivityType.postToWeibo,
-                    UIActivityType.print,
-                    UIActivityType.assignToContact,
-                    UIActivityType.saveToCameraRoll,
-                    UIActivityType.addToReadingList,
-                    UIActivityType.postToFlickr,
-                    UIActivityType.postToVimeo,
-                    UIActivityType.postToTencentWeibo
-                ]
-                
-                self.present(activityViewController, animated: true, completion: nil)
-            case 2:
-                let url = NSURL(string: "mailto:sooprun@icloud.com")
-                UIApplication.shared.open(url as! URL, options: [:], completionHandler: nil)
-                //            case 2:
-                //                let appID = "959379869"
-                //                if let checkURL = URL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appID)&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8") {
-                //                    open(url: checkURL)
-                //                } else {
-                //                    print("invalid url")
-            //                }
-            default: break
-            }
+        switch indexPath.row {
+        case 1:
+            let firstActivityItem = "Aspetica — Aspect Ratio Calculator"
+            let secondActivityItem : NSURL = NSURL(string: "http://aspetica.sooprun.com")!
+            // If you want to put an image
+            
+            let activityViewController : UIActivityViewController = UIActivityViewController(
+                activityItems: [firstActivityItem, secondActivityItem], applicationActivities: nil)
+            
+            activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
+            
+            // Anything you want to exclude
+            activityViewController.excludedActivityTypes = [
+                UIActivityType.postToWeibo,
+                UIActivityType.print,
+                UIActivityType.assignToContact,
+                UIActivityType.saveToCameraRoll,
+                UIActivityType.addToReadingList,
+                UIActivityType.postToFlickr,
+                UIActivityType.postToVimeo,
+                UIActivityType.postToTencentWeibo
+            ]
+            
+            self.present(activityViewController, animated: true, completion: nil)
+        case 2:
+            let url = NSURL(string: "mailto:sooprun@icloud.com")
+            UIApplication.shared.open(url as! URL, options: [:], completionHandler: nil)
+            //            case 2:
+            //                let appID = "959379869"
+            //                if let checkURL = URL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appID)&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8") {
+            //                    open(url: checkURL)
+            //                } else {
+            //                    print("invalid url")
+        //                }
+        default: break
+        }
         UIView.animate(withDuration: 0.0, delay: 0.05, options: .curveEaseInOut, animations: {
             tableView.deselectRow(at: indexPath, animated: false)
             selectedCell.backgroundColor = .clear
         }, completion: nil)
-//        let timer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(deslct), userInfo: nil, repeats: false);
+        //        let timer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(deslct), userInfo: nil, repeats: false);
         
     }
     
@@ -199,7 +199,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         print("\(indexPath.row) didEndDisplaying")
         cell.selectionStyle = .none
     }
-
+    
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cellToDeSelect:UITableViewCell = tableView.cellForRow(at: indexPath as IndexPath)!
         cellToDeSelect.backgroundColor = .clear
@@ -221,9 +221,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         if let identifier = segue.identifier {
             let vc = segue.destination as! ViewController
             switch identifier {
-                case "toMain":
-                        UIView.animate(withDuration: 0.5, animations: {vc.dimView.layer.opacity = 0.0
-                        })
+            case "toMain":
+                UIView.animate(withDuration: 0.5, animations: {vc.dimView.layer.opacity = 0.0
+                })
             default: break
             }
         }
@@ -272,51 +272,51 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         self.presentingViewController?.view.backgroundColor = .black
     }
     
-//    func manualAnimation() {
-//        UIView.transition(with: navBarTitle, duration: 0.5, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
-//            self.navBarTitle.textColor = ColorConstants.cellTextColor
-//        }, completion: {
-//            (value: Bool) in
-//        })
-//        //        tableView.headerView(forSection: 1)?.textLabel?.textColor = ColorConstants.symbolsColor
-//        UIView.transition(with: footerView, duration: 5, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
-//            self.footerView.textColor = ColorConstants.symbolsColor
-//        }, completion: {
-//            (value: Bool) in
-//        })
-//        
-//        for cell in tableView.visibleCells {
-//            //cell.backgroundColor = ColorConstants.settingsMainTint
-//            cell.textLabel?.textColor = ColorConstants.cellTextColor
-//            cell.detailTextLabel?.textColor = ColorConstants.symbolsColor
-//            if nightMode{
-//                cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
-//            } else {
-//                cell.accessoryView?.tintColor = UIColor(hexString: "#ECECEC", alpha: 1)
-//            }
-//            if let dogswitch = cell.accessoryView as! UISwitch? {
-//                dogswitch.onTintColor = ColorConstants.deleteColor
-//            }
-//        }
-//        
-//        UIView.transition(with: (tableView.headerView(forSection: 0)?.textLabel!)!, duration: 0.5, options: UIViewAnimationOptions.curveEaseInOut, animations: {
-//            self.tableView.headerView(forSection: 0)?.textLabel?.textColor = ColorConstants.symbolsColor
-//        }, completion: {
-//            (value: Bool) in
-//        })
-//        UIView.transition(with: (tableView.headerView(forSection: 1)?.textLabel!)!, duration: 0.5, options: UIViewAnimationOptions.curveEaseInOut, animations: {
-//            self.tableView.headerView(forSection: 1)?.textLabel?.textColor = ColorConstants.symbolsColor
-//        }, completion: {
-//            (value: Bool) in
-//        })
-//        //for header in tableView.section
-//        for view in bottomBorders {
-//            view.layer.backgroundColor = ColorConstants.navShadow.cgColor
-//            for viewx in topBorders {
-//                viewx.layer.backgroundColor = ColorConstants.navShadow.cgColor
-//            }
-//        }
-//    }
+    //    func manualAnimation() {
+    //        UIView.transition(with: navBarTitle, duration: 0.5, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
+    //            self.navBarTitle.textColor = ColorConstants.cellTextColor
+    //        }, completion: {
+    //            (value: Bool) in
+    //        })
+    //        //        tableView.headerView(forSection: 1)?.textLabel?.textColor = ColorConstants.symbolsColor
+    //        UIView.transition(with: footerView, duration: 5, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
+    //            self.footerView.textColor = ColorConstants.symbolsColor
+    //        }, completion: {
+    //            (value: Bool) in
+    //        })
+    //
+    //        for cell in tableView.visibleCells {
+    //            //cell.backgroundColor = ColorConstants.settingsMainTint
+    //            cell.textLabel?.textColor = ColorConstants.cellTextColor
+    //            cell.detailTextLabel?.textColor = ColorConstants.symbolsColor
+    //            if nightMode{
+    //                cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
+    //            } else {
+    //                cell.accessoryView?.tintColor = UIColor(hexString: "#ECECEC", alpha: 1)
+    //            }
+    //            if let dogswitch = cell.accessoryView as! UISwitch? {
+    //                dogswitch.onTintColor = ColorConstants.deleteColor
+    //            }
+    //        }
+    //
+    //        UIView.transition(with: (tableView.headerView(forSection: 0)?.textLabel!)!, duration: 0.5, options: UIViewAnimationOptions.curveEaseInOut, animations: {
+    //            self.tableView.headerView(forSection: 0)?.textLabel?.textColor = ColorConstants.symbolsColor
+    //        }, completion: {
+    //            (value: Bool) in
+    //        })
+    //        UIView.transition(with: (tableView.headerView(forSection: 1)?.textLabel!)!, duration: 0.5, options: UIViewAnimationOptions.curveEaseInOut, animations: {
+    //            self.tableView.headerView(forSection: 1)?.textLabel?.textColor = ColorConstants.symbolsColor
+    //        }, completion: {
+    //            (value: Bool) in
+    //        })
+    //        //for header in tableView.section
+    //        for view in bottomBorders {
+    //            view.layer.backgroundColor = ColorConstants.navShadow.cgColor
+    //            for viewx in topBorders {
+    //                viewx.layer.backgroundColor = ColorConstants.navShadow.cgColor
+    //            }
+    //        }
+    //    }
     
     private func cellSetup(cell: UITableViewCell) {
         cell.textLabel?.textColor = ColorConstants.cellTextColor
@@ -334,10 +334,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         cell.selectionStyle = .none
         let selView = UIView()
         selView.backgroundColor = ColorConstants.onTapColor
-//        bottomBorder.backgroundColor = ColorConstants.navShadow
-////        bottomBorder.alpha = 0.5
-////        topBorder.alpha = 0.5
-//        topBorder.backgroundColor = ColorConstants.navShadow
+        //        bottomBorder.backgroundColor = ColorConstants.navShadow
+        ////        bottomBorder.alpha = 0.5
+        ////        topBorder.alpha = 0.5
+        //        topBorder.backgroundColor = ColorConstants.navShadow
         if let label = cell.textLabel!.text {
             switch label {
             case "Round Values":
@@ -351,7 +351,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 roundedValuesSwitch.tag = 0
                 cell.detailTextLabel?.text = ""
                 cell.accessoryView = roundedValuesSwitch
-//                cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
+                //                cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
                 if nightMode {
                     cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
                 }
@@ -387,11 +387,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 if counter < 5 {
                     cell.addSubview(topBorder)
                 }
-                //cell.addGestureRecognizer(recognizer)
+            //cell.addGestureRecognizer(recognizer)
             case "Rate Sparzel":
                 cell.detailTextLabel?.text = ""
                 cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
-                //cell.addGestureRecognizer(recognizer)
+            //cell.addGestureRecognizer(recognizer)
             case "Share Sparzel":
                 cell.detailTextLabel?.text = ""
                 cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
@@ -452,13 +452,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             case "Send Feedback":
                 let url = NSURL(string: "mailto:sooprun@icloud.com")
                 UIApplication.shared.open(url as! URL, options: [:], completionHandler: nil)
-//            case "Rate Sparzel":
-//                let appID = "959379869"
-//                if let checkURL = URL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appID)&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8") {
-//                    open(url: checkURL)
-//                } else {
-//                    print("invalid url")
-//                }
+                //            case "Rate Sparzel":
+                //                let appID = "959379869"
+                //                if let checkURL = URL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appID)&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8") {
+                //                    open(url: checkURL)
+                //                } else {
+                //                    print("invalid url")
+            //                }
             default: break
             }
         }
