@@ -136,18 +136,75 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         header.textLabel?.textColor = ColorConstants.symbolsColor
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            print("\(indexPath.row) didSelectRowAt")
+        }
+        let selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath)!
+        selectedCell.backgroundColor = ColorConstants.onTapColor
+            switch indexPath.row {
+            case 1:
+                let firstActivityItem = "Aspetica — Aspect Ratio Calculator"
+                let secondActivityItem : NSURL = NSURL(string: "http://aspetica.sooprun.com")!
+                // If you want to put an image
+                
+                let activityViewController : UIActivityViewController = UIActivityViewController(
+                    activityItems: [firstActivityItem, secondActivityItem], applicationActivities: nil)
+                
+                activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
+                
+                // Anything you want to exclude
+                activityViewController.excludedActivityTypes = [
+                    UIActivityType.postToWeibo,
+                    UIActivityType.print,
+                    UIActivityType.assignToContact,
+                    UIActivityType.saveToCameraRoll,
+                    UIActivityType.addToReadingList,
+                    UIActivityType.postToFlickr,
+                    UIActivityType.postToVimeo,
+                    UIActivityType.postToTencentWeibo
+                ]
+                
+                self.present(activityViewController, animated: true, completion: nil)
+            case 2:
+                let url = NSURL(string: "mailto:sooprun@icloud.com")
+                UIApplication.shared.open(url as! URL, options: [:], completionHandler: nil)
+                //            case 2:
+                //                let appID = "959379869"
+                //                if let checkURL = URL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appID)&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8") {
+                //                    open(url: checkURL)
+                //                } else {
+                //                    print("invalid url")
+            //                }
+            default: break
+            }
+        UIView.animate(withDuration: 0.0, delay: 0.05, options: .curveEaseInOut, animations: {
+            tableView.deselectRow(at: indexPath, animated: false)
+            selectedCell.backgroundColor = .clear
+        }, completion: nil)
+//        let timer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(deslct), userInfo: nil, repeats: false);
+        
+    }
+    
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if indexPath.section == 0 {
             return nil
         } else {
+            print("\(indexPath.row) willSelectRowAt")
             return indexPath
         }
     }
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        print("\(indexPath.row) didEndDisplaying")
         cell.selectionStyle = .none
     }
 
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cellToDeSelect:UITableViewCell = tableView.cellForRow(at: indexPath as IndexPath)!
+        cellToDeSelect.backgroundColor = .clear
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int{
         return 2
     }
@@ -274,6 +331,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let topY = cell.bounds.minY
         let topBorder = UIView(frame: CGRect(x: 16, y: topY, width: cell.bounds.width - 32, height: borderHeight))
         let bottomBorder = UIView(frame: CGRect(x: 16, y: bottomY, width: cell.bounds.width - 32, height: borderHeight))
+        cell.selectionStyle = .none
+        let selView = UIView()
+        selView.backgroundColor = ColorConstants.onTapColor
 //        bottomBorder.backgroundColor = ColorConstants.navShadow
 ////        bottomBorder.alpha = 0.5
 ////        topBorder.alpha = 0.5
@@ -327,15 +387,15 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 if counter < 5 {
                     cell.addSubview(topBorder)
                 }
-                cell.addGestureRecognizer(recognizer)
+                //cell.addGestureRecognizer(recognizer)
             case "Rate Sparzel":
                 cell.detailTextLabel?.text = ""
                 cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
-                cell.addGestureRecognizer(recognizer)
+                //cell.addGestureRecognizer(recognizer)
             case "Share Sparzel":
                 cell.detailTextLabel?.text = ""
                 cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
-                cell.addGestureRecognizer(recognizer)
+                //cell.addGestureRecognizer(recognizer)
                 //bottomBorders.append(bottomBorder)
                 if counter < 5 {
                     cell.addSubview(bottomBorder)
@@ -367,8 +427,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         if let cellText = cell?.textLabel?.text {
             switch cellText {
             case "Share Sparzel":
-                let firstActivityItem = "Sparzel — Aspect Ratio Calculator"
-                let secondActivityItem : NSURL = NSURL(string: "http://sparzel.sooprun.com")!
+                let firstActivityItem = "Aspetica — Aspect Ratio Calculator"
+                let secondActivityItem : NSURL = NSURL(string: "http://aspetica.sooprun.com")!
                 // If you want to put an image
                 
                 let activityViewController : UIActivityViewController = UIActivityViewController(
@@ -390,15 +450,15 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 
                 self.present(activityViewController, animated: true, completion: nil)
             case "Send Feedback":
-                let url = NSURL(string: "mailto:sparzelapp@gmail.com")
+                let url = NSURL(string: "mailto:sooprun@icloud.com")
                 UIApplication.shared.open(url as! URL, options: [:], completionHandler: nil)
-            case "Rate Sparzel":
-                let appID = "959379869"
-                if let checkURL = URL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appID)&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8") {
-                    open(url: checkURL)
-                } else {
-                    print("invalid url")
-                }
+//            case "Rate Sparzel":
+//                let appID = "959379869"
+//                if let checkURL = URL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appID)&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8") {
+//                    open(url: checkURL)
+//                } else {
+//                    print("invalid url")
+//                }
             default: break
             }
         }

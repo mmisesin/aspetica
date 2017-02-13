@@ -397,7 +397,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             let helpLabel = UILabel(frame: CGRect(x: helpView.bounds.minX, y: helpView.bounds.minY, width: helpView.bounds.width, height: helpView.bounds.height))
             helpLabel.textAlignment = .center
             helpLabel.text = helpText[index]
-            helpLabel.textColor = ColorConstants.mainTint
+            helpLabel.textColor = ColorConstants.mainBackground
             helpLabel.font = helpLabel.font.withSize(12)
             helpView.addSubview(helpLabel)
             helpViews.append(helpView)
@@ -434,7 +434,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         (textfields[0].text!, textfields[1].text!, textfields[2].text!, textfields[3].text!) = evaluator.fetchData()
         
         for view in textfields {
-            print(view.text)
             if view.text == "🗿"{
                 reevaluate = true
             }
@@ -491,7 +490,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
     
     private func colorSetup() {
         deleteButton.tintColor = ColorConstants.deleteIconColor
-        roundedView.backgroundColor = ColorConstants.mainTint
+        roundedView.backgroundColor = ColorConstants.mainBackground
         divSymbol.textColor = ColorConstants.symbolsColor
         multiSymbol.textColor = ColorConstants.symbolsColor
         settingsButton.tintColor = ColorConstants.symbolsColor
@@ -522,7 +521,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         }
         
         for view in helpLabels {
-            view.textColor = ColorConstants.mainTint
+            view.textColor = ColorConstants.mainBackground
         }
         
         for view in textfields {
@@ -541,7 +540,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             }
         }
         
-        shadowView.backgroundColor = ColorConstants.mainTint
+        shadowView.backgroundColor = ColorConstants.mainBackground
         shadowView.layer.shadowColor = ColorConstants.navShadow.cgColor
         shadowView.layer.shadowOpacity = 1
     }
