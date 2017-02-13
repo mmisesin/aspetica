@@ -71,6 +71,11 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
     @IBOutlet weak var wSuppView: UIView!
     var suppViews: [UIView] = []
     
+    var helpViews: [UIView] = []
+    var helpLabels: [UILabel] = []
+    
+    var triangles: [UIView] = []
+    
     @IBOutlet weak var keyboard: UIStackView!
     
     @IBOutlet weak var sevenStack: UIStackView!
@@ -83,27 +88,56 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
     //supporting variables
     var activeTextField: UILabel?
     var previousActive: UILabel?
+    var helpIsOn = false
     var pixelsField = 3
     var secondTapDone = false
     var isTyping = false
     var pointEntered: [Bool] = []
     var decimalPart = ""
     var animationIsOn = [false, false, false, false]
+    let topHelpWidth: CGFloat = 79
+    let helpHeight: CGFloat = 28
+    let bottomHelpWidth: CGFloat = 50
+    var reevaluate = false
     
     //temporary features
     @IBAction func tempKeyboardSwitch() {
-        if !reversedKeyboard {
-            keyboard.addArrangedSubview(sevenStack)
-            keyboard.addArrangedSubview(fourStack)
-            keyboard.addArrangedSubview(oneStack)
-            reversedKeyboard = true
+        if !helpIsOn {
+            helpButton.setImage(UIImage(named: "icon-info-ontap"), for: .normal)
+            UIView.animate(withDuration: 0.3, animations: {
+                self.helpButton.tintColor = ColorConstants.deleteColor
+            })
+            helpIsOn = true
         } else {
-            keyboard.addArrangedSubview(oneStack)
-            keyboard.addArrangedSubview(fourStack)
-            keyboard.addArrangedSubview(sevenStack)
-            reversedKeyboard = false
+            UIView.animate(withDuration: 0.3, animations: {
+                self.helpButton.setImage(UIImage(named: "help-icon"), for: .normal)
+                self.helpButton.tintColor = ColorConstants.symbolsColor
+            })
+            helpIsOn = false
         }
-        keyboard.addArrangedSubview(zeroStack)
+        for view in helpViews {
+            if view.alpha == 0 {
+                UIView.animate(withDuration: 0.3, animations: {
+                    view.alpha = 1
+                })
+            } else {
+                UIView.animate(withDuration: 0.3, animations: {
+                    view.alpha = 0
+                })
+            }
+        }
+//        if !reversedKeyboard {
+//            keyboard.addArrangedSubview(sevenStack)
+//            keyboard.addArrangedSubview(fourStack)
+//            keyboard.addArrangedSubview(oneStack)
+//            reversedKeyboard = true
+//        } else {
+//            keyboard.addArrangedSubview(oneStack)
+//            keyboard.addArrangedSubview(fourStack)
+//            keyboard.addArrangedSubview(sevenStack)
+//            reversedKeyboard = false
+//        }
+//        keyboard.addArrangedSubview(zeroStack)
     }
     
     @IBAction func iconTouchUp(_ sender: UIButton) {
@@ -173,10 +207,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         } else {
             decimalPart = ""
         }
-        
-//        if activeTextField?.tag == 3 || activeTextField?.tag == 4 {
-//            pixelsField = (activeTextField?.tag)!
-//        }
         
         previousActive = activeTextField
         print("Second tap done \(secondTapDone)")
@@ -289,6 +319,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
                             tappedField.backgroundColor = ColorConstants.labelsBackground
                             tappedField.textColor = ColorConstants.deleteColor
                             carriages[tappedField.tag - 1].backgroundColor = .clear
+                            stopAnimation(tappedField.tag - 1)
                             secondTapDone = false
                             isTyping = false
                         } else {
@@ -322,6 +353,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         setDeleteButtonImage(path: "delete-icon-bright")
         roundedView.layer.cornerRadius = 8
         
+        let helpText = ["Ratio width", "Ratio height", "Width", "Height"]
         textfields = [xField, yField, wField, hField]
         suppViews = [xSuppView, ySuppView, wSuppView, hSuppView]
         mainButtons = [zeroButton, oneButton, twoButton, threeButton, fourButton, fiveButton, sixButton, sevenButton, eightButton, nineButton, deleteButton, pointButton]
@@ -341,6 +373,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         
         colorSetup()
         
+        let triangleWidth: CGFloat = 8
+        
         //setting up textfields
         for (index, view) in textfields.enumerated() {
         
@@ -353,6 +387,25 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
                 handleTap(recognizer: recognizer)
             }
             
+            let superWidth = suppViews[index].bounds.width
+            let helpView = UIView(frame: CGRect(x: superWidth/2 - superWidth/4, y: view.frame.minY - helpHeight - 10, width: 79, height: helpHeight))
+            helpView.layer.cornerRadius = 4
+            helpView.backgroundColor = ColorConstants.helpColor
+            let triangle = TriangleView(frame: CGRect(x: helpView.bounds.midX - triangleWidth/2, y: helpView.bounds.maxY, width: triangleWidth , height: triangleWidth * 0.5))
+            triangle.backgroundColor = .clear
+            helpView.addSubview(triangle)
+            let helpLabel = UILabel(frame: CGRect(x: helpView.bounds.minX, y: helpView.bounds.minY, width: helpView.bounds.width, height: helpView.bounds.height))
+            helpLabel.textAlignment = .center
+            helpLabel.text = helpText[index]
+            helpLabel.textColor = ColorConstants.mainTint
+            helpLabel.font = helpLabel.font.withSize(12)
+            helpView.addSubview(helpLabel)
+            helpViews.append(helpView)
+            triangles.append(triangle)
+            helpLabels.append(helpLabel)
+            helpViews[index].alpha = 0
+            suppViews[index].addSubview(helpView)
+            
             pointEntered.append(false)
 
             view.sizeToFit()
@@ -360,6 +413,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             view.layer.masksToBounds = true
             view.layer.cornerRadius = 4
         }
+        
     }
     
     
@@ -377,8 +431,18 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             pointButton.setTitle(".", for: .normal)
             pointButton.isEnabled = true
         }
-        
         (textfields[0].text!, textfields[1].text!, textfields[2].text!, textfields[3].text!) = evaluator.fetchData()
+        
+        for view in textfields {
+            print(view.text)
+            if view.text == "🗿"{
+                reevaluate = true
+            }
+        }
+        
+        if reevaluate{
+            (textfields[0].text!, textfields[1].text!, textfields[2].text!, textfields[3].text!) = ("16", "9", "1920", "1080")
+        }
         generalEvaluation(with: activeTextField!)
     }
     
@@ -431,7 +495,13 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         divSymbol.textColor = ColorConstants.symbolsColor
         multiSymbol.textColor = ColorConstants.symbolsColor
         settingsButton.tintColor = ColorConstants.symbolsColor
-        helpButton.tintColor = ColorConstants.symbolsColor
+        
+        if !helpIsOn {
+            helpButton.tintColor = ColorConstants.symbolsColor
+        } else {
+            helpButton.tintColor = ColorConstants.deleteColor
+        }
+        
         
         for button in mainButtons {
             button.borderColor = ColorConstants.buttonBorder
@@ -441,6 +511,18 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         
         for view in suppViews {
             view.backgroundColor = .clear
+        }
+        
+        for view in helpViews {
+            view.backgroundColor = ColorConstants.helpColor
+        }
+        
+        for view in triangles {
+            view.setNeedsDisplay()
+        }
+        
+        for view in helpLabels {
+            view.textColor = ColorConstants.mainTint
         }
         
         for view in textfields {
@@ -468,6 +550,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         let defaults = UserDefaults.standard
         let nightModeValue = defaults.bool(forKey: "nightMode")
         let roundedValuesValue = defaults.bool(forKey: "roundedValues")
+        print(nightModeValue)
+        print(roundedValuesValue)
         roundedValues = roundedValuesValue
         nightMode = nightModeValue
         print("Settings fetched")
@@ -486,7 +570,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
     }
     
     func fadeIn(index: Int) {
-        UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.25, delay: 0.18, options: .curveEaseInOut, animations: {
             if self.animationIsOn[index] {
                 self.carriages[index].backgroundColor = ColorConstants.carriageColor
             } else {
@@ -496,7 +580,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
     }
     
     func fadeOut(index: Int) {
-        UIView.animate(withDuration: 0.3, delay: 0.1, options: .curveEaseInOut, animations: {self.carriages[index].backgroundColor = .clear}, completion: {(finished) in
+        UIView.animate(withDuration: 0.25, delay: 0.18, options: .curveEaseInOut, animations: {self.carriages[index].backgroundColor = .clear}, completion: {(finished) in
             if !self.animationIsOn[index] {
                 self.carriages[index].layer.removeAllAnimations()
             } else {

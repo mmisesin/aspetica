@@ -12,24 +12,35 @@ class RatioEvaluator {
     
     func evaluate(values: (a: String, b: String, c: String, d: String), field: Int, pixelsField: Int) -> String {
         var result = 0.0
-        if Double(values.a) != nil && Double(values.b) != nil && Double(values.c) != nil && Double(values.d) != nil {
+//        if Double(values.a) != nil && Double(values.b) != nil && Double(values.c) != nil && Double(values.d) != nil {
         if pixelsField == 3{
-            result = Double(values.c)! / Double(values.a)! * Double(values.b)!
+            if Double(values.a) != nil && Double(values.b) != nil && Double(values.c) != nil{
+                result = Double(values.c)! / Double(values.a)! * Double(values.b)!
+            } else {
+                return "🏅"
+            }
         } else {
+            if Double(values.a) != nil && Double(values.b) != nil && Double(values.d) != nil {
             result = Double(values.d)! / Double(values.b)! * Double(values.a)!
+            } else {
+                return "🏅"
+            }
+        }
+        if result > 999999 {
+            return "🗿"
         }
         if roundedValues {
             var temp = forTailingZero(temp: result.roundTo(places: 0))
             temp = temp.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range:nil)
             return temp
         } else {
-            var temp = forTailingZero(temp: result.roundTo(places: 2))
+            let temp = forTailingZero(temp: result.roundTo(places: 2))
             //temp = remove(from: temp)
             return temp
         }
-        } else {
-            return "🏅"
-        }
+//        } else {
+//            return "🏅"
+//        }
     }
     
     //taking care of zero

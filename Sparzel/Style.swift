@@ -25,8 +25,10 @@ struct ColorConstants {
     static var deleteIconDarkColor = UIColor(hexString: "#DE4B34", alpha: 1)
     static var carriageColor = UIColor(hexString: "#E04A2C", alpha: 1)
     static var settingsMainTint = UIColor.white
-    static var navShadow = UIColor(hexString: "#E0E4EA", alpha: 1)
+    static var navShadow = UIColor(hexString: "#E0E4EA", alpha: 0.5)
     static var accessoryViewColor = UIColor(hexString: "#C4CDD7", alpha: 1)
+    static var helpColor = UIColor(hexString: "#E04A2C", alpha: 1)
+    static var onTapColor = UIColor(hexString: "#F6F7F9", alpha: 1)
     
     static func nightMode() {
         mainTint = UIColor(hexString: "#1C1D1F", alpha: 1)
@@ -45,8 +47,10 @@ struct ColorConstants {
         deleteIconDarkColor = UIColor(hexString: "#FFE187", alpha: 1)
         carriageColor = UIColor(hexString: "#FFE187", alpha: 1)
         settingsMainTint = UIColor(hexString: "#1C1D1F", alpha: 1)
-        navShadow = UIColor(hexString: "#242628", alpha: 1)
+        navShadow = UIColor(hexString: "#242628", alpha: 0.5)
         accessoryViewColor = UIColor(hexString: "#343639", alpha: 1)
+        helpColor = UIColor(hexString: "#FFE187", alpha: 1)
+        onTapColor = UIColor(hexString: "#25272B", alpha: 1)
     }
     
     static func defaultMode() {
@@ -66,7 +70,9 @@ struct ColorConstants {
         deleteIconDarkColor = UIColor(hexString: "#DE4B34", alpha: 1)
         carriageColor = UIColor(hexString: "#E04A2C", alpha: 1)
         settingsMainTint = UIColor.white
-        navShadow = UIColor(hexString: "#E0E4EA", alpha: 1)
+        navShadow = UIColor(hexString: "#E0E4EA", alpha: 0.5)
         accessoryViewColor = UIColor(hexString: "#C4CDD7", alpha: 1)
+        helpColor = UIColor(hexString: "#E04A2C", alpha: 1)
+        onTapColor = UIColor(hexString: "#F6F7F9", alpha: 1)
     }
 }
