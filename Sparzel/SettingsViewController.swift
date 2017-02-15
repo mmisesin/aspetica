@@ -15,7 +15,7 @@ var nightMode = false
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Dismissable, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate {
     
     private var labels = [
-        ["Round Values", "Dark Theme"], ["Send Feedback", /*"Rate Aspetica",*/ "Share"]
+        ["Round Values", "Dark Theme"], ["Send Feedback", /*"Rate Aspetica",*/ "Share Aspetica"]
     ]
     
     var counter = 0
@@ -151,7 +151,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 self.present(activityViewController, animated: true, completion: {
                     tableView.deselectRow(at: indexPath, animated: true)})
             case 2:
-                let url = NSURL(string: "mailto:sooprun@icloud.com")
+                let url = NSURL(string: "mailto:artemmisesin@gmail.com")
                 UIApplication.shared.open(url as! URL, options: [:], completionHandler: { (finish) in
                     tableView.deselectRow(at: indexPath, animated: true)})
                 //            case 2:
@@ -345,11 +345,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 if counter < 5 {
                     cell.addSubview(bottomBorder)
                 }
-            case "Theme":
-                cell.detailTextLabel?.text = "Default"
-                cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
+//            case "Theme":
+//                cell.detailTextLabel?.text = "Default"
+//                cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
             case "Send Feedback":
-                cell.detailTextLabel?.text = "name@icloud.com"
+                cell.detailTextLabel?.text = "Developer"
                 cell.detailTextLabel?.font = cell.detailTextLabel?.font.withSize(16)
                 cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
                 //topBorders.append(topBorder)
@@ -361,7 +361,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.detailTextLabel?.text = ""
                 cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
             //cell.addGestureRecognizer(recognizer)
-            case "Share":
+            case "Share Aspetica":
                 cell.detailTextLabel?.text = ""
                 cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
                 //cell.addGestureRecognizer(recognizer)
