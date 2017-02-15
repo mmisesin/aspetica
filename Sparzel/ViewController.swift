@@ -357,7 +357,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             ColorConstants.nightMode()
         }
         
-        self.view.backgroundColor = .clear
+        self.view.backgroundColor = .black
         setDeleteButtonImage(path: "delete-icon-bright")
         roundedView.layer.cornerRadius = 8
         
@@ -590,6 +590,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
                 }
             }
         }
+        shadowView.backgroundColor = ColorConstants.mainBackground
+        shadowView.layer.shadowColor = ColorConstants.navShadow.cgColor
     }
     
     private func fetchSettings() {

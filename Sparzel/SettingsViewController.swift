@@ -150,10 +150,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 
                 self.present(activityViewController, animated: true, completion: {
                     tableView.deselectRow(at: indexPath, animated: true)})
-            case 2:
-                let url = NSURL(string: "mailto:artemmisesin@gmail.com")
-                UIApplication.shared.open(url as! URL, options: [:], completionHandler: { (finish) in
-                    tableView.deselectRow(at: indexPath, animated: true)})
+            case 0:
+                sendEmail(from: indexPath)
+//                print("wtf")
+//                let url = NSURL(string: "mailto:artemmisesin@gmail.com")
+//                UIApplication.shared.open(url as! URL, options: [:], completionHandler: nil)
+                /*{ (finish) in
+                 tableView.deselectRow(at: indexPath, animated: true)}*/
                 //            case 2:
                 //                let appID = "959379869"
                 //                if let checkURL = URL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appID)&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8") {
@@ -349,7 +352,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 //                cell.detailTextLabel?.text = "Default"
 //                cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
             case "Send Feedback":
-                cell.detailTextLabel?.text = "Developer"
+                cell.detailTextLabel?.text = ""
                 cell.detailTextLabel?.font = cell.detailTextLabel?.font.withSize(16)
                 cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
                 //topBorders.append(topBorder)
@@ -443,5 +446,25 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 print("Opened")
             }
         }
+    }
+    
+    func sendEmail(from indexPath: IndexPath) {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["artemmisesin@gmail.com"])
+            if let version = Bundle.main.releaseVersionNumber {
+                if let build = Bundle.main.buildVersionNumber {
+                    mail.setSubject("Aspetica \(version) (\(build)), \(UIDevice.current.modelName),  \(UIDevice.current.systemName) \(UIDevice.current.systemVersion)")
+                }
+            }
+            mail.setMessageBody("", isHTML: true)
+            present(mail, animated: true, completion: {self.tableView.deselectRow(at: indexPath, animated: true)})
+        } else {
+            // show failure alert
+        }
+    }
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
