@@ -83,6 +83,10 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
     @IBOutlet weak var oneStack: UIStackView!
     @IBOutlet weak var zeroStack: UIStackView!
     
+    //instantiating constraints
+
+    @IBOutlet weak var secondRowBottomSpace: NSLayoutConstraint!
+    
     var reversedKeyboard = false
     
     //supporting variables
@@ -151,6 +155,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
     //tapping the textfields
     func handleTap(recognizer: UITapGestureRecognizer) {
         activeTextField = recognizer.view as? UILabel
+        print("Tapped \(activeTextField?.tag)")
         
         //if tapping specific field for the first time
         if activeTextField != previousActive {
@@ -423,6 +428,24 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         })
         colorSetup()
         
+        
+        let screenHeight = UIScreen.main.bounds.size.height
+        if screenHeight == 568 {
+            for button in mainButtons {
+                button.titleLabel?.font = button.titleLabel?.font.withSize(22)
+            }
+            for textfield in textfields {
+                textfield.font = textfield.font.withSize(32)
+                
+            }
+            print("SE")
+        } else if screenHeight == 667 {
+            print("7")
+        } else if screenHeight == 736 {
+            print("7+")
+        }
+        
+        //print(numpadHeight.constant)
         
         if roundedValues{
             pointButton.setTitle("", for: .normal)

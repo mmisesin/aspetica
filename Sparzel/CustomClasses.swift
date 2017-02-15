@@ -30,6 +30,23 @@ class InsetLabel: UILabel
     }
 }
 
+class CustomCell: UITableViewCell {
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        if highlighted {
+            self.backgroundColor = ColorConstants.onTapColor
+        } else {
+            self.backgroundColor = .clear
+        }
+    }
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        if selected {
+            self.backgroundColor = ColorConstants.onTapColor
+        } else {
+            self.backgroundColor = .clear
+        }
+    }
+}
+
 class CustomButton: UIButton {
     
     @IBInspectable var borderWidth: CGFloat = 0 {

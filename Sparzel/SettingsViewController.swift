@@ -15,7 +15,7 @@ var nightMode = false
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Dismissable, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate {
     
     private var labels = [
-        ["Round Values", "Dark Theme"], ["Send Feedback", /*"Rate Sparzel",*/ "Share Sparzel"]
+        ["Round Values", "Dark Theme"], ["Send Feedback", /*"Rate Aspetica",*/ "Share"]
     ]
     
     var counter = 0
@@ -42,13 +42,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         UIView.animate(withDuration: 1.0, animations:{
             (self.dismissalDelegate as! ViewController).dimView.layer.opacity = 0.3
         })
-        //        self.performSegue(withIdentifier: "toMain", sender: self)
     }
     @IBAction func swipeDown(_ sender: UISwipeGestureRecognizer) {
-        dismissalDelegate?.finishedShowing(viewController: self)
-    }
-    
-    @IBAction func panDismiss(_ sender: UIScreenEdgePanGestureRecognizer) {
         dismissalDelegate?.finishedShowing(viewController: self)
     }
     
@@ -88,11 +83,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func switchChanged(sender: UISwitch!) {
         switch sender.tag {
         case 1:
-            //            bottomBorders.removeAll()
-            //            topBorders.removeAll()
-            //            for cell in tableView.visibleCells {
-            //                cell.willRemoveSubview(botto)
-            //            }
             if nightMode{
                 nightMode = false
                 ColorConstants.defaultMode()
@@ -118,9 +108,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
-        //tableView.separatorColor = ColorConstants.navShadow
-        cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        var cell = CustomCell()
+        cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell
         cell.textLabel?.text = labels[indexPath.section][indexPath.row]
         cellSetup(cell: cell)
         return cell
@@ -138,71 +127,51 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-            print("\(indexPath.row) didSelectRowAt")
+            switch indexPath.row {
+            case 1:
+                let firstActivityItem = "Aspetica — Aspect Ratio Calculator"
+                let secondActivityItem : NSURL = NSURL(string: "http://aspetica.sooprun.com")!
+                
+                let activityViewController : UIActivityViewController = UIActivityViewController(
+                    activityItems: [firstActivityItem, secondActivityItem], applicationActivities: nil)
+                
+                activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
+                
+                activityViewController.excludedActivityTypes = [
+                    UIActivityType.postToWeibo,
+                    UIActivityType.print,
+                    UIActivityType.assignToContact,
+                    UIActivityType.saveToCameraRoll,
+                    UIActivityType.addToReadingList,
+                    UIActivityType.postToFlickr,
+                    UIActivityType.postToVimeo,
+                    UIActivityType.postToTencentWeibo
+                ]
+                
+                self.present(activityViewController, animated: true, completion: {
+                    tableView.deselectRow(at: indexPath, animated: true)})
+            case 2:
+                let url = NSURL(string: "mailto:sooprun@icloud.com")
+                UIApplication.shared.open(url as! URL, options: [:], completionHandler: { (finish) in
+                    tableView.deselectRow(at: indexPath, animated: true)})
+                //            case 2:
+                //                let appID = "959379869"
+                //                if let checkURL = URL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appID)&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8") {
+                //                    open(url: checkURL)
+                //                } else {
+                //                    print("invalid url")
+            //                }
+            default: break
+            }
         }
-        let selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath)!
-        selectedCell.backgroundColor = ColorConstants.onTapColor
-        switch indexPath.row {
-        case 1:
-            let firstActivityItem = "Aspetica — Aspect Ratio Calculator"
-            let secondActivityItem : NSURL = NSURL(string: "http://aspetica.sooprun.com")!
-            // If you want to put an image
-            
-            let activityViewController : UIActivityViewController = UIActivityViewController(
-                activityItems: [firstActivityItem, secondActivityItem], applicationActivities: nil)
-            
-            activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
-            
-            // Anything you want to exclude
-            activityViewController.excludedActivityTypes = [
-                UIActivityType.postToWeibo,
-                UIActivityType.print,
-                UIActivityType.assignToContact,
-                UIActivityType.saveToCameraRoll,
-                UIActivityType.addToReadingList,
-                UIActivityType.postToFlickr,
-                UIActivityType.postToVimeo,
-                UIActivityType.postToTencentWeibo
-            ]
-            
-            self.present(activityViewController, animated: true, completion: nil)
-        case 2:
-            let url = NSURL(string: "mailto:sooprun@icloud.com")
-            UIApplication.shared.open(url as! URL, options: [:], completionHandler: nil)
-            //            case 2:
-            //                let appID = "959379869"
-            //                if let checkURL = URL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appID)&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8") {
-            //                    open(url: checkURL)
-            //                } else {
-            //                    print("invalid url")
-        //                }
-        default: break
-        }
-        UIView.animate(withDuration: 0.0, delay: 0.05, options: .curveEaseInOut, animations: {
-            tableView.deselectRow(at: indexPath, animated: false)
-            selectedCell.backgroundColor = .clear
-        }, completion: nil)
-        //        let timer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(deslct), userInfo: nil, repeats: false);
-        
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if indexPath.section == 0 {
+        if indexPath.section == 0{
             return nil
         } else {
-            print("\(indexPath.row) willSelectRowAt")
             return indexPath
         }
-    }
-    
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        print("\(indexPath.row) didEndDisplaying")
-        cell.selectionStyle = .none
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let cellToDeSelect:UITableViewCell = tableView.cellForRow(at: indexPath as IndexPath)!
-        cellToDeSelect.backgroundColor = .clear
     }
     
     func numberOfSections(in tableView: UITableView) -> Int{
@@ -318,7 +287,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     //        }
     //    }
     
-    private func cellSetup(cell: UITableViewCell) {
+    private func cellSetup(cell: CustomCell) {
         cell.textLabel?.textColor = ColorConstants.cellTextColor
         cell.detailTextLabel?.textColor = ColorConstants.symbolsColor
         cell.backgroundColor = .clear //ColorConstants.settingsMainTint
@@ -331,7 +300,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let topY = cell.bounds.minY
         let topBorder = UIView(frame: CGRect(x: 16, y: topY, width: cell.bounds.width - 32, height: borderHeight))
         let bottomBorder = UIView(frame: CGRect(x: 16, y: bottomY, width: cell.bounds.width - 32, height: borderHeight))
-        cell.selectionStyle = .none
+        //cell.selectionStyle = .none
         let selView = UIView()
         selView.backgroundColor = ColorConstants.onTapColor
         //        bottomBorder.backgroundColor = ColorConstants.navShadow
@@ -380,7 +349,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.detailTextLabel?.text = "Default"
                 cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
             case "Send Feedback":
-                cell.detailTextLabel?.text = "sparzelapp@gmail.com"
+                cell.detailTextLabel?.text = "name@icloud.com"
                 cell.detailTextLabel?.font = cell.detailTextLabel?.font.withSize(16)
                 cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
                 //topBorders.append(topBorder)
@@ -388,11 +357,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                     cell.addSubview(topBorder)
                 }
             //cell.addGestureRecognizer(recognizer)
-            case "Rate Sparzel":
+            case "Rate Aspetica":
                 cell.detailTextLabel?.text = ""
                 cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
             //cell.addGestureRecognizer(recognizer)
-            case "Share Sparzel":
+            case "Share":
                 cell.detailTextLabel?.text = ""
                 cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
                 //cell.addGestureRecognizer(recognizer)
@@ -423,45 +392,45 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func handleTap(recognizer: UITapGestureRecognizer) {
         let cell = recognizer.view as? UITableViewCell
-        
-        if let cellText = cell?.textLabel?.text {
-            switch cellText {
-            case "Share Sparzel":
-                let firstActivityItem = "Aspetica — Aspect Ratio Calculator"
-                let secondActivityItem : NSURL = NSURL(string: "http://aspetica.sooprun.com")!
-                // If you want to put an image
-                
-                let activityViewController : UIActivityViewController = UIActivityViewController(
-                    activityItems: [firstActivityItem, secondActivityItem], applicationActivities: nil)
-                
-                activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
-                
-                // Anything you want to exclude
-                activityViewController.excludedActivityTypes = [
-                    UIActivityType.postToWeibo,
-                    UIActivityType.print,
-                    UIActivityType.assignToContact,
-                    UIActivityType.saveToCameraRoll,
-                    UIActivityType.addToReadingList,
-                    UIActivityType.postToFlickr,
-                    UIActivityType.postToVimeo,
-                    UIActivityType.postToTencentWeibo
-                ]
-                
-                self.present(activityViewController, animated: true, completion: nil)
-            case "Send Feedback":
-                let url = NSURL(string: "mailto:sooprun@icloud.com")
-                UIApplication.shared.open(url as! URL, options: [:], completionHandler: nil)
-                //            case "Rate Sparzel":
-                //                let appID = "959379869"
-                //                if let checkURL = URL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appID)&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8") {
-                //                    open(url: checkURL)
-                //                } else {
-                //                    print("invalid url")
-            //                }
-            default: break
-            }
-        }
+        cell?.backgroundColor = ColorConstants.onTapColor
+//        if let cellText = cell?.textLabel?.text {
+//            switch cellText {
+//            case "Share Sparzel":
+//                let firstActivityItem = "Aspetica — Aspect Ratio Calculator"
+//                let secondActivityItem : NSURL = NSURL(string: "http://aspetica.sooprun.com")!
+//                // If you want to put an image
+//                
+//                let activityViewController : UIActivityViewController = UIActivityViewController(
+//                    activityItems: [firstActivityItem, secondActivityItem], applicationActivities: nil)
+//                
+//                activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
+//                
+//                // Anything you want to exclude
+//                activityViewController.excludedActivityTypes = [
+//                    UIActivityType.postToWeibo,
+//                    UIActivityType.print,
+//                    UIActivityType.assignToContact,
+//                    UIActivityType.saveToCameraRoll,
+//                    UIActivityType.addToReadingList,
+//                    UIActivityType.postToFlickr,
+//                    UIActivityType.postToVimeo,
+//                    UIActivityType.postToTencentWeibo
+//                ]
+//                
+//                self.present(activityViewController, animated: true, completion: nil)
+//            case "Send Feedback":
+//                let url = NSURL(string: "mailto:sooprun@icloud.com")
+//                UIApplication.shared.open(url as! URL, options: [:], completionHandler: nil)
+//                //            case "Rate Sparzel":
+//                //                let appID = "959379869"
+//                //                if let checkURL = URL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appID)&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8") {
+//                //                    open(url: checkURL)
+//                //                } else {
+//                //                    print("invalid url")
+//            //                }
+//            default: break
+//            }
+//        }
     }
     
     func open(url: URL) {
