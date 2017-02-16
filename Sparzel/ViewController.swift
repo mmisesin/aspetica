@@ -83,6 +83,11 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
     @IBOutlet weak var oneStack: UIStackView!
     @IBOutlet weak var zeroStack: UIStackView!
     
+    //instantiating constraints
+
+    @IBOutlet weak var secondRowBottomSpace: NSLayoutConstraint!
+    
+    
     var reversedKeyboard = false
     
     //supporting variables
@@ -99,6 +104,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
     let helpHeight: CGFloat = 28
     let bottomHelpWidth: CGFloat = 50
     var reevaluate = false
+    var helpOffset: CGFloat = 0
+    
     
     //temporary features
     @IBAction func tempKeyboardSwitch() {
@@ -151,6 +158,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
     //tapping the textfields
     func handleTap(recognizer: UITapGestureRecognizer) {
         activeTextField = recognizer.view as? UILabel
+        print("Tapped \(activeTextField?.tag)")
         
         //if tapping specific field for the first time
         if activeTextField != previousActive {
@@ -349,7 +357,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             ColorConstants.nightMode()
         }
         
-        self.view.backgroundColor = .clear
+        self.view.backgroundColor = .black
         setDeleteButtonImage(path: "delete-icon-bright")
         roundedView.layer.cornerRadius = 8
         
@@ -364,16 +372,37 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             view.backgroundColor = .clear
         }
         
-        shadowView.clipsToBounds = false
-        shadowView.layer.shadowPath = UIBezierPath(rect: shadowView.bounds).cgPath
-        shadowView.layer.shadowPath = UIBezierPath(rect: shadowView.bounds).cgPath
-        shadowView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
-        shadowView.layer.shadowOpacity = 0.03
-        shadowView.layer.shadowRadius = 0
-        
         colorSetup()
         
         let triangleWidth: CGFloat = 8
+        
+        let screenHeight = UIScreen.main.bounds.size.height
+        if screenHeight == 568 {
+            secondRowBottomSpace.constant = 56
+            for button in mainButtons {
+                button.titleLabel?.font = button.titleLabel?.font.withSize(22)
+            }
+            for textfield in textfields {
+                textfield.font = textfield.font.withSize(32)
+            }
+            helpOffset = 40
+            print("SE")
+        } else if screenHeight == 667 {
+            helpOffset = 26
+            print("7")
+        } else if screenHeight == 736 {
+            shadowView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
+            helpOffset = 18
+            secondRowBottomSpace.constant = 73
+            for button in mainButtons {
+                button.titleLabel?.font = button.titleLabel?.font.withSize(31)
+            }
+            for textfield in textfields {
+                textfield.font = textfield.font.withSize(45)
+                
+            }
+            print("7+")
+        }
         
         //setting up textfields
         for (index, view) in textfields.enumerated() {
@@ -386,9 +415,11 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             if index == 2 {
                 handleTap(recognizer: recognizer)
             }
-            
             let superWidth = suppViews[index].bounds.width
-            let helpView = UIView(frame: CGRect(x: superWidth/2 - superWidth/4, y: view.frame.minY - helpHeight - 10, width: 79, height: helpHeight))
+            //let x = suppViews[index].bounds.midX
+            print("Yo\(superWidth)")
+            let helpWidth: CGFloat = 79
+            let helpView = UIView(frame: CGRect(x: superWidth/2 - helpOffset, y: view.frame.minY - helpHeight - 10, width: helpWidth, height: helpHeight))
             helpView.layer.cornerRadius = 4
             helpView.backgroundColor = ColorConstants.helpColor
             let triangle = TriangleView(frame: CGRect(x: helpView.bounds.midX - triangleWidth/2, y: helpView.bounds.maxY, width: triangleWidth , height: triangleWidth * 0.5))
@@ -397,7 +428,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             let helpLabel = UILabel(frame: CGRect(x: helpView.bounds.minX, y: helpView.bounds.minY, width: helpView.bounds.width, height: helpView.bounds.height))
             helpLabel.textAlignment = .center
             helpLabel.text = helpText[index]
-            helpLabel.textColor = ColorConstants.mainTint
+            helpLabel.textColor = ColorConstants.mainBackground
+            //helpLabel.sizeToFit()
             helpLabel.font = helpLabel.font.withSize(12)
             helpView.addSubview(helpLabel)
             helpViews.append(helpView)
@@ -413,7 +445,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             view.layer.masksToBounds = true
             view.layer.cornerRadius = 4
         }
-        
+        shadowView.backgroundColor = ColorConstants.mainBackground
+        shadowView.layer.shadowColor = ColorConstants.navShadow.cgColor
+        shadowView.layer.shadowOpacity = 1
     }
     
     
@@ -423,6 +457,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         })
         colorSetup()
         
+        //print(numpadHeight.constant)
         
         if roundedValues{
             pointButton.setTitle("", for: .normal)
@@ -467,6 +502,22 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         }
     }
     
+    override func viewWillLayoutSubviews() {
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+//        let shadow = UIView(frame: CGRect(x: shadowView.bounds.minX, y: shadowView.bounds.maxY, width: shadowView.bounds.width, height: 1))
+//        shadow.backgroundColor = .yellow
+//        shadowView.addSubview(shadow)
+//        shadowView.clipsToBounds = false
+        shadowView.layer.shadowPath = UIBezierPath(rect: shadowView.bounds).cgPath
+        shadowView.layer.shadowPath = UIBezierPath(rect: shadowView.bounds).cgPath
+        shadowView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
+        //shadowView.layer.shadowOpacity = 0.03
+        shadowView.layer.shadowRadius = 0
+    }
+    
     private func generalEvaluation(with tappedField: UILabel) {
         let values = (xField!.text!, yField!.text!, wField!.text!, hField!.text!)
         //if tappedField.text != "0" && xField.text != "0" && yField.text != "0"{
@@ -491,7 +542,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
     
     private func colorSetup() {
         deleteButton.tintColor = ColorConstants.deleteIconColor
-        roundedView.backgroundColor = ColorConstants.mainTint
+        roundedView.backgroundColor = ColorConstants.mainBackground
         divSymbol.textColor = ColorConstants.symbolsColor
         multiSymbol.textColor = ColorConstants.symbolsColor
         settingsButton.tintColor = ColorConstants.symbolsColor
@@ -508,10 +559,10 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             button.backgroundColor = ColorConstants.defaultButtonBackground
             button.setTitleColor(ColorConstants.mainTextColor, for: UIControlState.normal)
         }
-        
-        for view in suppViews {
-            view.backgroundColor = .clear
-        }
+//        
+//        for view in suppViews {
+//            view.backgroundColor = .clear
+//        }
         
         for view in helpViews {
             view.backgroundColor = ColorConstants.helpColor
@@ -522,7 +573,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         }
         
         for view in helpLabels {
-            view.textColor = ColorConstants.mainTint
+            view.textColor = ColorConstants.mainBackground
         }
         
         for view in textfields {
@@ -540,10 +591,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
                 }
             }
         }
-        
-        shadowView.backgroundColor = ColorConstants.mainTint
+        shadowView.backgroundColor = ColorConstants.mainBackground
         shadowView.layer.shadowColor = ColorConstants.navShadow.cgColor
-        shadowView.layer.shadowOpacity = 1
     }
     
     private func fetchSettings() {
