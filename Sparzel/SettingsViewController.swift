@@ -15,7 +15,7 @@ var nightMode = false
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Dismissable, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate {
     
     private var labels = [
-        ["Round Values", "Dark Theme"], ["Send Feedback", /*"Rate Aspetica",*/ "Share Aspetica"]
+        ["Round Values", "Dark Theme"], ["Send Feedback", "Rate Aspetica", "Share Aspetica"]
     ]
     
     var counter = 0
@@ -42,7 +42,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         UIView.animate(withDuration: 1.0, animations:{
             (self.dismissalDelegate as! ViewController).dimView.layer.opacity = 0.3
         })
+        closeButton.layer.opacity = 1
     }
+    
+    @IBAction func closeDown(_ sender: UIButton) {
+        closeButton.layer.opacity = 0.4
+    }
+    
+    
     @IBAction func swipeDown(_ sender: UISwipeGestureRecognizer) {
         dismissalDelegate?.finishedShowing(viewController: self)
     }
@@ -52,9 +59,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         
         self.view.backgroundColor = .clear
         navBar.layer.cornerRadius = 8
-        tableShadow = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 1))
-        //tableShadow?.layer.opacity = 0.5
-        tableView.addSubview(tableShadow!)
         tableView.sectionFooterHeight = 0.0
         tableView.sectionHeaderHeight = 48
         
@@ -69,6 +73,13 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewWillAppear(_ animated: Bool) {
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        tableShadow = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 1))
+        tableShadow?.backgroundColor = ColorConstants.settingsShadows
+        //tableShadow?.layer.opacity = 0.5
+        tableView.addSubview(tableShadow!)
     }
     
     override func didReceiveMemoryWarning() {
@@ -126,9 +137,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
         if indexPath.section == 1 {
             switch indexPath.row {
-            case 1:
+            case 2:
                 let firstActivityItem = "Aspetica — Aspect Ratio Calculator"
                 let secondActivityItem : NSURL = NSURL(string: "http://aspetica.sooprun.com")!
                 
@@ -152,24 +164,18 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                     tableView.deselectRow(at: indexPath, animated: true)})
             case 0:
                 sendEmail(from: indexPath)
-//                print("wtf")
-//                let url = NSURL(string: "mailto:artemmisesin@gmail.com")
-//                UIApplication.shared.open(url as! URL, options: [:], completionHandler: nil)
-                /*{ (finish) in
-                 tableView.deselectRow(at: indexPath, animated: true)}*/
-                //            case 2:
-                //                let appID = "959379869"
-                //                if let checkURL = URL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appID)&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8") {
-                //                    open(url: checkURL)
-                //                } else {
-                //                    print("invalid url")
-            //                }
+            case 1:
+                let appID = "1197016359"
+                rateApp(appId: appID) {(success) in
+                    tableView.deselectRow(at: indexPath, animated: true)}
+
             default: break
             }
         }
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        print("willSelect \(indexPath)")
         if indexPath.section == 0{
             return nil
         } else {
@@ -206,7 +212,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         navBarTitle.textColor = ColorConstants.cellTextColor
         //        tableView.headerView(forSection: 1)?.textLabel?.textColor = ColorConstants.symbolsColor
         footerView.textColor = ColorConstants.symbolsColor
-        
         for cell in tableView.visibleCells {
             //cell.backgroundColor = ColorConstants.settingsMainTint
             cell.textLabel?.textColor = ColorConstants.cellTextColor
@@ -239,7 +244,11 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         closeButton.tintColor = ColorConstants.symbolsColor
         tableView.backgroundColor = ColorConstants.settingsMainTint
         footerView.superview?.backgroundColor = ColorConstants.settingsMainTint
-        tableShadow?.backgroundColor = ColorConstants.navShadow
+        tableShadow?.removeFromSuperview()
+        tableShadow = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0.5))
+        tableShadow!.backgroundColor = ColorConstants.settingsShadows
+        tableShadow?.alpha = 0.2
+        tableView.addSubview(tableShadow!)
         self.view.backgroundColor = .clear
         self.presentingViewController?.view.backgroundColor = .black
     }
@@ -294,9 +303,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         cell.textLabel?.textColor = ColorConstants.cellTextColor
         cell.detailTextLabel?.textColor = ColorConstants.symbolsColor
         cell.backgroundColor = .clear //ColorConstants.settingsMainTint
-        cell.isUserInteractionEnabled = true
-        let recognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        recognizer.delegate = self
+        //cell.isUserInteractionEnabled = true
+//        let recognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+//        recognizer.delegate = self
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
         let borderHeight: CGFloat = 1
         let bottomY = cell.bounds.maxY - borderHeight
@@ -323,7 +332,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 roundedValuesSwitch.tag = 0
                 cell.detailTextLabel?.text = ""
                 cell.accessoryView = roundedValuesSwitch
-                //                cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
+                cell.contentView.isUserInteractionEnabled = false
+                //cell.accessoryView?.isUserInteractionEnabled = true
                 if nightMode {
                     cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
                 }
@@ -344,10 +354,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                     cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
                 }
                 nightModeSwitch.addTarget(self, action: #selector(switchChanged(sender:)), for: UIControlEvents.valueChanged)
-                //bottomBorders.append(bottomBorder)
                 if counter < 5 {
                     cell.addSubview(bottomBorder)
                 }
+                cell.selectionStyle = .none
 //            case "Theme":
 //                cell.detailTextLabel?.text = "Default"
 //                cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
@@ -436,18 +446,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 //        }
     }
     
-    func open(url: URL) {
-        if #available(iOS 10, *) {
-            UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
-                print("Open \(url): \(success)")
-            })
-        } else {
-            if UIApplication.shared.openURL(url) {
-                print("Opened")
-            }
-        }
-    }
-    
     func sendEmail(from indexPath: IndexPath) {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
@@ -466,5 +464,16 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
+    }
+    func rateApp(appId: String, completion: @escaping ((_ success: Bool)->())) {
+        guard let url = URL(string : "https://itunes.apple.com/app/id" + appId) else {
+            completion(false)
+            return
+        }
+        guard #available(iOS 10, *) else {
+            completion(UIApplication.shared.openURL(url))
+            return
+        }
+        UIApplication.shared.open(url, options: [:], completionHandler: completion)
     }
 }

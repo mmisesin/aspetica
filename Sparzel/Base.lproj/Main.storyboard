@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -35,6 +34,7 @@
                                             <color key="titleColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="iconDragOutside:" destination="BYZ-38-t0r" eventType="touchDragOutside" id="Pew-bw-BCK"/>
                                             <action selector="iconTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="CGu-nb-Kho"/>
                                             <action selector="iconTouchUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lfS-CU-C6h"/>
                                             <segue destination="mOg-Ea-qBK" kind="presentation" identifier="showSettings" id="aV0-hJ-B8C"/>
@@ -619,6 +619,7 @@
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="closeDown:" destination="mOg-Ea-qBK" eventType="touchDown" id="A5l-vQ-cwz"/>
                                             <action selector="dismiss" destination="mOg-Ea-qBK" eventType="touchUpInside" id="hrz-SK-EBX"/>
                                         </connections>
                                     </button>

@@ -147,6 +147,10 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
 //        keyboard.addArrangedSubview(zeroStack)
     }
     
+    @IBAction func iconDragOutside(_ sender: UIButton) {
+        sender.layer.opacity = 1
+    }
+    
     @IBAction func iconTouchUp(_ sender: UIButton) {
         sender.layer.opacity = 1
     }
@@ -335,7 +339,16 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
                             pointEntered[tappedField.tag - 1] = false
                         }
                     }
+                } else {
+                    tappedField.backgroundColor = ColorConstants.labelsBackground
+                    tappedField.textColor = ColorConstants.deleteColor
+                    carriages[tappedField.tag - 1].backgroundColor = .clear
+                    stopAnimation(tappedField.tag - 1)
+                    secondTapDone = false
+                    isTyping = false
+                    pointEntered[tappedField.tag - 1] = false
                 }
+                
             }
             generalEvaluation(with: tappedField)
             if (tappedField.text?.contains("."))!{
@@ -545,10 +558,10 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         roundedView.backgroundColor = ColorConstants.mainBackground
         divSymbol.textColor = ColorConstants.symbolsColor
         multiSymbol.textColor = ColorConstants.symbolsColor
-        settingsButton.tintColor = ColorConstants.symbolsColor
+        settingsButton.tintColor = ColorConstants.iconsColor
         
         if !helpIsOn {
-            helpButton.tintColor = ColorConstants.symbolsColor
+            helpButton.tintColor = ColorConstants.iconsColor
         } else {
             helpButton.tintColor = ColorConstants.deleteColor
         }
