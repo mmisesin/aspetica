@@ -27,8 +27,9 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var closeButton: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableShadow: UIView!
     
-    var tableShadow: UIView?
+//    var tableShadow: UIView?
     
     @IBOutlet weak var footerView: UILabel!
     
@@ -76,10 +77,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func viewDidLayoutSubviews() {
-        tableShadow = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 1))
-        tableShadow?.backgroundColor = ColorConstants.settingsShadows
-        //tableShadow?.layer.opacity = 0.5
-        tableView.addSubview(tableShadow!)
+//        tableShadow = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 1))
+//        tableShadow?.backgroundColor = ColorConstants.settingsShadows
+//        //tableShadow?.layer.opacity = 0.5
+//        tableView.addSubview(tableShadow!)
     }
     
     override func didReceiveMemoryWarning() {
@@ -236,10 +237,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.headerView(forSection: 1)?.textLabel?.textColor = ColorConstants.symbolsColor
         //for header in tableView.section
         for view in bottomBorders {
-            view.layer.backgroundColor = ColorConstants.navShadow.cgColor
+            view.layer.backgroundColor = ColorConstants.settingsShadows.cgColor
             //view.alpha = 0.4
             for viewx in topBorders {
-                viewx.layer.backgroundColor = ColorConstants.navShadow.cgColor
+                viewx.layer.backgroundColor = ColorConstants.settingsShadows.cgColor
                 //viewx.alpha = 0.4
             }
         }
@@ -247,14 +248,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func colorAnimated() {
         navBar.backgroundColor = ColorConstants.settingsMainTint
-        closeButton.tintColor = ColorConstants.symbolsColor
+        closeButton.tintColor = ColorConstants.iconsColor
         tableView.backgroundColor = ColorConstants.settingsMainTint
         footerView.superview?.backgroundColor = ColorConstants.settingsMainTint
-        tableShadow?.removeFromSuperview()
-        tableShadow = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 0.5))
-        tableShadow!.backgroundColor = ColorConstants.settingsShadows
-        tableShadow?.alpha = 0.2
-        tableView.addSubview(tableShadow!)
+        tableShadow.backgroundColor = ColorConstants.settingsShadows
         self.view.backgroundColor = .clear
         self.presentingViewController?.view.backgroundColor = .black
     }
@@ -321,7 +318,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 //        let recognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
 //        recognizer.delegate = self
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        let borderHeight: CGFloat = 1
+        let borderHeight: CGFloat = 0.5
         let bottomY = cell.bounds.maxY - borderHeight
         let topY = cell.bounds.minY
         let topBorder = UIView(frame: CGRect(x: 16, y: topY, width: cell.bounds.width - 32, height: borderHeight))
