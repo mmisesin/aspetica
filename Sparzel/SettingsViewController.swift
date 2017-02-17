@@ -121,6 +121,12 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = CustomCell()
         cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell
+        if indexPath.section == 0 {
+            cell.selectionStyle = .none
+        } else {
+            cell.selectionStyle = .default
+        }
+        
         cell.textLabel?.text = labels[indexPath.section][indexPath.row]
         cellSetup(cell: cell)
         return cell
@@ -299,6 +305,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     //        }
     //    }
     
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section == 0 {
+            return false
+        } else {
+            return true
+        }
+    }
+    
     private func cellSetup(cell: CustomCell) {
         cell.textLabel?.textColor = ColorConstants.cellTextColor
         cell.detailTextLabel?.textColor = ColorConstants.symbolsColor
@@ -401,49 +415,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         defaults.setValue(nightMode, forKey: "nightMode")
         defaults.setValue(roundedValues, forKey: "roundedValues")
         print("Settings loaded")
-    }
-    
-    func handleTap(recognizer: UITapGestureRecognizer) {
-        let cell = recognizer.view as? UITableViewCell
-        cell?.backgroundColor = ColorConstants.onTapColor
-//        if let cellText = cell?.textLabel?.text {
-//            switch cellText {
-//            case "Share Sparzel":
-//                let firstActivityItem = "Aspetica — Aspect Ratio Calculator"
-//                let secondActivityItem : NSURL = NSURL(string: "http://aspetica.sooprun.com")!
-//                // If you want to put an image
-//                
-//                let activityViewController : UIActivityViewController = UIActivityViewController(
-//                    activityItems: [firstActivityItem, secondActivityItem], applicationActivities: nil)
-//                
-//                activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
-//                
-//                // Anything you want to exclude
-//                activityViewController.excludedActivityTypes = [
-//                    UIActivityType.postToWeibo,
-//                    UIActivityType.print,
-//                    UIActivityType.assignToContact,
-//                    UIActivityType.saveToCameraRoll,
-//                    UIActivityType.addToReadingList,
-//                    UIActivityType.postToFlickr,
-//                    UIActivityType.postToVimeo,
-//                    UIActivityType.postToTencentWeibo
-//                ]
-//                
-//                self.present(activityViewController, animated: true, completion: nil)
-//            case "Send Feedback":
-//                let url = NSURL(string: "mailto:sooprun@icloud.com")
-//                UIApplication.shared.open(url as! URL, options: [:], completionHandler: nil)
-//                //            case "Rate Sparzel":
-//                //                let appID = "959379869"
-//                //                if let checkURL = URL(string: "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=\(appID)&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8") {
-//                //                    open(url: checkURL)
-//                //                } else {
-//                //                    print("invalid url")
-//            //                }
-//            default: break
-//            }
-//        }
     }
     
     func sendEmail(from indexPath: IndexPath) {
