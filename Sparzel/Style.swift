@@ -78,6 +78,6 @@ struct ColorConstants {
         accessoryViewColor = UIColor(hexString: "#C4CDD7", alpha: 1)
         helpColor = UIColor(hexString: "#E04A2C", alpha: 1)
         onTapColor = UIColor(hexString: "#F6F7F9", alpha: 1)
-        settingsShadows = UIColor(hexString: "#E0E4EA", alpha: 0.7)
+        settingsShadows = UIColor(hexString: "#E0E4EA", alpha: 0.5)
     }
 }

@@ -39,20 +39,51 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     private var topBorders: [UIView] = []
     
     @IBAction func dismiss() {
-        dismissalDelegate?.finishedShowing(viewController: self)
-        UIView.animate(withDuration: 1.0, animations:{
-            (self.dismissalDelegate as! ViewController).dimView.layer.opacity = 0.3
-        })
+        dismiss(animated: true, completion: nil)
+
+        //dismissalDelegate?.finishedShowing(viewController: self)
+//        UIView.animate(withDuration: 1.0, animations:{
+//            (self.dismissalDelegate as! ViewController).dimView.layer.opacity = 0.3
+//        })
         closeButton.layer.opacity = 1
+    }
+    
+    var interactor:Interactor? = nil
+    
+    @IBAction func panDismiss(_ sender: UIPanGestureRecognizer) {
+        let percentThreshold:CGFloat = 0.3
+        
+        // convert y-position to downward pull progress (percentage)
+        let translation = sender.translation(in: view)
+        let verticalMovement = translation.y / view.bounds.height
+        let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
+        let downwardMovementPercent = fminf(downwardMovement, 1.0)
+        let progress = CGFloat(downwardMovementPercent)
+        
+        guard let interactor = interactor else { return }
+        
+        switch sender.state {
+        case .began:
+            interactor.hasStarted = true
+            dismiss(animated: true, completion: nil)
+        case .changed:
+            interactor.shouldFinish = progress > percentThreshold
+            interactor.update(progress)
+        case .cancelled:
+            interactor.hasStarted = false
+            interactor.cancel()
+        case .ended:
+            interactor.hasStarted = false
+            interactor.shouldFinish
+                ? interactor.finish()
+                : interactor.cancel()
+        default:
+            break
+        }
     }
     
     @IBAction func closeDown(_ sender: UIButton) {
         closeButton.layer.opacity = 0.4
-    }
-    
-    
-    @IBAction func swipeDown(_ sender: UISwipeGestureRecognizer) {
-        dismissalDelegate?.finishedShowing(viewController: self)
     }
     
     override func viewDidLoad() {
@@ -202,17 +233,17 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         return sectionHeaderTitles[section]
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let identifier = segue.identifier {
-            let vc = segue.destination as! ViewController
-            switch identifier {
-            case "toMain":
-                UIView.animate(withDuration: 0.5, animations: {vc.dimView.layer.opacity = 0.0
-                })
-            default: break
-            }
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if let identifier = segue.identifier {
+//            let vc = segue.destination as! ViewController
+//            switch identifier {
+//            case "toMain":
+//                UIView.animate(withDuration: 0.5, animations: {vc.dimView.layer.opacity = 0.0
+//                })
+//            default: break
+//            }
+//        }
+//    }
     
     private func colorSetup() {
         colorAnimated()
@@ -318,7 +349,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 //        let recognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
 //        recognizer.delegate = self
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        let borderHeight: CGFloat = 0.5
+        let borderHeight: CGFloat = 1
         let bottomY = cell.bounds.maxY - borderHeight
         let topY = cell.bounds.minY
         let topBorder = UIView(frame: CGRect(x: 16, y: topY, width: cell.bounds.width - 32, height: borderHeight))

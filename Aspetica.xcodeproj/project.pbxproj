@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C62E40B21E57427F0047DDF3 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62E40B11E57427F0047DDF3 /* Interactor.swift */; };
+		C62E40B41E5742A00047DDF3 /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62E40B31E5742A00047DDF3 /* DismissAnimator.swift */; };
 		C648094A1E3189FE00F3EF12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64809491E3189FE00F3EF12 /* AppDelegate.swift */; };
 		C648094C1E3189FE00F3EF12 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648094B1E3189FE00F3EF12 /* ViewController.swift */; };
 		C648094F1E3189FE00F3EF12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C648094D1E3189FE00F3EF12 /* Main.storyboard */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C62E40B11E57427F0047DDF3 /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
+		C62E40B31E5742A00047DDF3 /* DismissAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
 		C64809461E3189FE00F3EF12 /* Aspetica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aspetica.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C64809491E3189FE00F3EF12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C648094B1E3189FE00F3EF12 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -70,6 +74,8 @@
 				C66A3B801E32A6350001BC80 /* RatioEvaluator.swift */,
 				C648094D1E3189FE00F3EF12 /* Main.storyboard */,
 				C66A3B841E36943E0001BC80 /* SettingsViewController.swift */,
+				C62E40B31E5742A00047DDF3 /* DismissAnimator.swift */,
+				C62E40B11E57427F0047DDF3 /* Interactor.swift */,
 				C65D26241E3A3F22000A4744 /* Launch Screen.storyboard */,
 			);
 			name = Aspetica;
@@ -164,9 +170,11 @@
 				C648094C1E3189FE00F3EF12 /* ViewController.swift in Sources */,
 				C66A3B851E36943E0001BC80 /* SettingsViewController.swift in Sources */,
 				C648094A1E3189FE00F3EF12 /* AppDelegate.swift in Sources */,
+				C62E40B21E57427F0047DDF3 /* Interactor.swift in Sources */,
 				C66A3B811E32A6350001BC80 /* RatioEvaluator.swift in Sources */,
 				C648095F1E318B2C00F3EF12 /* CustomClasses.swift in Sources */,
 				C64809601E318B2C00F3EF12 /* extensions.swift in Sources */,
+				C62E40B41E5742A00047DDF3 /* DismissAnimator.swift in Sources */,
 				C6FC34C91E37ADF7008D8D9A /* Style.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -255,8 +255,10 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             if (tappedField.text?.contains("."))!{
                 decimalPart = tappedField.text!
                 decimalPart.stripFromCharacter(char: ".")
+                pointEntered[tappedField.tag - 1] = true
             } else {
                 decimalPart = ""
+                pointEntered[tappedField.tag - 1] = false
             }
             print("kek \(decimalPart)")
             
@@ -466,8 +468,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
     
     override func viewWillAppear(_ animated: Bool) {
         //dimView.removeFromSuperview()
-        UIView.animate(withDuration: 0.5, animations: {self.dimView.layer.opacity = 0.0
-        })
+//        UIView.animate(withDuration: 0.5, animations: {self.dimView.layer.opacity = 0.0
+//        })
         colorSetup()
         
         //print(numpadHeight.constant)
@@ -494,24 +496,44 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         generalEvaluation(with: activeTextField!)
     }
     
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+////        if let identifier = segue.identifier{
+////            switch identifier {
+////            case "showSettings":
+////                let tempFrame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
+////                dimView = UIView(frame: tempFrame)
+////                dimView.backgroundColor = .black
+////                dimView.layer.opacity = 0
+////                self.view.addSubview(dimView)
+////                UIView.animate(withDuration: 0.5, animations: {
+////                    self.dimView.layer.opacity = 0.4
+////                })
+////            default:break
+////            }
+////        }
+////        if let vc = segue.destination as? Dismissable
+////        {
+////            vc.dismissalDelegate = self
+////        }
+//        if let destinationViewController = segue.destination as? SettingsViewController {
+//            destinationViewController.transitioningDelegate = self
+//        }
+//    }
+    
+    let interactor = Interactor()
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let identifier = segue.identifier{
-            switch identifier {
-            case "showSettings":
-                let tempFrame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
-                dimView = UIView(frame: tempFrame)
-                dimView.backgroundColor = .black
-                dimView.layer.opacity = 0
-                self.view.addSubview(dimView)
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.dimView.layer.opacity = 0.4
-                })
-            default:break
-            }
-        }
-        if let vc = segue.destination as? Dismissable
-        {
-            vc.dismissalDelegate = self
+        if let destinationViewController = segue.destination as? SettingsViewController {
+            destinationViewController.transitioningDelegate = self
+            destinationViewController.interactor = interactor
+            let tempFrame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
+            dimView = UIView(frame: tempFrame)
+            dimView.backgroundColor = .black
+            dimView.layer.opacity = 0
+            self.view.addSubview(dimView)
+            UIView.animate(withDuration: 0.5, animations: {
+                self.dimView.layer.opacity = 0.4
+            }, completion: {_ in self.dimView.removeFromSuperview()})
         }
     }
     
@@ -657,4 +679,15 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
     }
         
 }
+
+extension ViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissAnimator()
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
+    }
+}
+
 

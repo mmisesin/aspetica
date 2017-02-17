@@ -699,10 +699,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Wi-qw-qv3">
-                                <rect key="frame" x="0.0" y="72" width="320" height="0.5"/>
+                                <rect key="frame" x="0.0" y="72" width="320" height="1"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="0.5" id="f8l-ey-YkP"/>
+                                    <constraint firstAttribute="height" constant="1" id="f8l-ey-YkP"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -723,6 +723,9 @@
                             <constraint firstItem="xfp-R5-rcT" firstAttribute="top" secondItem="WS3-SO-cRa" secondAttribute="bottom" constant="359" id="suF-8j-U0b"/>
                             <constraint firstAttribute="trailing" secondItem="8Wi-qw-qv3" secondAttribute="trailing" id="vYB-Si-uZG"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="B6l-cJ-O5K" appends="YES" id="w6A-8R-hzv"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="closeButton" destination="dKZ-CB-iyy" id="bgL-OH-SG6"/>
@@ -736,6 +739,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dtK-7f-5l4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ay3-Un-tae" userLabel="Exit" sceneMemberID="exit"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="B6l-cJ-O5K">
+                    <connections>
+                        <action selector="panDismiss:" destination="mOg-Ea-qBK" id="5rD-wE-iVJ"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1020" y="129.92957746478874"/>
         </scene>
