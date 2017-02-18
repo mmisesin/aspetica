@@ -162,7 +162,10 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
     //tapping the textfields
     func handleTap(recognizer: UITapGestureRecognizer) {
         activeTextField = recognizer.view as? UILabel
-        print("Tapped \(activeTextField?.tag)")
+        
+        if activeTextField?.tag == 3 || activeTextField?.tag == 4 {
+            pixelsField = (activeTextField?.tag)!
+        }
         
         //if tapping specific field for the first time
         if activeTextField != previousActive {
@@ -221,8 +224,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         }
         
         previousActive = activeTextField
-        print("Second tap done \(secondTapDone)")
-        print("Is typing \(isTyping)")
     }
     
     //button view, when finger is down on the screen
@@ -260,7 +261,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
                 decimalPart = ""
                 pointEntered[tappedField.tag - 1] = false
             }
-            print("kek \(decimalPart)")
             
             //adding a digit to the display
             if !(tappedField.text! == "0" && digit == "0") && !(tappedField.text == "0" && digit == ".") && !(pointEntered[tappedField.tag - 1] && digit == ".") && !(!secondTapDone && digit == ".") && !(tappedField.text?.characters.count == 5 && digit == ".") && !((tappedField.tag == 1 || tappedField.tag == 2) && !secondTapDone && digit == "0"){
@@ -273,9 +273,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
                     fadeIn(index: tappedField.tag - 1)
                 }
                 
-                if activeTextField?.tag == 3 || activeTextField?.tag == 4 {
-                    pixelsField = (activeTextField?.tag)!
-                }
+//                if activeTextField?.tag == 3 || activeTextField?.tag == 4 {
+//                    pixelsField = (activeTextField?.tag)!
+//                }
                 
                 if (secondTapDone || isTyping) {
                     if tappedField.text == "0" && digit != "0"{
@@ -306,9 +306,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
                 loadData()
             }
         }
-        
-        print("Second tap done \(secondTapDone)")
-        print("Is typing \(isTyping)")
     }
     
     @IBAction func deleteButtonTapped() {
@@ -387,7 +384,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             view.backgroundColor = .clear
         }
         
-        colorSetup()
+        //colorSetup()
         
         let triangleWidth: CGFloat = 8
         
@@ -401,10 +398,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
                 textfield.font = textfield.font.withSize(32)
             }
             helpOffset = 40
-            print("SE")
         } else if screenHeight == 667 {
             helpOffset = 26
-            print("7")
         } else if screenHeight == 736 {
             shadowView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
             helpOffset = 18
@@ -416,7 +411,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
                 textfield.font = textfield.font.withSize(45)
                 
             }
-            print("7+")
         }
         
         //setting up textfields
@@ -432,7 +426,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             }
             let superWidth = suppViews[index].bounds.width
             //let x = suppViews[index].bounds.midX
-            print("Yo\(superWidth)")
             let helpWidth: CGFloat = 79
             let helpView = UIView(frame: CGRect(x: superWidth/2 - helpOffset, y: view.frame.minY - helpHeight - 10, width: helpWidth, height: helpHeight))
             helpView.layer.cornerRadius = 4
@@ -471,8 +464,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
 //        UIView.animate(withDuration: 0.5, animations: {self.dimView.layer.opacity = 0.0
 //        })
         colorSetup()
-        
-        //print(numpadHeight.constant)
         
         if roundedValues{
             pointButton.setTitle("", for: .normal)
@@ -567,6 +558,17 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
                 wField.text = evaluator.evaluate(values: values, field: tappedField.tag, pixelsField: pixelsField)
             }
         }
+        if roundedValues{
+//            let value =
+//            wField.text =
+        }
+        print(activeTextField?.tag ?? "no tapped field")
+        print(previousActive?.tag ?? "kek")
+        print("pixel field tapped \(pixelsField)")
+        print("second tap done\(secondTapDone)")
+        print("is typing \(isTyping)")
+        print("point entered\(pointEntered)")
+        loadData()
     }
     
     private func setDeleteButtonImage(path: String){
@@ -634,11 +636,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         let defaults = UserDefaults.standard
         let nightModeValue = defaults.bool(forKey: "nightMode")
         let roundedValuesValue = defaults.bool(forKey: "roundedValues")
-        print(nightModeValue)
-        print(roundedValuesValue)
         roundedValues = roundedValuesValue
         nightMode = nightModeValue
-        print("Settings fetched")
     }
     
     private func loadData() {
@@ -647,10 +646,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         defaults.setValue(yField.text!, forKey: yFieldKey)
         defaults.setValue(wField.text!, forKey: wFieldKey)
         defaults.setValue(hField.text!, forKey: hFieldKey)
-        print(xField.text!)
-        print(yField.text!)
-        print(wField.text!)
-        print(hField.text!)
     }
     
     func fadeIn(index: Int) {

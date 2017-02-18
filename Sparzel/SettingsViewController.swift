@@ -47,15 +47,17 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 //        })
         closeButton.layer.opacity = 1
     }
+    @IBOutlet var panGesture: UIPanGestureRecognizer!
     
     var interactor:Interactor? = nil
     
     @IBAction func panDismiss(_ sender: UIPanGestureRecognizer) {
         let percentThreshold:CGFloat = 0.3
         
+        let tempView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height))
         // convert y-position to downward pull progress (percentage)
-        let translation = sender.translation(in: view)
-        let verticalMovement = translation.y / view.bounds.height
+        let translation = sender.translation(in: tempView)
+        let verticalMovement = translation.y / tempView.bounds.height
         let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
         let downwardMovementPercent = fminf(downwardMovement, 1.0)
         let progress = CGFloat(downwardMovementPercent)
@@ -136,7 +138,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             //            UIView.animate(withDuration: 0.5, animations: {self.colorAnimated()
             //            })
             //            manualAnimation()
-            colorSetup()
+            //colorSetup()
             tableView.reloadData()
         case 0:
             if roundedValues {
@@ -349,7 +351,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
 //        let recognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
 //        recognizer.delegate = self
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        let borderHeight: CGFloat = 1
+        let borderHeight: CGFloat = 0.5
         let bottomY = cell.bounds.maxY - borderHeight
         let topY = cell.bounds.minY
         let topBorder = UIView(frame: CGRect(x: 16, y: topY, width: cell.bounds.width - 32, height: borderHeight))

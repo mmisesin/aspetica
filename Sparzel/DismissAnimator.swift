@@ -13,7 +13,7 @@ class DismissAnimator : NSObject {
 
 extension DismissAnimator : UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.6
+        return 0.3
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -32,22 +32,25 @@ extension DismissAnimator : UIViewControllerAnimatedTransitioning {
         let tempFrame = CGRect(x: 0, y: 0, width: screenBounds.width, height: screenBounds.height)
         let dimView = UIView(frame: tempFrame)
         dimView.backgroundColor = .black
-        dimView.layer.opacity = 0.8
+        dimView.layer.opacity = 0.4
         toVC.view.addSubview(dimView)
-        UIView.animate(withDuration: 0.5, animations: {
-            
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, options: .curveLinear, animations: {
+            fromVC.view.frame = finalFrame
+            dimView.layer.opacity = 0
+        }, completion: { _ in
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+            dimView.removeFromSuperview()
         })
-
-        UIView.animate(
-            withDuration:  transitionDuration(using: transitionContext),
-            animations: {
-                fromVC.view.frame = finalFrame
-                dimView.layer.opacity = 0
-        },
-            completion: { _ in
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-                dimView.removeFromSuperview()
-        }
-        )
+//        UIView.animate(
+//            withDuration:  transitionDuration(using: transitionContext),
+//            animations: {
+//                fromVC.view.frame = finalFrame
+//                dimView.layer.opacity = 0
+//        },
+//            completion: { _ in
+//                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+//                dimView.removeFromSuperview()
+//        }
+//        )
     }
 }
