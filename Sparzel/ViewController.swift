@@ -397,13 +397,16 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             for textfield in textfields {
                 textfield.font = textfield.font.withSize(32)
             }
-            helpOffset = 40
+            helpOffset = 53
         } else if screenHeight == 667 {
-            helpOffset = 26
+            helpOffset = 39
         } else if screenHeight == 736 {
             shadowView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
-            helpOffset = 18
+            helpOffset = 30
             secondRowBottomSpace.constant = 73
+//            for view in helpViews {
+//                view.layer.shadowColor = UIColor.clear.cgColor
+//            }
             for button in mainButtons {
                 button.titleLabel?.font = button.titleLabel?.font.withSize(31)
             }
@@ -430,8 +433,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             let helpView = UIView(frame: CGRect(x: superWidth/2 - helpOffset, y: view.frame.minY - helpHeight - 10, width: helpWidth, height: helpHeight))
             helpView.layer.cornerRadius = 4
             helpView.backgroundColor = ColorConstants.helpColor
-            let triangle = TriangleView(frame: CGRect(x: helpView.bounds.midX - triangleWidth/2, y: helpView.bounds.maxY, width: triangleWidth , height: triangleWidth * 0.5))
+            let triangle = TriangleView(frame: CGRect(x: helpView.bounds.midX - triangleWidth/2, y: helpView.bounds.maxY - 1, width: triangleWidth , height: triangleWidth * 0.5))
             triangle.backgroundColor = .clear
+            helpView.bringSubview(toFront: triangle)
             helpView.addSubview(triangle)
             let helpLabel = UILabel(frame: CGRect(x: helpView.bounds.minX, y: helpView.bounds.minY, width: helpView.bounds.width, height: helpView.bounds.height))
             helpLabel.textAlignment = .center
