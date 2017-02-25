@@ -43,6 +43,27 @@ class RatioEvaluator {
 //        }
     }
     
+    func evaluateRatio(values: (a: String, b: String, c: String, d: String), field: Int) -> (String?, String?) {
+        var result = (0.0, 0.0)
+            if Double(values.a) != nil && Double(values.b) != nil{
+                result = gCD(of: Double(values.a)!, and: Double(values.b)!)
+            } else {
+                result = gCD(of: Double(values.a)!, and: Double(values.b)!)
+            }
+//        if result > 999999 {
+//            return "🗿"
+//        }
+//        if roundedValues {
+//            var temp = forTailingZero(temp: result.roundTo(places: 0))
+//            temp = temp.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range:nil)
+//            return temp
+//        } else {
+        let temp1: String? = forTailingZero(temp: (result.0).roundTo(places: 2))
+        let temp2: String? = forTailingZero(temp: (result.1).roundTo(places: 2))
+            //temp = remove(from: temp)
+            return (temp1, temp2)
+    }
+    
     //taking care of zero
     func forTailingZero(temp: Double) -> String{
         return String(format: "%g", temp)
@@ -61,6 +82,27 @@ class RatioEvaluator {
             }
         }
         return ("16", "9", "1920", "1080")
+    }
+    
+    
+    func gCD(of num1: Double, and num2: Double) -> (Double, Double) {
+        var x = 1
+        for i in 1...Int(max(num1, num2)) {
+            if Int(num1) % i == 0, Int(num2) % i == 0{
+                x = i
+            }
+        }
+        let (temp1, temp2) = (num1 / Double(x), num2 / Double(x))
+        return (temp1, temp2)
+//        if roundedValues {
+//            (temp1, temp2) = (forTailingZero(temp: (num1 / Double(x)).roundTo(places: 0)), forTailingZero(temp: (num2 / Double(x)).roundTo(places: 0)))
+//            (temp1, temp2) = (temp1.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range:nil), temp2.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range:nil))
+//            return (temp1, temp2)
+//        } else {
+//            (temp1, temp2) = (forTailingZero(temp: (num1 / Double(x)).roundTo(places: 2)), forTailingZero(temp: (num2 / Double(x)).roundTo(places: 2)))
+//            //temp = remove(from: temp)
+//            return (temp1, temp2)
+//        }
     }
     
 //    private func remove(from: String) -> String{

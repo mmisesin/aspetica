@@ -619,7 +619,6 @@
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="closeDown:" destination="mOg-Ea-qBK" eventType="touchDown" id="A5l-vQ-cwz"/>
                                             <action selector="dismiss" destination="mOg-Ea-qBK" eventType="touchUpInside" id="hrz-SK-EBX"/>
                                         </connections>
                                     </button>
@@ -636,10 +635,10 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" rowHeight="48" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="pyO-SK-MXW">
-                                <rect key="frame" x="0.0" y="72" width="375" height="372"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="400"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="372" id="pem-He-5bJ"/>
+                                    <constraint firstAttribute="height" constant="400" id="pem-He-5bJ"/>
                                 </constraints>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -679,7 +678,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xfp-R5-rcT">
-                                <rect key="frame" x="0.0" y="442" width="375" height="225"/>
+                                <rect key="frame" x="0.0" y="472" width="375" height="195"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by Artem Misesin and Alex Suprun" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oOb-Pg-bz0">
                                         <rect key="frame" x="16" y="0.0" width="343" height="40"/>
@@ -694,8 +693,8 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="oOb-Pg-bz0" firstAttribute="centerX" secondItem="xfp-R5-rcT" secondAttribute="centerX" id="n7K-Ua-qss"/>
-                                    <constraint firstItem="oOb-Pg-bz0" firstAttribute="top" secondItem="xfp-R5-rcT" secondAttribute="top" id="yt0-bb-dTt"/>
+                                    <constraint firstItem="oOb-Pg-bz0" firstAttribute="leading" secondItem="xfp-R5-rcT" secondAttribute="leading" constant="16" id="DNY-Q5-Oa3"/>
+                                    <constraint firstAttribute="trailing" secondItem="oOb-Pg-bz0" secondAttribute="trailing" constant="16" id="LOA-Pa-G9J"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Wi-qw-qv3">
@@ -716,12 +715,13 @@
                             <constraint firstItem="8Wi-qw-qv3" firstAttribute="leading" secondItem="b9W-qM-fHQ" secondAttribute="leading" id="BLN-Tf-oqa"/>
                             <constraint firstAttribute="trailing" secondItem="xfp-R5-rcT" secondAttribute="trailing" id="DE0-9t-trg"/>
                             <constraint firstItem="WS3-SO-cRa" firstAttribute="leading" secondItem="b9W-qM-fHQ" secondAttribute="leading" id="IJi-Hi-kHu"/>
+                            <constraint firstItem="xfp-R5-rcT" firstAttribute="top" secondItem="pyO-SK-MXW" secondAttribute="bottom" id="KtS-kC-qPh"/>
                             <constraint firstAttribute="trailing" secondItem="pyO-SK-MXW" secondAttribute="trailing" id="Xu5-Or-ETL"/>
                             <constraint firstItem="PBg-fo-9pU" firstAttribute="top" secondItem="xfp-R5-rcT" secondAttribute="bottom" id="bQf-au-PN0"/>
                             <constraint firstItem="pyO-SK-MXW" firstAttribute="leading" secondItem="b9W-qM-fHQ" secondAttribute="leading" id="ePU-0T-liJ"/>
                             <constraint firstItem="xfp-R5-rcT" firstAttribute="leading" secondItem="b9W-qM-fHQ" secondAttribute="leading" id="gk0-Ti-UXc"/>
                             <constraint firstItem="WS3-SO-cRa" firstAttribute="top" secondItem="p5o-1D-0at" secondAttribute="bottom" id="lqA-Ed-3g6"/>
-                            <constraint firstItem="xfp-R5-rcT" firstAttribute="top" secondItem="WS3-SO-cRa" secondAttribute="bottom" constant="359" id="suF-8j-U0b"/>
+                            <constraint firstItem="oOb-Pg-bz0" firstAttribute="top" secondItem="pyO-SK-MXW" secondAttribute="bottom" id="nz5-US-8sy"/>
                             <constraint firstAttribute="trailing" secondItem="8Wi-qw-qv3" secondAttribute="trailing" id="vYB-Si-uZG"/>
                         </constraints>
                         <connections>

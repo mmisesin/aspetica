@@ -13,7 +13,11 @@ class DismissAnimator : NSObject {
 
 extension DismissAnimator : UIViewControllerAnimatedTransitioning {
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.3
+        if tapClose{
+            return 0.3
+        } else {
+            return 1.5
+        }
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {

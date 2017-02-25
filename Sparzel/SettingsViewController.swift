@@ -11,11 +11,14 @@ import MessageUI
 
 var roundedValues = true
 var nightMode = false
+var calculateRatio = false
+var tapClose = false
+
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Dismissable, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate {
     
     private var labels = [
-        ["Round Values", "Dark Theme"], ["Send Feedback", "Rate Aspetica", "Share Aspetica"]
+        ["Calculate Ratio", "Round Values", "Dark Theme"], ["Send Feedback", "Rate Aspetica", "Share Aspetica"]
     ]
     
     var counter = 0
@@ -38,7 +41,15 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     private var bottomBorders: [UIView] = []
     private var topBorders: [UIView] = []
     
+    @IBAction func crossDragOutside(_ sender: UIButton) {
+        sender.layer.opacity = 1.0
+    }
+    @IBAction func iconTouchUp(_ sender: Any) {
+        (sender as! UIButton).layer.opacity = 1.0
+    }
+    
     @IBAction func dismiss() {
+        tapClose = true
         dismiss(animated: true, completion: nil)
 
         //dismissalDelegate?.finishedShowing(viewController: self)
@@ -52,7 +63,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     var interactor:Interactor? = nil
     
     @IBAction func panDismiss(_ sender: UIPanGestureRecognizer) {
-        let percentThreshold:CGFloat = 0.3
+        tapClose = false
+        let percentThreshold:CGFloat = 0.4
         
         let tempView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height))
         // convert y-position to downward pull progress (percentage)
@@ -96,17 +108,27 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.sectionFooterHeight = 0.0
         tableView.sectionHeaderHeight = 48
         
+        
+        
         footerView.sizeToFit()
         if let version = Bundle.main.releaseVersionNumber {
             if let build = Bundle.main.buildVersionNumber {
-                footerView.text = "Version \(version) (\(build))\nby Artem Misesin and Alex Suprun"
+                let attributedString = NSMutableAttributedString(string: "Version \(version) (\(build))\nby Artem Misesin and Alex Suprun")
+                let paragraphStyle = NSMutableParagraphStyle()
+                paragraphStyle.lineSpacing = 7
+                
+                attributedString.addAttribute(NSParagraphStyleAttributeName, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+                footerView.attributedText = attributedString
+                footerView.textAlignment = .center
             }
         }
+        
+        
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        ratioSwapNeeded = false
     }
     
     override func viewDidLayoutSubviews() {
@@ -127,6 +149,17 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func switchChanged(sender: UISwitch!) {
         switch sender.tag {
+        case 2:
+            if calculateRatio{
+                calculateRatio = false
+            } else {
+                calculateRatio = true
+            }
+            if ratioSwapNeeded{
+                ratioSwapNeeded = false
+            } else {
+                ratioSwapNeeded = true
+            }
         case 1:
             if nightMode{
                 nightMode = false
@@ -365,6 +398,22 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         //        topBorder.backgroundColor = ColorConstants.navShadow
         if let label = cell.textLabel!.text {
             switch label {
+            case "Calculate Ratio":
+                let ratioSwitch = UISwitch()
+                if calculateRatio {
+                    ratioSwitch.isOn = true
+                } else {
+                    ratioSwitch.isOn = false
+                }
+                ratioSwitch.onTintColor = ColorConstants.deleteColor
+                ratioSwitch.tag = 2
+                cell.detailTextLabel?.text = ""
+                cell.accessoryView = ratioSwitch
+                //cell.contentView.isUserInteractionEnabled = false
+                if nightMode {
+                    cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
+                }
+                ratioSwitch.addTarget(self, action: #selector(switchChanged(sender:)), for: UIControlEvents.valueChanged)
             case "Round Values":
                 let roundedValuesSwitch = UISwitch()
                 if roundedValues {
@@ -398,7 +447,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                     cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
                 }
                 nightModeSwitch.addTarget(self, action: #selector(switchChanged(sender:)), for: UIControlEvents.valueChanged)
-                if counter < 5 {
+                if counter < 6 {
                     cell.addSubview(bottomBorder)
                 }
                 cell.selectionStyle = .none
@@ -410,7 +459,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.detailTextLabel?.font = cell.detailTextLabel?.font.withSize(16)
                 cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
                 //topBorders.append(topBorder)
-                if counter < 5 {
+                if counter < 6 {
                     cell.addSubview(topBorder)
                 }
             //cell.addGestureRecognizer(recognizer)
@@ -423,14 +472,14 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
                 //cell.addGestureRecognizer(recognizer)
                 //bottomBorders.append(bottomBorder)
-                if counter < 5 {
+                if counter < 6 {
                     cell.addSubview(bottomBorder)
                 }
             default: break;
             }
             bottomBorders.append(bottomBorder)
             topBorders.append(topBorder)
-            if counter < 5 {
+            if counter < 6 {
                 cell.addSubview(topBorder)
             }
             colorSetup()
@@ -444,6 +493,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         print(roundedValues)
         defaults.setValue(nightMode, forKey: "nightMode")
         defaults.setValue(roundedValues, forKey: "roundedValues")
+        defaults.setValue(calculateRatio, forKey: "calculateRatio")
         print("Settings loaded")
     }
     
