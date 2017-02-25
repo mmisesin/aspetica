@@ -13,8 +13,6 @@ let yFieldKey = "yField"
 let wFieldKey = "wField"
 let hFieldKey = "hField"
 
-var ratioSwapNeeded: Bool = false
-
 class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDelegate {
     
     var evaluator = RatioEvaluator()
@@ -89,15 +87,14 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
 
     @IBOutlet weak var secondRowBottomSpace: NSLayoutConstraint!
     
-    
     var reversedKeyboard = false
     
     //supporting variables
     var activeTextField: UILabel?
     var previousActive: UILabel?
+    var secondTapDone = false
     var helpIsOn = false
     var pixelsField = 3
-    var secondTapDone = true
     var isTyping = false
     var pointEntered: [Bool] = []
     var decimalPart = ""
@@ -405,9 +402,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             shadowView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
             helpOffset = 30
             secondRowBottomSpace.constant = 73
-//            for view in helpViews {
-//                view.layer.shadowColor = UIColor.clear.cgColor
-//            }
             for button in mainButtons {
                 button.titleLabel?.font = button.titleLabel?.font.withSize(31)
             }
@@ -439,41 +433,17 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             pointButton.isEnabled = true
         }
         
-        var helpText = [String]()
-        
-        if !calculateRatio{
-            helpText = ["Ratio width", "Ratio height", "Width", "Height"]
-        } else {
-            helpText = ["Width", "Height", "Ratio width", "Ratio height"]
-        }
+        var helpText = ["Ratio width", "Ratio height", "Width", "Height"]
         
         let triangleWidth: CGFloat = 8
         for (index, view) in textfields.enumerated() {
-            
             view.isUserInteractionEnabled = true
             let recognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap))
             recognizer.delegate = self
             view.addGestureRecognizer(recognizer)
-            if ratioSwapNeeded{
-            if !calculateRatio{
+            if initialLoad{
                 if index == 2 {
                     handleTap(recognizer: recognizer)
-                }
-            } else {
-                if index == 0 {
-                    handleTap(recognizer: recognizer)
-                }
-            }
-            }
-            if initialLoad{
-                if !calculateRatio{
-                    if index == 2 {
-                        handleTap(recognizer: recognizer)
-                    }
-                } else {
-                    if index == 0 {
-                        handleTap(recognizer: recognizer)
-                    }
                 }
             }
             let superWidth = suppViews[index].bounds.width
@@ -510,87 +480,28 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             
             view.layer.masksToBounds = true
             view.layer.cornerRadius = 4
-            if ratioSwapNeeded {
-            if view != activeTextField {
-                view.textColor = ColorConstants.mainTextColor
-                view.backgroundColor = UIColor.clear
-                carriages[view.tag - 1].backgroundColor = .clear
-            } else {
-                view.textColor = ColorConstants.deleteColor
-                view.backgroundColor = ColorConstants.labelsBackground
-                carriages[view.tag - 1].backgroundColor = .clear
-            }
-                stopAnimation(view.tag - 1)
-                secondTapDone = false
-            }
-            
             if view.text == "🗿"{
                 reevaluate = true
             }
         }
-        
         if !calculateRatio{
-            if ratioSwapNeeded{
-                let tempValue1 = textfields[0].text
-                let tempValue2 = textfields[1].text
-                textfields[0].text = textfields[2].text
-                textfields[1].text = textfields[3].text
-                textfields[2].text = tempValue1
-                textfields[3].text = tempValue2
-            }
-            textfields[2].isUserInteractionEnabled = true
-            textfields[3].isUserInteractionEnabled = true
-            divSymbol.text = ":"
-            multiSymbol.text = "×"
-
-        
-        
+            textfields[0].isUserInteractionEnabled = true
+            textfields[1].isUserInteractionEnabled = true
+            textfields[0].textColor = ColorConstants.mainTextColor
+            textfields[1].textColor = ColorConstants.mainTextColor
         } else {
-            if !(activeTextField?.tag == 0 || activeTextField?.tag == 1){
-                activeTextField = textfields[0]
-            }
-            if ratioSwapNeeded{
-                let tempValue1 = textfields[0].text
-                let tempValue2 = textfields[1].text
-                textfields[0].text = textfields[2].text
-                textfields[1].text = textfields[3].text
-                textfields[2].text = tempValue1
-                textfields[3].text = tempValue2
-                divSymbol.text = "×"
-                multiSymbol.text = ":"
-                for view in textfields {
-                    if view != activeTextField {
-                        view.textColor = ColorConstants.mainTextColor
-                        view.backgroundColor = UIColor.clear
-                        carriages[view.tag - 1].backgroundColor = .clear
-                    } else {
-                        view.textColor = ColorConstants.deleteColor
-                        view.backgroundColor = ColorConstants.labelsBackground
-                        carriages[view.tag - 1].backgroundColor = .clear
-                    }
-                    stopAnimation(view.tag - 1)
-                    secondTapDone = false
-                }
-            }
-            textfields[2].isUserInteractionEnabled = false
-            textfields[3].isUserInteractionEnabled = false
+            textfields[0].isUserInteractionEnabled = false
+            textfields[1].isUserInteractionEnabled = false
+            textfields[0].textColor = ColorConstants.mainTextBlockedColor
+            textfields[1].textColor = ColorConstants.mainTextBlockedColor
         }
         print(textfields[0].text)
         if initialLoad{
             (textfields[0].text!, textfields[1].text!, textfields[2].text!, textfields[3].text!) = evaluator.fetchData()
         }
-        
-//        if(calculateRatio) {
-//            let (num1, num2) = evaluator.gCD(of: Double(textfields[2].text!)!, and: Double(textfields[3].text!)!)
-//            (textfields[2].text, textfields[3].text) = (num1, num2)
-//        }
         generalEvaluation(with: activeTextField!)
         if reevaluate{
-            if !calculateRatio{
-                (textfields[0].text!, textfields[1].text!, textfields[2].text!, textfields[3].text!) = ("16", "9", "1920", "1080")
-            } else {
-                (textfields[0].text!, textfields[1].text!, textfields[2].text!, textfields[3].text!) = ("1920", "1080", "16", "9")
-            }
+            (textfields[0].text!, textfields[1].text!, textfields[2].text!, textfields[3].text!) = ("16", "9", "1920", "1080")
         }
         print(textfields[0].text)
         initialLoad = false
@@ -670,7 +581,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             }
         }
         } else {
-            (wField.text, hField.text) = evaluator.evaluateRatio(values: values, field: tappedField.tag)
+            (xField.text, yField.text) = evaluator.evaluateRatio(values: values, field: tappedField.tag)
         }
         if roundedValues{
 //            let value =

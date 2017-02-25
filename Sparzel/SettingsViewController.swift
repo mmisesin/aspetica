@@ -64,7 +64,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func panDismiss(_ sender: UIPanGestureRecognizer) {
         tapClose = false
-        let percentThreshold:CGFloat = 0.4
+        let percentThreshold:CGFloat = 0.3
         
         let tempView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height))
         // convert y-position to downward pull progress (percentage)
@@ -128,7 +128,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        ratioSwapNeeded = false
     }
     
     override func viewDidLayoutSubviews() {
@@ -154,11 +153,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 calculateRatio = false
             } else {
                 calculateRatio = true
-            }
-            if ratioSwapNeeded{
-                ratioSwapNeeded = false
-            } else {
-                ratioSwapNeeded = true
             }
         case 1:
             if nightMode{

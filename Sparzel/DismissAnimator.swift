@@ -16,7 +16,7 @@ extension DismissAnimator : UIViewControllerAnimatedTransitioning {
         if tapClose{
             return 0.3
         } else {
-            return 1.5
+            return 0.7
         }
     }
     

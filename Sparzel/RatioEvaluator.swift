@@ -45,19 +45,11 @@ class RatioEvaluator {
     
     func evaluateRatio(values: (a: String, b: String, c: String, d: String), field: Int) -> (String?, String?) {
         var result = (0.0, 0.0)
-            if Double(values.a) != nil && Double(values.b) != nil{
-                result = gCD(of: Double(values.a)!, and: Double(values.b)!)
+            if Double(values.c) != nil && Double(values.d) != nil{
+                result = gCD(of: Double(values.c)!, and: Double(values.d)!)
             } else {
-                result = gCD(of: Double(values.a)!, and: Double(values.b)!)
+                result = gCD(of: Double(values.c)!, and: Double(values.d)!)
             }
-//        if result > 999999 {
-//            return "🗿"
-//        }
-//        if roundedValues {
-//            var temp = forTailingZero(temp: result.roundTo(places: 0))
-//            temp = temp.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range:nil)
-//            return temp
-//        } else {
         let temp1: String? = forTailingZero(temp: (result.0).roundTo(places: 2))
         let temp2: String? = forTailingZero(temp: (result.1).roundTo(places: 2))
             //temp = remove(from: temp)
