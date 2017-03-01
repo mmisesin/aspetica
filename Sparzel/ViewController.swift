@@ -147,6 +147,31 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
 //        keyboard.addArrangedSubview(zeroStack)
     }
     
+    func calculateRatioButton(){
+        if calculateRatio{
+            calculateRatio = false
+            textfields[0].textColor = ColorConstants.mainTextColor
+            textfields[1].textColor = ColorConstants.mainTextColor
+            textfields[0].isUserInteractionEnabled = true
+            textfields[1].isUserInteractionEnabled = true
+        } else {
+            calculateRatio = true
+            textfields[0].textColor = ColorConstants.mainTextBlockedColor
+            textfields[1].textColor = ColorConstants.mainTextBlockedColor
+            textfields[0].isUserInteractionEnabled = false
+            textfields[1].isUserInteractionEnabled = false
+            activeTextField?.backgroundColor = .clear
+            if activeTextField?.tag == 1 || activeTextField?.tag == 2{
+                textfields[2].textColor = ColorConstants.deleteColor
+                textfields[2].backgroundColor = ColorConstants.labelsBackground
+                //carriages[view.tag - 1].backgroundColor = .clear
+                stopAnimation((activeTextField?.tag)! - 1)
+                secondTapDone = false
+                activeTextField = textfields[2]
+            }
+        }
+    }
+    
     @IBAction func iconDragOutside(_ sender: UIButton) {
         sender.layer.opacity = 1
     }
@@ -188,6 +213,11 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         if !secondTapDone {
             for view in textfields {
                 if view != activeTextField {
+                    if calculateRatio {
+                        if view.tag == 1 || view.tag == 2 {
+                            continue
+                        }
+                    }
                     view.textColor = ColorConstants.mainTextColor
                     view.backgroundColor = UIColor.clear
                     carriages[view.tag - 1].backgroundColor = .clear
@@ -208,6 +238,11 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
                     fadeIn(index: view.tag - 1)
 
                 } else {
+                    if calculateRatio {
+                        if view.tag == 1 || view.tag == 2 {
+                            continue
+                        }
+                    }
                     view.textColor = ColorConstants.mainTextColor
                     view.backgroundColor = UIColor.clear
                     carriages[view.tag - 1].backgroundColor = .clear
@@ -378,6 +413,11 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         suppViews = [xSuppView, ySuppView, wSuppView, hSuppView]
         mainButtons = [zeroButton, oneButton, twoButton, threeButton, fourButton, fiveButton, sixButton, sevenButton, eightButton, nineButton, deleteButton, pointButton]
         carriages = [xCarriage, yCarriage, wCarriage, hCarriage]
+        
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(calculateRatioButton))
+        recognizer.delegate = self
+        divSymbol.addGestureRecognizer(recognizer)
+        divSymbol.isUserInteractionEnabled = true
         
         for view in carriages {
             view.layer.cornerRadius = 2

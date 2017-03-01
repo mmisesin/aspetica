@@ -86,37 +86,5 @@ class RatioEvaluator {
         }
         let (temp1, temp2) = (num1 / Double(x), num2 / Double(x))
         return (temp1, temp2)
-//        if roundedValues {
-//            (temp1, temp2) = (forTailingZero(temp: (num1 / Double(x)).roundTo(places: 0)), forTailingZero(temp: (num2 / Double(x)).roundTo(places: 0)))
-//            (temp1, temp2) = (temp1.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range:nil), temp2.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range:nil))
-//            return (temp1, temp2)
-//        } else {
-//            (temp1, temp2) = (forTailingZero(temp: (num1 / Double(x)).roundTo(places: 2)), forTailingZero(temp: (num2 / Double(x)).roundTo(places: 2)))
-//            //temp = remove(from: temp)
-//            return (temp1, temp2)
-//        }
     }
-    
-//    private func remove(from: String) -> String{
-//        var counter = 0
-//        var tempStr = from
-//        for symbol in from.characters {
-//            if symbol == "."{
-//                break
-//            } else {
-//                counter = counter + 1
-//                if counter > 6 {
-//                    return from
-//                }
-//            }
-//        }
-//        if counter == 0{
-//            return from
-//        }
-//        print(tempStr)
-//        print(counter)
-//        let sym = tempStr.remove(at: from.index(from.startIndex, offsetBy: counter - 1))
-//        return tempStr
-//    }
-
 }
