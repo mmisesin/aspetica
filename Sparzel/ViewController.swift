@@ -139,7 +139,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         if calculateRatio{
             UIView.transition(with: divSymbol, duration: 0.5, options: .transitionCrossDissolve, animations: {
                 if nightMode{
-                self.divSymbol.image = UIImage(named: "icon-ratiop-dark")
+                self.divSymbol.image = UIImage(named: "icon-ratio-dark")
             } else {
                 self.divSymbol.image = UIImage(named: "icon-ratio")
                 }}, completion: nil)
@@ -155,7 +155,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         } else {
             UIView.transition(with: divSymbol, duration: 0.5, options: .transitionCrossDissolve, animations: {
                 if nightMode{
-                    self.divSymbol.image = UIImage(named: "icon-ratiop-ontap-dark")
+                    self.divSymbol.image = UIImage(named: "icon-ratio-dark-ontap")
                 } else {
                     self.divSymbol.image = UIImage(named: "icon-ratio-ontap")
                 }}, completion: nil)
@@ -175,6 +175,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
                 //carriages[view.tag - 1].backgroundColor = .clear
                 stopAnimation((activeTextField?.tag)! - 1)
                 secondTapDone = false
+                previousActive = textfields[2]
                 activeTextField = textfields[2]
             }
         }
@@ -306,7 +307,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             }
             
             //adding a digit to the display
-            if !(tappedField.text! == "0" && digit == "0") && !(tappedField.text == "0" && digit == ".") && !(pointEntered[tappedField.tag - 1] && digit == ".") && !(!secondTapDone && digit == ".") && !(tappedField.text?.characters.count == 5 && digit == ".") && !((tappedField.tag == 1 || tappedField.tag == 2) && !secondTapDone && digit == "0") && !(!secondTapDone && digit == "0" && tappedField.text! == "1"){
+            if !(tappedField.text! == "0" && digit == "0") && !(tappedField.text! == "0" && digit == ".") && !(pointEntered[tappedField.tag - 1] && digit == ".") && !(!secondTapDone && digit == ".") && !((tappedField.text?.characters.count)! == 5 && digit == ".") && !((tappedField.tag == 1 || tappedField.tag == 2) && !secondTapDone && digit == "0") && !(!secondTapDone && digit == "0" && tappedField.text! == "1") && !(tappedField.text?.characters.count == 6 && secondTapDone){
                 
                 if !secondTapDone {
                     activeTextField?.backgroundColor = UIColor.clear
@@ -325,7 +326,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
                         tappedField.text = digit
                         pointEntered[tappedField.tag - 1] = false
                     } else {
-                        if (tappedField.text?.characters.count)! <= 5 && !(decimalPart.characters.count == 2 && digit == ".") {
+                        if (tappedField.text?.characters.count)! <= 5 && !(decimalPart.characters.count == 2 && digit == ".")  || decimalPart.characters.count < 2{
                             tappedField.text = tappedField.text! + digit
                         }
                     }
@@ -364,7 +365,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
                     }
                     tappedField.text?.remove(at: (tappedField.text?.index(before: (tappedField.text?.endIndex)!))!)
                     if tappedField.text == "" {
-                        if tappedField.tag == 1 || tappedField.tag == 2 {
                             tappedField.text = "1"
                             tappedField.backgroundColor = ColorConstants.labelsBackground
                             tappedField.textColor = ColorConstants.deleteColor
@@ -372,10 +372,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
                             stopAnimation(tappedField.tag - 1)
                             secondTapDone = false
                             isTyping = false
-                        } else {
-                            tappedField.text = "1"
                             pointEntered[tappedField.tag - 1] = false
-                        }
                     }
                 } else {
                     tappedField.backgroundColor = ColorConstants.labelsBackground
@@ -464,7 +461,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         for view in helpViews{
             view.removeFromSuperview()
         }
-        colorSetup()
         
         if roundedValues{
             pointButton.setTitle("", for: .normal)
@@ -527,14 +523,18 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         if !calculateRatio{
             textfields[0].isUserInteractionEnabled = true
             textfields[1].isUserInteractionEnabled = true
-            textfields[0].textColor = ColorConstants.mainTextColor
-            textfields[1].textColor = ColorConstants.mainTextColor
+//            textfields[0].textColor = ColorConstants.mainTextColor
+//            textfields[1].textColor = ColorConstants.mainTextColor
+            //activeTextField?.textColor = ColorConstants.deleteColor
         } else {
             textfields[0].isUserInteractionEnabled = false
             textfields[1].isUserInteractionEnabled = false
-            textfields[0].textColor = ColorConstants.mainTextBlockedColor
-            textfields[1].textColor = ColorConstants.mainTextBlockedColor
+//            textfields[0].textColor = ColorConstants.mainTextBlockedColor
+//            textfields[1].textColor = ColorConstants.mainTextBlockedColor
         }
+        
+        colorSetup()
+        
         if initialLoad{
             (textfields[0].text!, textfields[1].text!, textfields[2].text!, textfields[3].text!) = evaluator.fetchData()
         }
@@ -625,19 +625,55 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
     private func colorSetup() {
         deleteButton.tintColor = ColorConstants.deleteIconColor
         roundedView.backgroundColor = ColorConstants.mainBackground
+        
         if !calculateRatio {
+            if activeTextField?.tag != 2 && activeTextField?.tag != 1 {
+                textfields[0].textColor = ColorConstants.mainTextColor
+                textfields[1].textColor = ColorConstants.mainTextColor
+            }
             if nightMode{
                 divSymbol.image = UIImage(named: "icon-ratio-dark")
             } else {
                 divSymbol.image = UIImage(named: "icon-ratio")
             }
         } else {
+            textfields[0].textColor = ColorConstants.mainTextBlockedColor
+            textfields[0].backgroundColor = .clear
+            textfields[1].textColor = ColorConstants.mainTextBlockedColor
+            textfields[1].backgroundColor = .clear
+            textfields[2].textColor = ColorConstants.deleteColor
+            textfields[2].backgroundColor = ColorConstants.labelsBackground
+            activeTextField = textfields[2]
+            previousActive = textfields[2]
             if nightMode{
-                divSymbol.image = UIImage(named: "icon-ratio-ontap-dark")
+                divSymbol.image = UIImage(named: "icon-ratio-dark-ontap")
             } else {
                 divSymbol.image = UIImage(named: "icon-ratio-ontap")
             }
         }
+        
+        for view in textfields {
+            if view != activeTextField {
+                view.textColor = ColorConstants.mainTextColor
+                view.backgroundColor = UIColor.clear
+            } else {
+                if secondTapDone {
+                    view.backgroundColor = UIColor.clear
+                    view.textColor = ColorConstants.deleteColor
+                    carriages[view.tag - 1].backgroundColor = ColorConstants.carriageColor
+                } else {
+                    view.textColor = ColorConstants.deleteColor
+                    view.backgroundColor = ColorConstants.labelsBackground
+                }
+            }
+        }
+        if calculateRatio{
+            textfields[0].textColor = ColorConstants.mainTextBlockedColor
+            textfields[1].textColor = ColorConstants.mainTextBlockedColor
+        }
+        
+        multiSymbol.tintColor = ColorConstants.symbolsColor
+        
         settingsButton.tintColor = ColorConstants.iconsColor
         
         if !helpIsOn {
@@ -665,21 +701,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             view.textColor = ColorConstants.mainBackground
         }
         
-        for view in textfields {
-            if view != activeTextField {
-                view.textColor = ColorConstants.mainTextColor
-                view.backgroundColor = UIColor.clear
-            } else {
-                if secondTapDone {
-                    view.backgroundColor = UIColor.clear
-                    view.textColor = ColorConstants.deleteColor
-                    carriages[view.tag - 1].backgroundColor = ColorConstants.carriageColor
-                } else {
-                view.textColor = ColorConstants.deleteColor
-                view.backgroundColor = ColorConstants.labelsBackground
-                }
-            }
-        }
         shadowView.backgroundColor = ColorConstants.mainBackground
         shadowView.layer.shadowColor = ColorConstants.navShadow.cgColor
     }
