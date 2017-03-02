@@ -9,6 +9,7 @@
 import UIKit
 
 struct ColorConstants {
+    
     static var defaultButtonBackground = UIColor.white
     static var pressedButtonColor = UIColor(hexString: "#FFE6E1", alpha: 1)
     static var pressedButtonTextColor = UIColor(hexString: "#AA3821", alpha: 1)
@@ -56,7 +57,6 @@ struct ColorConstants {
         helpColor = UIColor(hexString: "#FFE187", alpha: 1)
         onTapColor = UIColor(hexString: "#25272B", alpha: 1)
         iconsColor = UIColor(hexString: "#494C52", alpha: 1)
-//        settingsShadows = UIColor(hexString: "#25272B", alpha: 1)
         settingsShadows = UIColor(red: 0.15, green: 0.15, blue: 0.15, alpha: 1)
     }
     

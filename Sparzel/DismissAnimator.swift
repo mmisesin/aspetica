@@ -45,16 +45,5 @@ extension DismissAnimator : UIViewControllerAnimatedTransitioning {
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
             dimView.removeFromSuperview()
         })
-//        UIView.animate(
-//            withDuration:  transitionDuration(using: transitionContext),
-//            animations: {
-//                fromVC.view.frame = finalFrame
-//                dimView.layer.opacity = 0
-//        },
-//            completion: { _ in
-//                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-//                dimView.removeFromSuperview()
-//        }
-//        )
     }
 }

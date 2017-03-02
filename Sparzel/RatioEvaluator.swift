@@ -12,7 +12,6 @@ class RatioEvaluator {
     
     func evaluate(values: (a: String, b: String, c: String, d: String), field: Int, pixelsField: Int) -> String {
         var result = 0.0
-//        if Double(values.a) != nil && Double(values.b) != nil && Double(values.c) != nil && Double(values.d) != nil {
         if pixelsField == 3{
             if Double(values.a) != nil && Double(values.b) != nil && Double(values.c) != nil{
                 result = Double(values.c)! / Double(values.a)! * Double(values.b)!
@@ -35,12 +34,8 @@ class RatioEvaluator {
             return temp
         } else {
             let temp = forTailingZero(temp: result.roundTo(places: 2))
-            //temp = remove(from: temp)
             return temp
         }
-//        } else {
-//            return "🏅"
-//        }
     }
     
     func evaluateRatio(values: (a: String, b: String, c: String, d: String), field: Int) -> (String?, String?) {
@@ -52,7 +47,6 @@ class RatioEvaluator {
             }
         let temp1: String? = forTailingZero(temp: (result.0).roundTo(places: 2))
         let temp2: String? = forTailingZero(temp: (result.1).roundTo(places: 2))
-            //temp = remove(from: temp)
             return (temp1, temp2)
     }
     
@@ -67,7 +61,6 @@ class RatioEvaluator {
             if let yValue = defaults.string(forKey: yFieldKey) {
                 if let wValue = defaults.string(forKey: wFieldKey) {
                     if let hValue = defaults.string(forKey: hFieldKey) {
-                        print((xValue, yValue, wValue, hValue))
                         return (xValue, yValue, wValue, hValue)
                     }
                 }

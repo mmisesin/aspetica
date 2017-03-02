@@ -40,9 +40,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
     
     @IBOutlet weak var deleteButton: CustomButton!
     
-    @IBOutlet weak var divSymbol: UILabel!
-    @IBOutlet weak var multiSymbol: UILabel!
-    
+    @IBOutlet weak var divSymbol: UIImageView!
+    @IBOutlet weak var multiSymbol: UIImageView!
+
     @IBOutlet weak var oneButton: CustomButton!
     @IBOutlet weak var twoButton: CustomButton!
     @IBOutlet weak var threeButton: CustomButton!
@@ -133,35 +133,43 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
                 })
             }
         }
-//        if !reversedKeyboard {
-//            keyboard.addArrangedSubview(sevenStack)
-//            keyboard.addArrangedSubview(fourStack)
-//            keyboard.addArrangedSubview(oneStack)
-//            reversedKeyboard = true
-//        } else {
-//            keyboard.addArrangedSubview(oneStack)
-//            keyboard.addArrangedSubview(fourStack)
-//            keyboard.addArrangedSubview(sevenStack)
-//            reversedKeyboard = false
-//        }
-//        keyboard.addArrangedSubview(zeroStack)
     }
     
     func calculateRatioButton(){
         if calculateRatio{
+            UIView.transition(with: divSymbol, duration: 0.5, options: .transitionCrossDissolve, animations: {
+                if nightMode{
+                self.divSymbol.image = UIImage(named: "icon-ratiop-dark")
+            } else {
+                self.divSymbol.image = UIImage(named: "icon-ratio")
+                }}, completion: nil)
             calculateRatio = false
-            textfields[0].textColor = ColorConstants.mainTextColor
-            textfields[1].textColor = ColorConstants.mainTextColor
+            UIView.transition(with: textfields[0], duration: 0.5, options: .transitionCrossDissolve, animations: {
+                self.textfields[0].textColor = ColorConstants.mainTextColor
+            }, completion: nil)
+            UIView.transition(with: textfields[1], duration: 0.5, options: .transitionCrossDissolve, animations: {
+                self.textfields[1].textColor = ColorConstants.mainTextColor
+            }, completion: nil)
             textfields[0].isUserInteractionEnabled = true
             textfields[1].isUserInteractionEnabled = true
         } else {
+            UIView.transition(with: divSymbol, duration: 0.5, options: .transitionCrossDissolve, animations: {
+                if nightMode{
+                    self.divSymbol.image = UIImage(named: "icon-ratiop-ontap-dark")
+                } else {
+                    self.divSymbol.image = UIImage(named: "icon-ratio-ontap")
+                }}, completion: nil)
             calculateRatio = true
-            textfields[0].textColor = ColorConstants.mainTextBlockedColor
-            textfields[1].textColor = ColorConstants.mainTextBlockedColor
+            UIView.transition(with: textfields[0], duration: 0.5, options: .transitionCrossDissolve, animations: {
+                self.textfields[0].textColor = ColorConstants.mainTextBlockedColor
+            }, completion: nil)
+            UIView.transition(with: textfields[1], duration: 0.5, options: .transitionCrossDissolve, animations: {
+                self.textfields[1].textColor = ColorConstants.mainTextBlockedColor
+            }, completion: nil)
             textfields[0].isUserInteractionEnabled = false
             textfields[1].isUserInteractionEnabled = false
-            activeTextField?.backgroundColor = .clear
             if activeTextField?.tag == 1 || activeTextField?.tag == 2{
+                activeTextField?.backgroundColor = .clear
                 textfields[2].textColor = ColorConstants.deleteColor
                 textfields[2].backgroundColor = ColorConstants.labelsBackground
                 //carriages[view.tag - 1].backgroundColor = .clear
@@ -298,7 +306,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             }
             
             //adding a digit to the display
-            if !(tappedField.text! == "0" && digit == "0") && !(tappedField.text == "0" && digit == ".") && !(pointEntered[tappedField.tag - 1] && digit == ".") && !(!secondTapDone && digit == ".") && !(tappedField.text?.characters.count == 5 && digit == ".") && !((tappedField.tag == 1 || tappedField.tag == 2) && !secondTapDone && digit == "0"){
+            if !(tappedField.text! == "0" && digit == "0") && !(tappedField.text == "0" && digit == ".") && !(pointEntered[tappedField.tag - 1] && digit == ".") && !(!secondTapDone && digit == ".") && !(tappedField.text?.characters.count == 5 && digit == ".") && !((tappedField.tag == 1 || tappedField.tag == 2) && !secondTapDone && digit == "0") && !(!secondTapDone && digit == "0" && tappedField.text! == "1"){
                 
                 if !secondTapDone {
                     activeTextField?.backgroundColor = UIColor.clear
@@ -348,13 +356,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         deleteButton.borderColor = ColorConstants.buttonBorder
         if let tappedField = activeTextField {
             if !secondTapDone {
-                if tappedField.tag == 1 || tappedField.tag == 2 {
                     tappedField.text = "1"
-                } else {
-                    tappedField.text = "0"
-                }
             } else {
-                if tappedField.text != "0" {
+                if tappedField.text != "1" {
                     if tappedField.text?.characters.last == "." {
                         pointEntered[tappedField.tag - 1] = false
                     }
@@ -369,7 +373,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
                             secondTapDone = false
                             isTyping = false
                         } else {
-                            tappedField.text = "0"
+                            tappedField.text = "1"
                             pointEntered[tappedField.tag - 1] = false
                         }
                     }
@@ -408,7 +412,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         setDeleteButtonImage(path: "delete-icon-bright")
         roundedView.layer.cornerRadius = 8
         
-        
         textfields = [xField, yField, wField, hField]
         suppViews = [xSuppView, ySuppView, wSuppView, hSuppView]
         mainButtons = [zeroButton, oneButton, twoButton, threeButton, fourButton, fiveButton, sixButton, sevenButton, eightButton, nineButton, deleteButton, pointButton]
@@ -423,8 +426,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             view.layer.cornerRadius = 2
             view.backgroundColor = .clear
         }
-        
-        //colorSetup()
         
         let screenHeight = UIScreen.main.bounds.size.height
         if screenHeight == 568 {
@@ -452,7 +453,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         }
         
         //setting up textfields
-                shadowView.backgroundColor = ColorConstants.mainBackground
+        shadowView.backgroundColor = ColorConstants.mainBackground
         shadowView.layer.shadowColor = ColorConstants.navShadow.cgColor
         shadowView.layer.shadowOpacity = 1
     }
@@ -505,7 +506,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             helpLabel.textAlignment = .center
             helpLabel.text = helpText[index]
             helpLabel.textColor = ColorConstants.mainBackground
-            //helpLabel.sizeToFit()
             helpLabel.font = helpLabel.font.withSize(12)
             helpView.addSubview(helpLabel)
             helpViews.append(helpView)
@@ -535,7 +535,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             textfields[0].textColor = ColorConstants.mainTextBlockedColor
             textfields[1].textColor = ColorConstants.mainTextBlockedColor
         }
-        print(textfields[0].text)
         if initialLoad{
             (textfields[0].text!, textfields[1].text!, textfields[2].text!, textfields[3].text!) = evaluator.fetchData()
         }
@@ -543,7 +542,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         if reevaluate{
             (textfields[0].text!, textfields[1].text!, textfields[2].text!, textfields[3].text!) = ("16", "9", "1920", "1080")
         }
-        print(textfields[0].text)
         initialLoad = false
     }
     
@@ -588,55 +586,34 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         }
     }
     
-    override func viewWillLayoutSubviews() {
-        
-    }
-    
     override func viewDidLayoutSubviews() {
-//        let shadow = UIView(frame: CGRect(x: shadowView.bounds.minX, y: shadowView.bounds.maxY, width: shadowView.bounds.width, height: 1))
-//        shadow.backgroundColor = .yellow
-//        shadowView.addSubview(shadow)
-//        shadowView.clipsToBounds = false
         shadowView.layer.shadowPath = UIBezierPath(rect: shadowView.bounds).cgPath
         shadowView.layer.shadowPath = UIBezierPath(rect: shadowView.bounds).cgPath
         shadowView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
-        //shadowView.layer.shadowOpacity = 0.03
         shadowView.layer.shadowRadius = 0
     }
     
     private func generalEvaluation(with tappedField: UILabel) {
-//        if !calculateRatio{
+        
         let values = (textfields[0].text!, textfields[1].text!, textfields[2].text!, textfields[3].text!)
-        //if tappedField.text != "0" && xField.text != "0" && yField.text != "0"{
+        
         if !calculateRatio {
-        if tappedField.tag == 3 {
-            hField.text = evaluator.evaluate(values: values, field: tappedField.tag, pixelsField: pixelsField)
-        } else if tappedField.tag == 4 {
-            wField.text = evaluator.evaluate(values: values, field: tappedField.tag, pixelsField: pixelsField)
-        } else {
-            if pixelsField == 3 {
+            if tappedField.tag == 3 {
                 hField.text = evaluator.evaluate(values: values, field: tappedField.tag, pixelsField: pixelsField)
-            } else if pixelsField == 4 {
+            } else if tappedField.tag == 4 {
                 wField.text = evaluator.evaluate(values: values, field: tappedField.tag, pixelsField: pixelsField)
+            } else {
+                if pixelsField == 3 {
+                    hField.text = evaluator.evaluate(values: values, field: tappedField.tag, pixelsField: pixelsField)
+                } else if pixelsField == 4 {
+                    wField.text = evaluator.evaluate(values: values, field: tappedField.tag, pixelsField: pixelsField)
+                }
             }
-        }
         } else {
             (xField.text, yField.text) = evaluator.evaluateRatio(values: values, field: tappedField.tag)
         }
-        if roundedValues{
-//            let value =
-//            wField.text =
-        }
-//        print(activeTextField?.tag ?? "no tapped field")
-//        print(previousActive?.tag ?? "kek")
-//        print("pixel field tapped \(pixelsField)")
-//        print("second tap done\(secondTapDone)")
-//        print("is typing \(isTyping)")
-//        print("point entered\(pointEntered)")
+
         loadData()
-//        } else {
-//            
-//        }
     }
     
     private func setDeleteButtonImage(path: String){
@@ -648,8 +625,19 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
     private func colorSetup() {
         deleteButton.tintColor = ColorConstants.deleteIconColor
         roundedView.backgroundColor = ColorConstants.mainBackground
-        divSymbol.textColor = ColorConstants.symbolsColor
-        multiSymbol.textColor = ColorConstants.symbolsColor
+        if !calculateRatio {
+            if nightMode{
+                divSymbol.image = UIImage(named: "icon-ratio-dark")
+            } else {
+                divSymbol.image = UIImage(named: "icon-ratio")
+            }
+        } else {
+            if nightMode{
+                divSymbol.image = UIImage(named: "icon-ratio-ontap-dark")
+            } else {
+                divSymbol.image = UIImage(named: "icon-ratio-ontap")
+            }
+        }
         settingsButton.tintColor = ColorConstants.iconsColor
         
         if !helpIsOn {
@@ -664,10 +652,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             button.backgroundColor = ColorConstants.defaultButtonBackground
             button.setTitleColor(ColorConstants.mainTextColor, for: UIControlState.normal)
         }
-//        
-//        for view in suppViews {
-//            view.backgroundColor = .clear
-//        }
         
         for view in helpViews {
             view.backgroundColor = ColorConstants.helpColor
