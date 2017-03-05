@@ -170,8 +170,10 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             textfields[1].isUserInteractionEnabled = false
             if activeTextField?.tag == 1 || activeTextField?.tag == 2{
                 activeTextField?.backgroundColor = .clear
-                textfields[2].textColor = ColorConstants.deleteColor
-                textfields[2].backgroundColor = ColorConstants.labelsBackground
+                UIView.transition(with: textfields[2], duration: 0.5, options: .transitionCrossDissolve, animations: {
+                    self.textfields[2].textColor = ColorConstants.deleteColor
+                    self.textfields[2].backgroundColor = ColorConstants.labelsBackground
+                }, completion: nil)
                 //carriages[view.tag - 1].backgroundColor = .clear
                 stopAnimation((activeTextField?.tag)! - 1)
                 secondTapDone = false
@@ -307,7 +309,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             }
             
             //adding a digit to the display
-            if !(tappedField.text! == "0" && digit == "0") && !(tappedField.text! == "0" && digit == ".") && !(pointEntered[tappedField.tag - 1] && digit == ".") && !(!secondTapDone && digit == ".") && !((tappedField.text?.characters.count)! == 5 && digit == ".") && !((tappedField.tag == 1 || tappedField.tag == 2) && !secondTapDone && digit == "0") && !(!secondTapDone && digit == "0" && tappedField.text! == "1") && !(tappedField.text?.characters.count == 6 && secondTapDone){
+            if !(tappedField.text! == "0" && digit == "0") && !(tappedField.text! == "0" && digit == ".") && !(pointEntered[tappedField.tag - 1] && digit == ".") && !(!secondTapDone && digit == ".") && !((tappedField.text?.characters.count)! == 5 && digit == ".") && !((tappedField.tag == 1 || tappedField.tag == 2) && !secondTapDone && digit == "0") && !(!secondTapDone && digit == "0" && tappedField.text! == "1") && !(tappedField.text?.characters.count == 6 && secondTapDone) && !(decimalPart.characters.count == 2 && secondTapDone){
                 
                 if !secondTapDone {
                     activeTextField?.backgroundColor = UIColor.clear
@@ -457,6 +459,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
     
     
     override func viewWillAppear(_ animated: Bool) {
+        let screenHeight = UIScreen.main.bounds.size.height
         print("first load \(textfields[0].text)")
         for view in helpViews{
             view.removeFromSuperview()
@@ -543,6 +546,11 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             (textfields[0].text!, textfields[1].text!, textfields[2].text!, textfields[3].text!) = ("16", "9", "1920", "1080")
         }
         initialLoad = false
+        if screenHeight == 568 {
+            helpOffset = 40
+        } else if screenHeight == 736{
+            helpOffset = 38
+        }
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -641,10 +649,12 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             textfields[0].backgroundColor = .clear
             textfields[1].textColor = ColorConstants.mainTextBlockedColor
             textfields[1].backgroundColor = .clear
-            textfields[2].textColor = ColorConstants.deleteColor
-            textfields[2].backgroundColor = ColorConstants.labelsBackground
-            activeTextField = textfields[2]
-            previousActive = textfields[2]
+            if activeTextField?.tag != 4{
+                textfields[2].textColor = ColorConstants.deleteColor
+                textfields[2].backgroundColor = ColorConstants.labelsBackground
+                activeTextField = textfields[2]
+                previousActive = textfields[2]
+            }
             if nightMode{
                 divSymbol.image = UIImage(named: "icon-ratio-dark-ontap")
             } else {

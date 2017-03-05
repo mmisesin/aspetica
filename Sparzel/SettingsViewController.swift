@@ -63,6 +63,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     var interactor:Interactor? = nil
     
     @IBAction func panDismiss(_ sender: UIPanGestureRecognizer) {
+        if UIApplication.shared.statusBarFrame.height == 20 {
         tapClose = false
         let percentThreshold:CGFloat = 0.3
         
@@ -94,6 +95,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         default:
             break
         }
+        }
     }
     
     @IBAction func closeDown(_ sender: UIButton) {
@@ -107,8 +109,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         navBar.layer.cornerRadius = 8
         tableView.sectionFooterHeight = 0.0
         tableView.sectionHeaderHeight = 48
-        
-        
         
         footerView.sizeToFit()
         if let version = Bundle.main.releaseVersionNumber {
