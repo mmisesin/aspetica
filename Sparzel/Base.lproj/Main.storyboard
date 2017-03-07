@@ -37,6 +37,7 @@
                                             <action selector="iconDragOutside:" destination="BYZ-38-t0r" eventType="touchDragOutside" id="Pew-bw-BCK"/>
                                             <action selector="iconTouchDown:" destination="BYZ-38-t0r" eventType="touchDown" id="CGu-nb-Kho"/>
                                             <action selector="iconTouchUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lfS-CU-C6h"/>
+                                            <action selector="settings:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VUJ-GP-dpw"/>
                                             <segue destination="mOg-Ea-qBK" kind="presentation" identifier="showSettings" id="aV0-hJ-B8C"/>
                                         </connections>
                                     </button>
@@ -57,13 +58,13 @@
                                         <rect key="frame" x="16" y="84" width="343" height="240.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xzY-vA-6Kw">
-                                                <rect key="frame" x="0.0" y="0.0" width="343" height="120"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="119.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aCt-Kc-h94">
-                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="120"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="343" height="119.5"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" horizontalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="wk2-kQ-w0x">
-                                                                <rect key="frame" x="0.0" y="0.0" width="149" height="120"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="149" height="119.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="32" translatesAutoresizingMaskIntoConstraints="NO" id="pEs-lZ-ygP" customClass="InsetLabel" customModule="Aspetica" customModuleProvider="target">
                                                                         <rect key="frame" x="53" y="31.5" width="44.5" height="56"/>
@@ -92,10 +93,10 @@
                                                                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                                             </view>
                                                             <view contentMode="scaleToFill" horizontalHuggingPriority="100" horizontalCompressionResistancePriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="yho-rb-yWA">
-                                                                <rect key="frame" x="149" y="0.0" width="45" height="120"/>
+                                                                <rect key="frame" x="149" y="0.0" width="45" height="119.5"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-ratio" translatesAutoresizingMaskIntoConstraints="NO" id="tt8-a3-zbC">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="45" height="120"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="45" height="119.5"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" secondItem="tt8-a3-zbC" secondAttribute="height" multiplier="45:120" id="9nj-pW-B2S"/>
                                                                         </constraints>
@@ -111,7 +112,7 @@
                                                                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                                             </view>
                                                             <view contentMode="scaleToFill" horizontalHuggingPriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="mkc-wD-AJe">
-                                                                <rect key="frame" x="194" y="0.0" width="149" height="120"/>
+                                                                <rect key="frame" x="194" y="0.0" width="149" height="119.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="32" translatesAutoresizingMaskIntoConstraints="NO" id="Njf-mP-2GI" customClass="InsetLabel" customModule="Aspetica" customModuleProvider="target">
                                                                         <rect key="frame" x="62" y="31.5" width="25.5" height="56"/>
@@ -153,10 +154,10 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RYw-GQ-Puv">
-                                                <rect key="frame" x="0.0" y="121" width="343" height="119.5"/>
+                                                <rect key="frame" x="0.0" y="120.5" width="343" height="120"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" horizontalHuggingPriority="500" translatesAutoresizingMaskIntoConstraints="NO" id="cAp-fn-vEF">
-                                                        <rect key="frame" x="0.0" y="0.0" width="149" height="119.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="149" height="120"/>
                                                         <subviews>
                                                             <label opaque="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1920" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="32" translatesAutoresizingMaskIntoConstraints="NO" id="SP0-LT-xdD" customClass="InsetLabel" customModule="Aspetica" customModuleProvider="target">
                                                                 <rect key="frame" x="27.5" y="31.5" width="94" height="56"/>
@@ -185,10 +186,10 @@
                                                         <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" horizontalHuggingPriority="100" horizontalCompressionResistancePriority="100" translatesAutoresizingMaskIntoConstraints="NO" id="ttd-A0-4fe">
-                                                        <rect key="frame" x="149" y="0.0" width="45" height="119.5"/>
+                                                        <rect key="frame" x="149" y="0.0" width="45" height="120"/>
                                                         <subviews>
                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-resolution" translatesAutoresizingMaskIntoConstraints="NO" id="XoK-ZU-iTF">
-                                                                <rect key="frame" x="0.0" y="0.0" width="45" height="120"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="45" height="120.5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="XoK-ZU-iTF" secondAttribute="height" multiplier="45:120" id="5ll-Vc-tQT"/>
                                                                 </constraints>
@@ -204,7 +205,7 @@
                                                         <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" horizontalHuggingPriority="500" translatesAutoresizingMaskIntoConstraints="NO" id="yzJ-Zp-3zy">
-                                                        <rect key="frame" x="194" y="0.0" width="149" height="119.5"/>
+                                                        <rect key="frame" x="194" y="0.0" width="149" height="120"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1080" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="32" translatesAutoresizingMaskIntoConstraints="NO" id="EnO-fh-fbh" customClass="InsetLabel" customModule="Aspetica" customModuleProvider="target">
                                                                 <rect key="frame" x="26.5" y="31.5" width="96.5" height="56"/>
@@ -609,7 +610,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="63"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygb-NU-7Bq">
-                                        <rect key="frame" x="154.5" y="16" width="67" height="20"/>
+                                        <rect key="frame" x="154" y="16" width="67" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="67" id="B4a-Bv-C8a"/>
                                         </constraints>
@@ -626,6 +627,9 @@
                                             <action selector="dismiss" destination="mOg-Ea-qBK" eventType="touchUpInside" id="hrz-SK-EBX"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="poloska" translatesAutoresizingMaskIntoConstraints="NO" id="QGH-eO-fUl">
+                                        <rect key="frame" x="171" y="24.5" width="33" height="4"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
@@ -634,8 +638,10 @@
                                     <constraint firstAttribute="height" constant="63" id="8pZ-Ty-RzX"/>
                                     <constraint firstAttribute="bottom" secondItem="ygb-NU-7Bq" secondAttribute="bottom" constant="27" id="DtU-wa-vmg"/>
                                     <constraint firstItem="dKZ-CB-iyy" firstAttribute="leading" secondItem="WS3-SO-cRa" secondAttribute="leading" id="LNp-Al-oVr"/>
+                                    <constraint firstItem="QGH-eO-fUl" firstAttribute="centerY" secondItem="WS3-SO-cRa" secondAttribute="centerY" constant="-5" id="Lzi-dq-Wnn"/>
                                     <constraint firstItem="ygb-NU-7Bq" firstAttribute="centerX" secondItem="WS3-SO-cRa" secondAttribute="centerX" id="TlU-04-Sek"/>
                                     <constraint firstItem="dKZ-CB-iyy" firstAttribute="top" secondItem="WS3-SO-cRa" secondAttribute="top" id="ZFt-jm-X2d"/>
+                                    <constraint firstItem="QGH-eO-fUl" firstAttribute="centerX" secondItem="WS3-SO-cRa" secondAttribute="centerX" id="ePo-iS-olw"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" rowHeight="48" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="pyO-SK-MXW">
@@ -648,21 +654,21 @@
                                 <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="l8L-5c-bzm" detailTextLabel="rwP-J3-47S" style="IBUITableViewCellStyleValue1" id="gzr-ln-1J8" customClass="CustomCell" customModule="Aspetica" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="48"/>
+                                        <rect key="frame" x="0.0" y="56" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gzr-ln-1J8" id="VGh-67-nvo">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="47.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="47"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="l8L-5c-bzm">
-                                                    <rect key="frame" x="15" y="15" width="31.5" height="19.5"/>
+                                                    <rect key="frame" x="15" y="14" width="32" height="20"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rwP-J3-47S">
-                                                    <rect key="frame" x="316" y="14" width="44" height="20.5"/>
+                                                    <rect key="frame" x="316" y="13" width="44" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -685,9 +691,8 @@
                                 <rect key="frame" x="0.0" y="472" width="375" height="195"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by Artem Misesin and Alex Suprun" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oOb-Pg-bz0">
-                                        <rect key="frame" x="16" y="0.0" width="343" height="40"/>
+                                        <rect key="frame" x="16" y="16" width="343" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="343" id="mYq-zQ-Hda"/>
                                             <constraint firstAttribute="height" constant="40" id="tVS-GN-5hO"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
@@ -725,7 +730,7 @@
                             <constraint firstItem="pyO-SK-MXW" firstAttribute="leading" secondItem="b9W-qM-fHQ" secondAttribute="leading" id="ePU-0T-liJ"/>
                             <constraint firstItem="xfp-R5-rcT" firstAttribute="leading" secondItem="b9W-qM-fHQ" secondAttribute="leading" id="gk0-Ti-UXc"/>
                             <constraint firstItem="WS3-SO-cRa" firstAttribute="top" secondItem="p5o-1D-0at" secondAttribute="bottom" id="lqA-Ed-3g6"/>
-                            <constraint firstItem="oOb-Pg-bz0" firstAttribute="top" secondItem="pyO-SK-MXW" secondAttribute="bottom" id="nz5-US-8sy"/>
+                            <constraint firstItem="oOb-Pg-bz0" firstAttribute="top" secondItem="pyO-SK-MXW" secondAttribute="bottom" constant="16" id="nz5-US-8sy"/>
                             <constraint firstAttribute="trailing" secondItem="8Wi-qw-qv3" secondAttribute="trailing" id="vYB-Si-uZG"/>
                         </constraints>
                         <connections>
@@ -738,6 +743,7 @@
                         <outlet property="navBar" destination="WS3-SO-cRa" id="azA-53-DuA"/>
                         <outlet property="navBarTitle" destination="ygb-NU-7Bq" id="MF2-wu-fOy"/>
                         <outlet property="panGesture" destination="B6l-cJ-O5K" id="xS9-yI-0Ds"/>
+                        <outlet property="panImage" destination="QGH-eO-fUl" id="q4T-bJ-xqi"/>
                         <outlet property="tableShadow" destination="8Wi-qw-qv3" id="iaZ-II-4rh"/>
                         <outlet property="tableView" destination="pyO-SK-MXW" id="7BR-4a-LTX"/>
                         <segue destination="ay3-Un-tae" kind="unwind" identifier="toMain" unwindAction="unwindToMainWithSegue:" id="rTt-2W-1p3"/>
@@ -751,7 +757,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1020" y="129.92957746478874"/>
+            <point key="canvasLocation" x="1003.125" y="129.92957746478874"/>
         </scene>
     </scenes>
     <resources>
@@ -760,6 +766,7 @@
         <image name="icon-close" width="52" height="52"/>
         <image name="icon-ratio" width="45" height="45"/>
         <image name="icon-resolution" width="45" height="45"/>
+        <image name="poloska" width="33" height="4"/>
         <image name="settings-icon" width="52" height="52"/>
     </resources>
 </document>

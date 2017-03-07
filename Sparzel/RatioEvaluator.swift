@@ -38,6 +38,16 @@ class RatioEvaluator {
         }
     }
     
+    func roundValues(a: String, b: String) ->(String, String){
+        if let aValue = Double(a), let bValue = Double(b){
+            let temp1 = forTailingZero(temp: aValue.roundTo(places: 0))
+            let temp2 = forTailingZero(temp: bValue.roundTo(places: 0))
+            return (temp1, temp2)
+        } else {
+            return ("1920", "1080")
+        }
+    }
+    
     func evaluateRatio(values: (a: String, b: String, c: String, d: String), field: Int) -> (String?, String?) {
         var result = (0.0, 0.0)
             if Double(values.c) != nil && Double(values.d) != nil{

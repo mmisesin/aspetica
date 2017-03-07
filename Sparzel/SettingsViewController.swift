@@ -13,7 +13,7 @@ var roundedValues = true
 var nightMode = false
 var calculateRatio = false
 var tapClose = false
-
+var cancelled = false
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Dismissable, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate {
     
@@ -28,6 +28,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var navBar: UIView!
     @IBOutlet weak var navBarTitle: UILabel!
     @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var panImage: UIImageView!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableShadow: UIView!
@@ -62,39 +63,58 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     
     var interactor:Interactor? = nil
     
+    var indicator = false
+    
     @IBAction func panDismiss(_ sender: UIPanGestureRecognizer) {
         if UIApplication.shared.statusBarFrame.height == 20 {
-        tapClose = false
-        let percentThreshold:CGFloat = 0.3
-        
-        let tempView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height))
-        // convert y-position to downward pull progress (percentage)
-        let translation = sender.translation(in: tempView)
-        let verticalMovement = translation.y / tempView.bounds.height
-        let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
-        let downwardMovementPercent = fminf(downwardMovement, 1.0)
-        let progress = CGFloat(downwardMovementPercent)
-        
-        guard let interactor = interactor else { return }
-        
-        switch sender.state {
-        case .began:
-            interactor.hasStarted = true
-            dismiss(animated: true, completion: nil)
-        case .changed:
-            interactor.shouldFinish = progress > percentThreshold
-            interactor.update(progress)
-        case .cancelled:
-            interactor.hasStarted = false
-            interactor.cancel()
-        case .ended:
-            interactor.hasStarted = false
-            interactor.shouldFinish
-                ? interactor.finish()
-                : interactor.cancel()
-        default:
-            break
-        }
+            tapClose = false
+            let percentThreshold:CGFloat = 0.25
+            let velocity = sender.velocity(in: self.view)
+            let magnitude = sqrt((velocity.x * velocity.x))
+            let slideMultiplier = magnitude / 200
+            let tempView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height))
+            // convert y-position to downward pull progress (percentage)
+            let translation = sender.translation(in: tempView)
+            let verticalMovement = translation.y / tempView.bounds.height
+            let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
+            let downwardMovementPercent = fminf(downwardMovement, 1.0)
+            let progress = CGFloat(downwardMovementPercent)
+            guard let interactor = interactor else { return }
+            switch sender.state {
+            case .began:
+                interactor.hasStarted = true
+                dismiss(animated: true, completion: nil)
+            case .changed:
+                interactor.shouldFinish = progress > percentThreshold
+                if slideMultiplier > 0.1 && velocity.y > 0{
+                    interactor.shouldFinish = true
+                    indicator = true
+                }else if velocity.y < 0{
+                    interactor.shouldFinish = false
+                
+                } else if interactor.shouldFinish{
+                    indicator = false
+                    interactor.shouldFinish = true
+                } else {
+                    interactor.shouldFinish = false
+                }
+                interactor.update(progress)
+            case .ended:
+                interactor.hasStarted = false
+                if interactor.shouldFinish {
+                    if !indicator{
+                        interactor.completionSpeed = 3
+                    } else {
+                        interactor.completionSpeed = 4
+                    }
+                    interactor.finish()
+                } else {
+                    interactor.completionSpeed = 1.5
+                    interactor.cancel()
+                }
+            default:
+                break
+            }
         }
     }
     
@@ -131,10 +151,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func viewDidLayoutSubviews() {
-//        tableShadow = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 1))
-//        tableShadow?.backgroundColor = ColorConstants.settingsShadows
-//        //tableShadow?.layer.opacity = 0.5
-//        tableView.addSubview(tableShadow!)
     }
     
     override func didReceiveMemoryWarning() {
@@ -162,10 +178,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 nightMode = true
                 ColorConstants.nightMode()
             }
-            //            UIView.animate(withDuration: 0.5, animations: {self.colorAnimated()
-            //            })
-            //            manualAnimation()
-            //colorSetup()
             tableView.reloadData()
         case 0:
             if roundedValues {
@@ -262,18 +274,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         return sectionHeaderTitles[section]
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let identifier = segue.identifier {
-//            let vc = segue.destination as! ViewController
-//            switch identifier {
-//            case "toMain":
-//                UIView.animate(withDuration: 0.5, animations: {vc.dimView.layer.opacity = 0.0
-//                })
-//            default: break
-//            }
-//        }
-//    }
-    
     private func colorSetup() {
         colorAnimated()
         navBarTitle.textColor = ColorConstants.cellTextColor
@@ -298,10 +298,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         //for header in tableView.section
         for view in bottomBorders {
             view.layer.backgroundColor = ColorConstants.settingsShadows.cgColor
-            //view.alpha = 0.4
             for viewx in topBorders {
                 viewx.layer.backgroundColor = ColorConstants.settingsShadows.cgColor
-                //viewx.alpha = 0.4
             }
         }
     }
@@ -315,52 +313,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         self.view.backgroundColor = .clear
         self.presentingViewController?.view.backgroundColor = .black
     }
-    
-    //    func manualAnimation() {
-    //        UIView.transition(with: navBarTitle, duration: 0.5, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
-    //            self.navBarTitle.textColor = ColorConstants.cellTextColor
-    //        }, completion: {
-    //            (value: Bool) in
-    //        })
-    //        //        tableView.headerView(forSection: 1)?.textLabel?.textColor = ColorConstants.symbolsColor
-    //        UIView.transition(with: footerView, duration: 5, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
-    //            self.footerView.textColor = ColorConstants.symbolsColor
-    //        }, completion: {
-    //            (value: Bool) in
-    //        })
-    //
-    //        for cell in tableView.visibleCells {
-    //            //cell.backgroundColor = ColorConstants.settingsMainTint
-    //            cell.textLabel?.textColor = ColorConstants.cellTextColor
-    //            cell.detailTextLabel?.textColor = ColorConstants.symbolsColor
-    //            if nightMode{
-    //                cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
-    //            } else {
-    //                cell.accessoryView?.tintColor = UIColor(hexString: "#ECECEC", alpha: 1)
-    //            }
-    //            if let dogswitch = cell.accessoryView as! UISwitch? {
-    //                dogswitch.onTintColor = ColorConstants.deleteColor
-    //            }
-    //        }
-    //
-    //        UIView.transition(with: (tableView.headerView(forSection: 0)?.textLabel!)!, duration: 0.5, options: UIViewAnimationOptions.curveEaseInOut, animations: {
-    //            self.tableView.headerView(forSection: 0)?.textLabel?.textColor = ColorConstants.symbolsColor
-    //        }, completion: {
-    //            (value: Bool) in
-    //        })
-    //        UIView.transition(with: (tableView.headerView(forSection: 1)?.textLabel!)!, duration: 0.5, options: UIViewAnimationOptions.curveEaseInOut, animations: {
-    //            self.tableView.headerView(forSection: 1)?.textLabel?.textColor = ColorConstants.symbolsColor
-    //        }, completion: {
-    //            (value: Bool) in
-    //        })
-    //        //for header in tableView.section
-    //        for view in bottomBorders {
-    //            view.layer.backgroundColor = ColorConstants.navShadow.cgColor
-    //            for viewx in topBorders {
-    //                viewx.layer.backgroundColor = ColorConstants.navShadow.cgColor
-    //            }
-    //        }
-    //    }
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         if indexPath.section == 0 {
@@ -383,13 +335,8 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         let topY = cell.bounds.minY
         let topBorder = UIView(frame: CGRect(x: 16, y: topY, width: cell.bounds.width - 32, height: borderHeight))
         let bottomBorder = UIView(frame: CGRect(x: 16, y: bottomY, width: cell.bounds.width - 32, height: borderHeight))
-        //cell.selectionStyle = .none
         let selView = UIView()
         selView.backgroundColor = ColorConstants.onTapColor
-        //        bottomBorder.backgroundColor = ColorConstants.navShadow
-        ////        bottomBorder.alpha = 0.5
-        ////        topBorder.alpha = 0.5
-        //        topBorder.backgroundColor = ColorConstants.navShadow
         if let label = cell.textLabel!.text {
             switch label {
             case "Calculate Ratio":
@@ -403,7 +350,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 ratioSwitch.tag = 2
                 cell.detailTextLabel?.text = ""
                 cell.accessoryView = ratioSwitch
-                //cell.contentView.isUserInteractionEnabled = false
                 if nightMode {
                     cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
                 }
@@ -420,7 +366,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 cell.detailTextLabel?.text = ""
                 cell.accessoryView = roundedValuesSwitch
                 cell.contentView.isUserInteractionEnabled = false
-                //cell.accessoryView?.isUserInteractionEnabled = true
                 if nightMode {
                     cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
                 }
@@ -445,27 +390,19 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                     cell.addSubview(bottomBorder)
                 }
                 cell.selectionStyle = .none
-//            case "Theme":
-//                cell.detailTextLabel?.text = "Default"
-//                cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
             case "Send Feedback":
                 cell.detailTextLabel?.text = ""
                 cell.detailTextLabel?.font = cell.detailTextLabel?.font.withSize(16)
                 cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
-                //topBorders.append(topBorder)
                 if counter < 6 {
                     cell.addSubview(topBorder)
                 }
-            //cell.addGestureRecognizer(recognizer)
             case "Rate Aspetica":
                 cell.detailTextLabel?.text = ""
                 cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
-            //cell.addGestureRecognizer(recognizer)
             case "Share Aspetica":
                 cell.detailTextLabel?.text = ""
                 cell.accessoryView?.tintColor = ColorConstants.accessoryViewColor
-                //cell.addGestureRecognizer(recognizer)
-                //bottomBorders.append(bottomBorder)
                 if counter < 6 {
                     cell.addSubview(bottomBorder)
                 }
