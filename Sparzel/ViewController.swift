@@ -182,6 +182,11 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         }
         let defaults = UserDefaults.standard
         defaults.setValue(calculateRatio, forKey: "calculateRatio")
+        if #available(iOS 10.0, *) {
+            let generator = UIImpactFeedbackGenerator(style: .light)
+            generator.prepare()
+            generator.impactOccurred()
+        }
     }
     
     @IBAction func iconDragOutside(_ sender: UIButton) {
@@ -222,15 +227,15 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
         if activeTextField != previousActive {
             secondTapDone = false
             isTyping = false
-            deleteButton.tintColor = ColorConstants.deleteIconColor
+            UIView.animate(withDuration: 0.25, animations: {self.deleteButton.tintColor = ColorConstants.deleteIconColor})
         } else {
             if secondTapDone {
                 secondTapDone = false
                 isTyping = false
-                deleteButton.tintColor = ColorConstants.deleteIconColor
+                UIView.animate(withDuration: 0.25, animations: {self.deleteButton.tintColor = ColorConstants.deleteIconColor})
             } else {
                 secondTapDone = true
-                deleteButton.tintColor = ColorConstants.deleteIconDarkColor
+                UIView.animate(withDuration: 0.25, animations: {self.deleteButton.tintColor = ColorConstants.deleteIconDarkColor})
             }
         }
         
@@ -321,9 +326,14 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             if !(tappedField.text! == "0" && digit == "0") && !(tappedField.text! == "0" && digit == ".") && !(pointEntered[tappedField.tag - 1] && digit == ".") && !(!secondTapDone && digit == ".") && !((tappedField.text?.characters.count)! == 5 && digit == ".") && !((tappedField.tag == 1 || tappedField.tag == 2) && !secondTapDone && digit == "0") && !(!secondTapDone && digit == "0" && tappedField.text! == "1") && !(tappedField.text?.characters.count == 6 && secondTapDone) && !(decimalPart.characters.count == 2 && secondTapDone){
                 
                 if !secondTapDone {
-                    activeTextField?.backgroundColor = UIColor.clear
-                    deleteButton.tintColor = ColorConstants.deleteIconDarkColor
-                    carriages[tappedField.tag - 1].backgroundColor = ColorConstants.carriageColor
+                    UIView.animate(withDuration: 0.25, animations: {
+                        self.deleteButton.tintColor = ColorConstants.deleteIconDarkColor
+                        tappedField.backgroundColor = UIColor.clear
+                        self.carriages[tappedField.tag - 1].backgroundColor = ColorConstants.carriageColor
+                    })
+                    //activeTextField?.backgroundColor = UIColor.clear
+                    //deleteButton.tintColor = ColorConstants.deleteIconDarkColor
+                    //acarriages[tappedField.tag - 1].backgroundColor = ColorConstants.carriageColor
                     animationIsOn[tappedField.tag - 1] = true
                     fadeIn(index: tappedField.tag - 1)
                 }
