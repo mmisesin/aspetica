@@ -8,10 +8,34 @@
 
 import UIKit
 import MessageUI
+import Firebase
 
-var roundedValues = true
-var nightMode = false
-var calculateRatio = false
+var roundedValues = true{
+    didSet{
+        FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
+            kFIRParameterItemID: "roundedValues" as NSObject,
+            kFIRParameterItemName: "changed" as NSObject
+            ])
+    }
+}
+
+var nightMode = false{
+    didSet{
+        FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
+            kFIRParameterItemID: "nightMode" as NSObject,
+            kFIRParameterItemName: "changed" as NSObject
+            ])
+    }
+}
+var calculateRatio = false{
+    didSet{
+        FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
+            kFIRParameterItemID: "calculateRatio" as NSObject,
+            kFIRParameterItemName: "changed" as NSObject
+            ])
+    }
+}
+
 var tapClose = false
 var fixedPoint = false
 
