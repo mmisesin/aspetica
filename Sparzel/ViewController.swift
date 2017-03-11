@@ -92,6 +92,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
     //supporting variables
     var activeTextField: UILabel?
     var previousActive: UILabel?
+    var precisedValue: String = ""
     var secondTapDone = false
     var helpIsOn = false
     var pixelsField = 3
@@ -622,6 +623,11 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
     
     private func generalEvaluation(with tappedField: UILabel) {
         
+        if fixedPoint{
+            activeTextField?.text = precisedValue
+            fixedPoint = false
+        }
+        
         let values = (textfields[0].text!, textfields[1].text!, textfields[2].text!, textfields[3].text!)
         
         if !calculateRatio {
@@ -636,7 +642,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
                     wField.text = evaluator.evaluate(values: values, field: tappedField.tag, pixelsField: pixelsField)
                 }
             }
+            
             if roundedValues{
+                precisedValue = (activeTextField?.text)!
                 (hField.text!, wField.text!) = evaluator.roundValues(a: hField.text!, b: wField.text!)
             }
         } else {

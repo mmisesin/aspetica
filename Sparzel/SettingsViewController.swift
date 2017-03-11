@@ -13,7 +13,7 @@ var roundedValues = true
 var nightMode = false
 var calculateRatio = false
 var tapClose = false
-var cancelled = false
+var fixedPoint = false
 
 class SettingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Dismissable, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate {
     
@@ -53,10 +53,6 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         tapClose = true
         dismiss(animated: true, completion: nil)
 
-        //dismissalDelegate?.finishedShowing(viewController: self)
-//        UIView.animate(withDuration: 1.0, animations:{
-//            (self.dismissalDelegate as! ViewController).dimView.layer.opacity = 0.3
-//        })
         closeButton.layer.opacity = 1
     }
     @IBOutlet var panGesture: UIPanGestureRecognizer!
@@ -71,7 +67,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
             let percentThreshold:CGFloat = 0.25
             let velocity = sender.velocity(in: self.view)
             let magnitude = sqrt((velocity.x * velocity.x))
-            let slideMultiplier = magnitude / 200
+            var slideMultiplier = magnitude / 200
             let tempView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height))
             // convert y-position to downward pull progress (percentage)
             let translation = sender.translation(in: tempView)
@@ -101,15 +97,18 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
                 interactor.update(progress)
             case .ended:
                 interactor.hasStarted = false
+                if slideMultiplier < 1{
+                    slideMultiplier = 1
+                }
                 if interactor.shouldFinish {
                     if !indicator{
-                        interactor.completionSpeed = 3
+                        interactor.completionSpeed = slideMultiplier//3
                     } else {
-                        interactor.completionSpeed = 4
+                        interactor.completionSpeed = slideMultiplier * 3
                     }
                     interactor.finish()
                 } else {
-                    interactor.completionSpeed = 1.5
+                    interactor.completionSpeed = slideMultiplier
                     interactor.cancel()
                 }
             default:
@@ -182,8 +181,10 @@ class SettingsViewController: UIViewController, UITableViewDelegate, UITableView
         case 0:
             if roundedValues {
                 roundedValues = false
+                fixedPoint = true
             } else {
                 roundedValues = true
+                fixedPoint = false
             }
             print("Rounded values changed")
         default: break

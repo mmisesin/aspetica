@@ -18,6 +18,7 @@
 		C65D26251E3A3F22000A4744 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C65D26241E3A3F22000A4744 /* Launch Screen.storyboard */; };
 		C66A3B811E32A6350001BC80 /* RatioEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66A3B801E32A6350001BC80 /* RatioEvaluator.swift */; };
 		C66A3B851E36943E0001BC80 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66A3B841E36943E0001BC80 /* SettingsViewController.swift */; };
+		C6EC67BA1E749F9C008690D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6EC67B91E749F9C008690D6 /* GoogleService-Info.plist */; };
 		C6FC34C91E37ADF7008D8D9A /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FC34C81E37ADF7008D8D9A /* Style.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		C65D26241E3A3F22000A4744 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		C66A3B801E32A6350001BC80 /* RatioEvaluator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatioEvaluator.swift; sourceTree = "<group>"; };
 		C66A3B841E36943E0001BC80 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		C6EC67B91E749F9C008690D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C6FC34C81E37ADF7008D8D9A /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,6 +79,7 @@
 				C62E40B31E5742A00047DDF3 /* DismissAnimator.swift */,
 				C62E40B11E57427F0047DDF3 /* Interactor.swift */,
 				C65D26241E3A3F22000A4744 /* Launch Screen.storyboard */,
+				C6EC67B91E749F9C008690D6 /* GoogleService-Info.plist */,
 			);
 			name = Aspetica;
 			path = Sparzel;
@@ -155,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C64809511E3189FE00F3EF12 /* Assets.xcassets in Resources */,
+				C6EC67BA1E749F9C008690D6 /* GoogleService-Info.plist in Resources */,
 				C65D26251E3A3F22000A4744 /* Launch Screen.storyboard in Resources */,
 				C648094F1E3189FE00F3EF12 /* Main.storyboard in Resources */,
 			);
