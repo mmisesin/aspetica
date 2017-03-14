@@ -92,7 +92,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
     //supporting variables
     var activeTextField: UILabel?
     var previousActive: UILabel?
-    var precisedValue: String = ""
+    var precisedValue1: String = ""
+    var precisedValue2: String = ""
     var secondTapDone = false
     var helpIsOn = false
     var pixelsField = 3
@@ -623,14 +624,23 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
     
     private func generalEvaluation(with tappedField: UILabel) {
         
-        if fixedPoint{
-            activeTextField?.text = precisedValue
-            fixedPoint = false
+        if fixedPoint && !roundedValues && precisedValue1 != ""{
+            tappedField.text = precisedValue1
         }
         
-        let values = (textfields[0].text!, textfields[1].text!, textfields[2].text!, textfields[3].text!)
+        if fixedPoint && !roundedValues && precisedValue1 != "" && calculateRatio{
+            (textfields[2].text)! = precisedValue1
+            (textfields[3].text)! = precisedValue2
+        }
+        
+        fixedPoint = false
         
         if !calculateRatio {
+            if roundedValues{
+                precisedValue1 = (tappedField.text)!
+                (hField.text!, wField.text!) = evaluator.roundValues(a: hField.text!, b: wField.text!)
+            }
+            let values = (textfields[0].text!, textfields[1].text!, textfields[2].text!, textfields[3].text!)
             if tappedField.tag == 3 {
                 hField.text = evaluator.evaluate(values: values, field: tappedField.tag, pixelsField: pixelsField)
             } else if tappedField.tag == 4 {
@@ -643,11 +653,14 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
                 }
             }
             
+            
+        } else {
             if roundedValues{
-                precisedValue = (activeTextField?.text)!
+                precisedValue1 = (textfields[2].text)!
+                precisedValue2 = (textfields[3].text)!
                 (hField.text!, wField.text!) = evaluator.roundValues(a: hField.text!, b: wField.text!)
             }
-        } else {
+            let values = (textfields[0].text!, textfields[1].text!, textfields[2].text!, textfields[3].text!)
             (xField.text, yField.text) = evaluator.evaluateRatio(values: values, field: tappedField.tag)
         }
 

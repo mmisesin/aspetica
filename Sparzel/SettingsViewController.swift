@@ -10,28 +10,29 @@ import UIKit
 import MessageUI
 import Firebase
 
-var roundedValues = true{
+var roundedValues = true
+{
     didSet{
-        FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
-            kFIRParameterItemID: "roundedValues" as NSObject,
-            kFIRParameterItemName: "changed" as NSObject
+        FIRAnalytics.logEvent(withName: "roundedValues", parameters: [
+            "name": roundedValues as NSObject
             ])
     }
 }
 
-var nightMode = false{
+var nightMode = false
+{
     didSet{
-        FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
-            kFIRParameterItemID: "nightMode" as NSObject,
-            kFIRParameterItemName: "changed" as NSObject
+        FIRAnalytics.logEvent(withName: "nightMode", parameters: [
+            "name": nightMode as NSObject
             ])
     }
 }
-var calculateRatio = false{
+
+var calculateRatio = false
+{
     didSet{
-        FIRAnalytics.logEvent(withName: kFIREventSelectContent, parameters: [
-            kFIRParameterItemID: "calculateRatio" as NSObject,
-            kFIRParameterItemName: "changed" as NSObject
+        FIRAnalytics.logEvent(withName: "calculateRatio", parameters: [
+            "name": calculateRatio as NSObject
             ])
     }
 }
