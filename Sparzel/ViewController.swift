@@ -13,7 +13,7 @@ let yFieldKey = "yField"
 let wFieldKey = "wField"
 let hFieldKey = "hField"
 
-class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDelegate {
+class ViewController: UIViewController, UIGestureRecognizerDelegate{
     
     var evaluator = RatioEvaluator()
     
@@ -572,30 +572,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDe
             helpOffset = 38
         }
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-////        if let identifier = segue.identifier{
-////            switch identifier {
-////            case "showSettings":
-////                let tempFrame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
-////                dimView = UIView(frame: tempFrame)
-////                dimView.backgroundColor = .black
-////                dimView.layer.opacity = 0
-////                self.view.addSubview(dimView)
-////                UIView.animate(withDuration: 0.5, animations: {
-////                    self.dimView.layer.opacity = 0.4
-////                })
-////            default:break
-////            }
-////        }
-////        if let vc = segue.destination as? Dismissable
-////        {
-////            vc.dismissalDelegate = self
-////        }
-//        if let destinationViewController = segue.destination as? SettingsViewController {
-//            destinationViewController.transitioningDelegate = self
-//        }
-//    }
     
     let interactor = Interactor()
     

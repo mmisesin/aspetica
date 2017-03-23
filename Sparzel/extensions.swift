@@ -96,27 +96,6 @@ extension Bundle {
     }
 }
 
-protocol DismissalDelegate : class
-{
-    func finishedShowing(viewController: UIViewController);
-}
-
-protocol Dismissable : class
-{
-    weak var dismissalDelegate : DismissalDelegate? { get set }
-}
-
-extension DismissalDelegate where Self: UIViewController
-{
-    func finishedShowing(viewController: UIViewController) {
-        //if viewController.isBeingPresented && viewController.presentingViewController == self
-        //{
-            self.dismiss(animated: true, completion: nil)
-            return
-        //}
-    }
-}
-
 extension String {
     mutating func stripFromCharacter(char:String) {
         let c = self.characters
