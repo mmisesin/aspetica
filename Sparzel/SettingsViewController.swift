@@ -8,44 +8,20 @@
 
 import UIKit
 import MessageUI
-import Firebase
 
 var roundedValues = true
-{
-    didSet{
-        FIRAnalytics.logEvent(withName: "roundedValues", parameters: [
-            "name": roundedValues as NSObject
-            ])
-    }
-}
-
 var nightMode = false
-{
-    didSet{
-        FIRAnalytics.logEvent(withName: "nightMode", parameters: [
-            "name": nightMode as NSObject
-            ])
-    }
-}
-
 var calculateRatio = false
-{
-    didSet{
-        FIRAnalytics.logEvent(withName: "calculateRatio", parameters: [
-            "name": calculateRatio as NSObject
-            ])
-    }
-}
 
 var tapClose = false
 var fixedPoint = false
 
 class SettingsViewController: UIViewController, UIGestureRecognizerDelegate{
     
-    fileprivate var sectionHeaderTitles = ["General", "Application"]
+    fileprivate var sectionHeaderTitles = ["General", "Themes", "Application"]
     
     fileprivate var labels = [
-        ["Calculate Ratio", "Round Values", "Dark Theme"],
+        ["Calculate Ratio", "Round Values"], ["Bright", "Dark"],
         ["Send Feedback", "Rate Aspetica", "Share Aspetica"]
     ]
     
@@ -97,6 +73,7 @@ class SettingsViewController: UIViewController, UIGestureRecognizerDelegate{
     var indicator = false
     
     @IBAction func panDismiss(_ sender: UIPanGestureRecognizer) {
+        print("why")
         if UIApplication.shared.statusBarFrame.height == 20 {
             tapClose = false
             let percentThreshold:CGFloat = 0.25
@@ -104,6 +81,7 @@ class SettingsViewController: UIViewController, UIGestureRecognizerDelegate{
             let magnitude = sqrt((velocity.x * velocity.x))
             var slideMultiplier = magnitude / 200
             let tempView = UIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height))
+            // convert y-position to downward pull progress (percentage)
             let translation = sender.translation(in: tempView)
             let verticalMovement = translation.y / tempView.bounds.height
             let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
@@ -121,7 +99,7 @@ class SettingsViewController: UIViewController, UIGestureRecognizerDelegate{
                     indicator = true
                 }else if velocity.y < 0{
                     interactor.shouldFinish = false
-                
+                    
                 } else if interactor.shouldFinish{
                     indicator = false
                     interactor.shouldFinish = true
@@ -136,13 +114,13 @@ class SettingsViewController: UIViewController, UIGestureRecognizerDelegate{
                 }
                 if interactor.shouldFinish {
                     if !indicator{
-                        interactor.completionSpeed = slideMultiplier//3
+                        interactor.completionSpeed = slideMultiplier * 2//3
                     } else {
                         interactor.completionSpeed = slideMultiplier * 3
                     }
                     interactor.finish()
                 } else {
-                    interactor.completionSpeed = slideMultiplier
+                    interactor.completionSpeed = slideMultiplier * 1.3
                     interactor.cancel()
                 }
             default:
@@ -163,18 +141,18 @@ class SettingsViewController: UIViewController, UIGestureRecognizerDelegate{
             } else {
                 calculateRatio = true
             }
-        case 1:
-            if nightMode{
-                nightMode = false
-                ColorConstants.defaultMode()
-            } else {
-                nightMode = true
-                ColorConstants.nightMode()
-            }
-            colorSetup(animated: false)
-            for cell in self.tableView.visibleCells{
-                self.cellColorSetup(of: cell as! CustomCell, animated: false)
-            }
+//            if #available(iOS 10.3, *) {
+//                if UIApplication.shared.supportsAlternateIcons {
+//                    // let the user choose a new icon
+//                    if nightMode{
+//                        UIApplication.shared.setAlternateIconName("AppIcon-2")
+//                    } else {
+//                        UIApplication.shared.setAlternateIconName(nil)
+//                    }
+//                } else {
+//                    print("Oops")
+//                }
+//            }
         case 0:
             if roundedValues {
                 roundedValues = false
@@ -191,8 +169,6 @@ class SettingsViewController: UIViewController, UIGestureRecognizerDelegate{
     
     private func loadSettings() {
         let defaults = UserDefaults.standard
-        print(nightMode)
-        print(roundedValues)
         defaults.setValue(nightMode, forKey: "nightMode")
         defaults.setValue(roundedValues, forKey: "roundedValues")
         defaults.setValue(calculateRatio, forKey: "calculateRatio")
@@ -262,6 +238,17 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.addSubview(bottomBorder)
             case "Share Aspetica":
                 cell.addSubview(bottomBorder)
+            case "Dark":
+                if nightMode{
+                    cell.accessoryType = .checkmark
+                    cell.tintColor = ColorConstants.settingsText
+                }
+                cell.addSubview(bottomBorder)
+            case "Bright":
+                if !nightMode{
+                    cell.accessoryType = .checkmark
+                    cell.tintColor = ColorConstants.settingsText
+                }
             default: break;
             }
             cell.detailTextLabel?.text = ""
@@ -289,7 +276,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
-        if indexPath.section == 1 {
+        if indexPath.section == 2 {
             switch indexPath.row {
             case 2:
                 shareApp(at: indexPath)
@@ -301,6 +288,37 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
                     tableView.deselectRow(at: indexPath, animated: true)}
             default: break
             }
+        } else if indexPath.section == 1 {
+            switch indexPath.row {
+            case 0:
+                if nightMode {
+                    nightMode = false
+                    ColorConstants.defaultMode()
+                    colorSetup(animated: false)
+                    for cell in self.tableView.visibleCells{
+                        self.cellColorSetup(of: cell as! CustomCell, animated: false)
+                    }
+                    self.tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+                    self.tableView.cellForRow(at: indexPath)?.tintColor = ColorConstants.settingsText
+                    let index = IndexPath(row: 1, section: 1)
+                    self.tableView.cellForRow(at: index)?.accessoryType = .none
+                }
+            case 1:
+                if !nightMode {
+                    nightMode = true
+                    ColorConstants.nightMode()
+                    colorSetup(animated: false)
+                    for cell in self.tableView.visibleCells{
+                        self.cellColorSetup(of: cell as! CustomCell, animated: false)
+                    }
+                    self.tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+                    self.tableView.cellForRow(at: indexPath)?.tintColor = ColorConstants.settingsText
+                    let index = IndexPath(row: 0, section: 1)
+                    self.tableView.cellForRow(at: index)?.accessoryType = .none
+                }
+            default: break
+            }
+            self.tableView.deselectRow(at: indexPath, animated: true)
         }
     }
     
@@ -336,7 +354,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int{
-        return 2
+        return sectionHeaderTitles.count
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -377,7 +395,7 @@ extension SettingsViewController{
         }
         
         self.view.backgroundColor = .clear
-        self.presentingViewController?.view.backgroundColor = .black
+        //self.presentingViewController?.view.backgroundColor = .yellow
     }
     
     fileprivate func separatorsColorSetup(){
@@ -405,6 +423,7 @@ extension SettingsViewController{
         } else {
             tableView.headerView(forSection: 0)?.textLabel?.textColor = ColorConstants.symbolsColor
             tableView.headerView(forSection: 1)?.textLabel?.textColor = ColorConstants.symbolsColor
+            tableView.headerView(forSection: 2)?.textLabel?.textColor = ColorConstants.symbolsColor
             tableView.separatorStyle = UITableViewCellSeparatorStyle.none
             tableView.backgroundColor = ColorConstants.settingsMainTint
             for view in self.bottomBorders {

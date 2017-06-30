@@ -29,17 +29,14 @@ extension DismissAnimator : UIViewControllerAnimatedTransitioning {
         }
         let containerView = transitionContext.containerView
         containerView.insertSubview(toVC.view, belowSubview: fromVC.view)
-        
+        print("KYS TWICE")
         let screenBounds = UIScreen.main.bounds
         let bottomLeftCorner = CGPoint(x: 0, y: screenBounds.height)
         let finalFrame = CGRect(origin: bottomLeftCorner, size: screenBounds.size)
-        let tempFrame = CGRect(x: 0, y: 0, width: screenBounds.width, height: screenBounds.height)
-        let dimView = UIView(frame: tempFrame)
         let vc = fromVC as! SettingsViewController
         let vc2 = toVC as! ViewController
-        dimView.backgroundColor = .black
-        dimView.layer.opacity = 0.8
-        toVC.view.addSubview(dimView)
+        vc2.dimView.layer.opacity = 0.8
+        vc2.view.addSubview(vc2.dimView)
         UIView.animate(withDuration: 0.02, animations: {
             vc.panImage.tintColor = ColorConstants.accessoryViewColor
             vc.panImage.layer.opacity = 1
@@ -48,12 +45,10 @@ extension DismissAnimator : UIViewControllerAnimatedTransitioning {
         })
         UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, options: .curveLinear, animations: {
             fromVC.view.frame = finalFrame
-            dimView.layer.opacity = 0.01
+            vc2.dimView.layer.opacity = 0.01
             vc2.stopAnimation((vc2.activeTextField)!.tag - 1)
             vc2.roundedView.transform = CGAffineTransform.identity
         }, completion: { _ in
-            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-            dimView.removeFromSuperview()
             vc.panImage.layer.opacity = 0
             vc.navBarTitle.layer.opacity = 1
             vc.closeButton.layer.opacity = 1
@@ -62,7 +57,8 @@ extension DismissAnimator : UIViewControllerAnimatedTransitioning {
                 vc2.animationIsOn[(vc2.activeTextField)!.tag - 1] = true
                 vc2.fadeIn(index: (vc2.activeTextField)!.tag - 1)
             }
-
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+            fromVC.removeFromParentViewController()
         })
     }
 }

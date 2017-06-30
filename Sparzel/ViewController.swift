@@ -7,13 +7,116 @@
 //
 
 import UIKit
+import Interpolate
 
 let xFieldKey = "xField"
 let yFieldKey = "yField"
 let wFieldKey = "wField"
 let hFieldKey = "hField"
 
+// presests
+
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+}
+
+extension ViewController: UITableViewDelegate, UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presets.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PresetCell
+        cell.backgroundColor = .clear
+        cell.textfield.delegate = self
+        cell.textfield.text = presets[indexPath.row].value
+        //cell.textLabel?.text = presets[indexPath.row].value
+        cell.detailTextLabel?.text = presets[indexPath.row].name
+        cell.textfield.textColor = UIColor(hexString: "74767b", alpha: 1)
+        cell.detailTextLabel?.textColor = UIColor(hexString: "74767b", alpha: 1)
+        //cell.selectionStyle = .none
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = ColorConstants.selectionColor
+        cell.selectedBackgroundView = backgroundView
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let string = tableView.cellForRow(at: indexPath)?.detailTextLabel?.text
+        let index = string?.characters.index(of: ":")
+        let leftSide = string?.substring(to: index!)
+        let index2 = string?.index(after: index!)
+        let rightSide = string?.substring(from: index2!)
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveLinear, animations: {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }, completion: nil)
+        xField.text = leftSide
+        yField.text = rightSide
+        generalEvaluation(with: activeTextField!)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to toIndexPath: IndexPath) {
+        presets.swap(toIndexPath.row, with: fromIndexPath.row)
+    }
+    
+    func showEditing()
+    {
+        if(self.presentsView.isEditing == true)
+        {
+            print("Ola")
+            self.presentsView.setEditing(false, animated: true)
+            editButton.setTitle("Edit", for: .normal)
+        }
+        else
+        {
+            print("Ola2")
+            self.presentsView.setEditing(true, animated: true)
+            editButton.setTitle("Done", for: .normal)
+        }
+    }
+    
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        if (editingStyle == UITableViewCellEditingStyle.delete) {
+//            presets.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//            // handle delete (by removing the data from your array and updating the tableview)
+//        }
+//    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .normal, title: "Delete") { (action, indexPath) in
+            self.presets.remove(at: self.presets.count - 1 - indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            // delete item at indexPath
+        }
+        
+        delete.backgroundColor = UIColor(hexString: "#FFC61A", alpha: 1)
+        
+        return [delete]
+    }
+}
+
 class ViewController: UIViewController, UIGestureRecognizerDelegate{
+    
+    @IBOutlet weak var presentsView: UITableView!
+    
+    var presets = Presets()
     
     var evaluator = RatioEvaluator()
     
@@ -36,6 +139,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate{
     var carriages: [UIView] = []
     
     @IBOutlet weak var settingsButton: UIButton!
+    
+    @IBOutlet weak var panString: UIImageView!
+    
     @IBOutlet weak var helpButton: UIButton!
     
     @IBOutlet weak var deleteButton: CustomButton!
@@ -83,9 +189,19 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate{
     @IBOutlet weak var oneStack: UIStackView!
     @IBOutlet weak var zeroStack: UIStackView!
     
+    // presets views
+    
+    @IBOutlet weak var navBar: UIView!
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var presetsTitle: UILabel!
+    @IBOutlet weak var addButton: UIButton!
+    
     //instantiating constraints
 
     @IBOutlet weak var secondRowBottomSpace: NSLayoutConstraint!
+    @IBOutlet weak var roundedViewTopSpace: NSLayoutConstraint!
+    @IBOutlet weak var bottomKeyboardSpace: NSLayoutConstraint!
+    @IBOutlet weak var roundedViewBottomSpace: NSLayoutConstraint!
     
     var reversedKeyboard = false
     
@@ -108,6 +224,24 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate{
     var helpOffset: CGFloat = 0
     var initialLoad: Bool = true
     
+    @IBAction func editButtonAction() {
+        showEditing()
+    }
+    
+    @IBAction func addPreset() {
+        let value = xField.text! + ":" + yField.text!
+        if presets.push(name: "Sample", value: value){
+            if(self.presentsView.isEditing == true)
+            {
+                print("Ola")
+                self.presentsView.setEditing(false, animated: true)
+                editButton.setTitle("Edit", for: .normal)
+            }
+            presentsView.beginUpdates()
+            presentsView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
+            presentsView.endUpdates()
+        }
+    }
     
     //temporary features
     @IBAction func tempKeyboardSwitch() {
@@ -137,7 +271,97 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate{
         }
     }
     
+    var interactor = Interactor()
+    
+    var indicator = false
+    
+    var backgroundChange: Interpolate?
+    var colorChange: Interpolate?
+    
+    var presetsUp = false
+    
+    @IBAction func panGesture(_ sender: UIPanGestureRecognizer) {
+        for button in mainButtons{
+            button.backgroundColor = ColorConstants.defaultButtonBackground
+            button.setTitleColor(ColorConstants.mainTextColor, for: UIControlState.normal)
+            button.borderColor = ColorConstants.buttonBorder
+        }
+        stopAnimation((activeTextField?.tag)! - 1)
+        let screenBounds = UIScreen.main.bounds
+        let bottomLeftCorner = CGPoint(x: 0, y: screenBounds.height / 2)
+        let finalFrame = CGRect(origin: bottomLeftCorner, size: screenBounds.size)
+        let velocity = sender.velocity(in: self.view)
+        let slideDown = velocity.y > 0
+        let magnitude = Double(sqrt((velocity.x * velocity.x) + (velocity.y * velocity.y)))
+        settingsButton.layer.opacity = Float(1 - roundedView.frame.minY/100)
+        helpButton.layer.opacity = Float(1 - roundedView.frame.minY/100)
+        let breakpoint = screenBounds.height / 4
+        if (sender.state == .began || sender.state == .changed){
+            let translation = sender.translation(in: self.view)
+            let newFrame = sender.view!.frame.minY + translation.y
+            if newFrame >= 20 && newFrame < bottomLeftCorner.y{
+                sender.view!.center = CGPoint(x: sender.view!.center.x, y: sender.view!.center.y + translation.y)
+                //self.secondRowBottomSpace.constant += translation.y / 12
+                colorChange?.progress += translation.y / bottomLeftCorner.y
+                if !secondTapDone {
+                    backgroundChange?.progress += translation.y / bottomLeftCorner.y
+                }
+            }
+        }
+        var speed = 0.15
+        if sender.state == .ended {
+            if magnitude > 1500{
+                speed = 500 / magnitude
+            }
+        }
+        if speed > 0.25 {
+            speed = 0.15
+        }
+        if (sender.state == .ended && roundedView.frame.minY > breakpoint && magnitude < 500) || sender.state == .ended && (slideDown && magnitude > 500){
+            presetsUp = false
+            UIView.animate(withDuration: speed, delay: 0, options: .curveLinear, animations: {
+                self.roundedView.layoutIfNeeded()
+                sender.view!.frame = finalFrame
+                self.settingsButton.layer.opacity = 0
+                self.helpButton.layer.opacity = 0
+                self.colorChange?.progress = 1.0
+                self.backgroundChange?.progress = 1.0
+                self.roundedViewTopSpace.constant = bottomLeftCorner.y - 20
+                self.roundedViewBottomSpace.constant = -bottomLeftCorner.y + 20
+            }, completion: nil)
+        } else if (sender.state == .ended && roundedView.frame.minY < breakpoint && magnitude < 500) || sender.state == .ended && (!slideDown && magnitude > 500){
+            print("Going Down")
+            presetsUp = true
+            UIView.animate(withDuration: speed, delay: 0, options: .curveLinear, animations: {
+                self.roundedView.layoutIfNeeded()
+                sender.view!.frame = CGRect(origin: CGPoint(x: 0, y: 20), size: screenBounds.size)
+                self.settingsButton.layer.opacity = 1
+                self.helpButton.layer.opacity = 1
+                if self.secondTapDone{
+                    self.colorChange?.progress = 1
+                    self.colorChange?.progress = 0
+                    UIView.transition(with: self.activeTextField!, duration: 0.25, options: .transitionCrossDissolve, animations: {
+                        self.animationIsOn[(self.activeTextField?.tag)! - 1] = true
+                        self.fadeIn(index: (self.activeTextField?.tag)! - 1)
+                    }, completion: {(finished) in })
+                } else {
+                    self.colorChange?.progress = 0
+                    self.backgroundChange?.progress = 0
+                }
+                
+                self.roundedViewTopSpace.constant = 0
+                self.bottomKeyboardSpace.constant = 0
+                self.roundedViewBottomSpace.constant = 0
+            }, completion: nil)
+        }
+        sender.setTranslation(CGPoint.zero, in: self.view)
+    }
+    
     func calculateRatioButton(){
+        if !presetsUp {
+            hidePresets()
+            return
+        }
         if calculateRatio{
             UIView.transition(with: divSymbol, duration: 0.25, options: .transitionCrossDissolve, animations: {
                 if nightMode{
@@ -197,8 +421,40 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate{
     
     @IBAction func settings(_ sender: UIButton) {
         stopAnimation((activeTextField?.tag)! - 1)
+        let svc = self.storyboard?.instantiateViewController(withIdentifier: "settingsVC") as? SettingsViewController
+        svc?.transitioningDelegate = self
+        svc?.interactor = interactor
+        self.present(svc!, animated: true, completion: nil)
     }
     
+    func hidePresets(){
+        let screenBounds = UIScreen.main.bounds
+        if !presetsUp{
+        UIView.animate(withDuration: 0.25, delay: 0, options: .curveLinear, animations: {
+            self.roundedView.layoutIfNeeded()
+            self.roundedView.frame = CGRect(origin: CGPoint(x: 0, y: 20), size: screenBounds.size)
+            self.settingsButton.layer.opacity = 1
+            self.helpButton.layer.opacity = 1
+            if self.secondTapDone{
+                self.colorChange?.progress = 1
+                self.colorChange?.progress = 0
+                UIView.transition(with: self.activeTextField!, duration: 0.25, options: .transitionCrossDissolve, animations: {
+                    self.animationIsOn[(self.activeTextField?.tag)! - 1] = true
+                    self.fadeIn(index: (self.activeTextField?.tag)! - 1)
+                }, completion: {(finished) in })
+            } else {
+                self.colorChange?.progress = 0
+                self.backgroundChange?.progress = 0
+            }
+            
+            self.roundedViewTopSpace.constant = 0
+            self.bottomKeyboardSpace.constant = 0
+            self.roundedViewBottomSpace.constant = 0
+        }, completion: nil)
+            presetsUp = true
+        }
+    }
+
     @IBAction func iconTouchUp(_ sender: UIButton) {
         sender.layer.opacity = 1
     }
@@ -209,6 +465,10 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate{
     
     //tapping the textfields
     func handleTap(recognizer: UITapGestureRecognizer) {
+        if !presetsUp {
+            hidePresets()
+            return
+        }
         activeTextField = recognizer.view as? UILabel
         
         if activeTextField?.tag == 3 || activeTextField?.tag == 4 {
@@ -422,13 +682,34 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        presets.fetchPresets()
+        
+        //self.transitioningDelegate = self
+        
+        presetsUp = true
+        
         fetchSettings()
         
         if nightMode {
             ColorConstants.nightMode()
         }
         
-        self.view.backgroundColor = .black
+        backgroundChange = Interpolate(from: ColorConstants.labelsBackground, to: UIColor.clear, apply: { [weak self] (color) in
+            self?.activeTextField?.backgroundColor = color
+        })
+        
+        colorChange = Interpolate(from: ColorConstants.deleteColor, to: ColorConstants.mainTextColor, apply: { [weak self] (color) in
+            self?.activeTextField?.textColor = color
+        })
+        
+        addButton.setTitleColor(UIColor(hexString: "#FFC61A", alpha: 1), for: .normal)
+        editButton.setTitleColor(UIColor(hexString: "#FFC61A", alpha: 1), for: .normal)
+        
+//        editButton.titleLabel?.textColor = UIColor(hexString: "#494C52", alpha: 1)
+//        addButton.titleLabel?.textColor = UIColor(hexString: "#494C52", alpha: 1)
+        presetsTitle.textColor = UIColor(hexString: "#74767B", alpha: 1)
+        
+        //self.view.backgroundColor = .black
         setDeleteButtonImage(path: "delete-icon-bright")
         roundedView.layer.cornerRadius = 8
         
@@ -439,9 +720,14 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate{
         
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(calculateRatioButton))
         recognizer.delegate = self
+        
+        let roundedTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(hidePresets))
+        roundedTapRecognizer.delegate = self
+        roundedView.addGestureRecognizer(roundedTapRecognizer)
+        roundedView.isUserInteractionEnabled = true
         divSymbol.addGestureRecognizer(recognizer)
         divSymbol.isUserInteractionEnabled = true
-        
+
         for view in carriages {
             view.layer.cornerRadius = 2
             view.backgroundColor = .clear
@@ -483,10 +769,14 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate{
     
     override func viewWillAppear(_ animated: Bool) {
         let screenHeight = UIScreen.main.bounds.size.height
-        //print("right here")
         for view in helpViews{
             view.removeFromSuperview()
         }
+        
+        dimView.layer.opacity = 0
+        dimView.removeFromSuperview()
+        
+        panString.tintColor = ColorConstants.settingsShadows
         
         if roundedValues{
             pointButton.setTitle("", for: .normal)
@@ -573,22 +863,20 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate{
         }
     }
     
-    let interactor = Interactor()
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destinationViewController = segue.destination as? SettingsViewController {
-            destinationViewController.transitioningDelegate = self
-            destinationViewController.interactor = interactor
-            let tempFrame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
-            dimView = UIView(frame: tempFrame)
-            dimView.backgroundColor = .black
-            dimView.layer.opacity = 0
-            self.view.addSubview(dimView)
-            UIView.animate(withDuration: 0.5, animations: {
-                self.dimView.layer.opacity = 0.8
-                self.roundedView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-            }, completion: {_ in self.dimView.removeFromSuperview()})
-        }
+//      if let destinationViewController = segue.destination as? SettingsViewController {
+//            destinationViewController.transitioningDelegate = self
+//            destinationViewController.interactor = interactor
+//            let tempFrame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
+//            dimView = UIView(frame: tempFrame)
+//            dimView.backgroundColor = .black
+//            dimView.layer.opacity = 0
+//            self.view.addSubview(dimView)
+//            UIView.animate(withDuration: 0.5, animations: {
+//                self.dimView.layer.opacity = 0.8
+//                self.roundedView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+//            }, completion: nil)
+//      }
     }
     
     override func viewDidLayoutSubviews() {
@@ -598,7 +886,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate{
         shadowView.layer.shadowRadius = 0
     }
     
-    private func generalEvaluation(with tappedField: UILabel) {
+    fileprivate func generalEvaluation(with tappedField: UILabel) {
         
         if fixedPoint && !roundedValues && precisedValue1 != ""{
             tappedField.text = precisedValue1
@@ -628,8 +916,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate{
                     wField.text = evaluator.evaluate(values: values, field: tappedField.tag, pixelsField: pixelsField)
                 }
             }
-            
-            
         } else {
             if roundedValues{
                 precisedValue1 = (textfields[2].text)!
@@ -638,7 +924,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate{
             }
             let values = (textfields[0].text!, textfields[1].text!, textfields[2].text!, textfields[3].text!)
             (xField.text, yField.text) = evaluator.evaluateRatio(values: values, field: tappedField.tag)
-        }
+    }
 
         loadData()
     }
@@ -649,7 +935,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate{
         }
     }
     
-    private func colorSetup() {
+    func colorSetup() {
         deleteButton.tintColor = ColorConstants.deleteIconColor
         roundedView.backgroundColor = ColorConstants.mainBackground
         
@@ -784,9 +1070,14 @@ extension ViewController: UIViewControllerTransitioningDelegate {
         return DismissAnimator()
     }
     
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return PresentAnimator()
+    }
+    
     func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return interactor.hasStarted ? interactor : nil
     }
+    
 }
 
 

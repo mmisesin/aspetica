@@ -33,6 +33,7 @@ struct ColorConstants {
     static var helpColor = UIColor(hexString: "#E04A2C", alpha: 1)
     static var onTapColor = UIColor(hexString: "#F6F7F9", alpha: 1)
     static var settingsShadows = UIColor(hexString: "#E0E4EA", alpha: 1)
+    static let selectionColor = UIColor(red: 0.15, green: 0.15, blue: 0.17, alpha: 1)
     
     static func nightMode() {
         mainBackground = UIColor(hexString: "#1C1D20", alpha: 1)

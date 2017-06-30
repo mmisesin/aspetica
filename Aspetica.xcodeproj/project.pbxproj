@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AF78F2FABEEBF249A8894F54 /* Pods_Aspetica.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC3561468E86089E88566708 /* Pods_Aspetica.framework */; };
+		C607A4EC1EABDA4E00D94374 /* Interpolate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C607A4EB1EABDA4E00D94374 /* Interpolate.framework */; };
+		C6125BB11EAE509D000B8147 /* Presets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6125BB01EAE509D000B8147 /* Presets.swift */; };
 		C62E40B21E57427F0047DDF3 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62E40B11E57427F0047DDF3 /* Interactor.swift */; };
 		C62E40B41E5742A00047DDF3 /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62E40B31E5742A00047DDF3 /* DismissAnimator.swift */; };
 		C648094A1E3189FE00F3EF12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64809491E3189FE00F3EF12 /* AppDelegate.swift */; };
@@ -19,16 +20,17 @@
 		C65D26251E3A3F22000A4744 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C65D26241E3A3F22000A4744 /* Launch Screen.storyboard */; };
 		C66A3B811E32A6350001BC80 /* RatioEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66A3B801E32A6350001BC80 /* RatioEvaluator.swift */; };
 		C66A3B851E36943E0001BC80 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66A3B841E36943E0001BC80 /* SettingsViewController.swift */; };
+		C6DBBF081EB51B2200F65CE1 /* PresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DBBF071EB51B2200F65CE1 /* PresentAnimator.swift */; };
+		C6DBBF0B1EB61C2D00F65CE1 /* PresetsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C6DBBF091EB61C2D00F65CE1 /* PresetsModel.xcdatamodeld */; };
+		C6DBBF111EB676E200F65CE1 /* PresetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DBBF101EB676E200F65CE1 /* PresetCell.swift */; };
 		C6FC34C91E37ADF7008D8D9A /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FC34C81E37ADF7008D8D9A /* Style.swift */; };
-		C6FFC70D1E83127900E03626 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C6FFC70C1E83127900E03626 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5A992CEEAA66B0FE3383F30E /* Pods-Aspetica.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aspetica.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Aspetica/Pods-Aspetica.debug.xcconfig"; sourceTree = "<group>"; };
-		B42C2EF6560C2414FFE0547F /* Pods-Aspetica.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aspetica.release.xcconfig"; path = "Pods/Target Support Files/Pods-Aspetica/Pods-Aspetica.release.xcconfig"; sourceTree = "<group>"; };
+		C607A4EB1EABDA4E00D94374 /* Interpolate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Interpolate.framework; path = Carthage/Build/iOS/Interpolate.framework; sourceTree = "<group>"; };
+		C6125BB01EAE509D000B8147 /* Presets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presets.swift; sourceTree = "<group>"; };
 		C62E40B11E57427F0047DDF3 /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
 		C62E40B31E5742A00047DDF3 /* DismissAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
-		C64809461E3189FE00F3EF12 /* Aspetica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aspetica.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C64809491E3189FE00F3EF12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C648094B1E3189FE00F3EF12 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C648094E1E3189FE00F3EF12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -39,9 +41,11 @@
 		C65D26241E3A3F22000A4744 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		C66A3B801E32A6350001BC80 /* RatioEvaluator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatioEvaluator.swift; sourceTree = "<group>"; };
 		C66A3B841E36943E0001BC80 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		C6AD4AC21E8D99BD00A5E96A /* Aspetica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aspetica.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6DBBF071EB51B2200F65CE1 /* PresentAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentAnimator.swift; sourceTree = "<group>"; };
+		C6DBBF0A1EB61C2D00F65CE1 /* PresetsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PresetsModel.xcdatamodel; sourceTree = "<group>"; };
+		C6DBBF101EB676E200F65CE1 /* PresetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresetCell.swift; sourceTree = "<group>"; };
 		C6FC34C81E37ADF7008D8D9A /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
-		C6FFC70C1E83127900E03626 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		DC3561468E86089E88566708 /* Pods_Aspetica.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Aspetica.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,29 +53,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF78F2FABEEBF249A8894F54 /* Pods_Aspetica.framework in Frameworks */,
+				C607A4EC1EABDA4E00D94374 /* Interpolate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C607A4EA1EABDA4E00D94374 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C607A4EB1EABDA4E00D94374 /* Interpolate.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C648093D1E3189FD00F3EF12 = {
 			isa = PBXGroup;
 			children = (
 				C64809481E3189FE00F3EF12 /* Aspetica */,
-				C64809471E3189FE00F3EF12 /* Products */,
-				D84DF39A602EBDD517D89DE0 /* Pods */,
-				F5D6DE14391E781493809D56 /* Frameworks */,
+				C6AD4AC21E8D99BD00A5E96A /* Aspetica.app */,
+				C607A4EA1EABDA4E00D94374 /* Frameworks */,
 			);
-			sourceTree = "<group>";
-		};
-		C64809471E3189FE00F3EF12 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C64809461E3189FE00F3EF12 /* Aspetica.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		C64809481E3189FE00F3EF12 /* Aspetica */ = {
@@ -79,10 +82,12 @@
 			children = (
 				C66A3B7F1E32A3F90001BC80 /* Supporting files */,
 				C648094B1E3189FE00F3EF12 /* ViewController.swift */,
+				C6125BB01EAE509D000B8147 /* Presets.swift */,
 				C6FC34C81E37ADF7008D8D9A /* Style.swift */,
 				C66A3B801E32A6350001BC80 /* RatioEvaluator.swift */,
 				C648094D1E3189FE00F3EF12 /* Main.storyboard */,
 				C66A3B841E36943E0001BC80 /* SettingsViewController.swift */,
+				C6DBBF071EB51B2200F65CE1 /* PresentAnimator.swift */,
 				C62E40B31E5742A00047DDF3 /* DismissAnimator.swift */,
 				C62E40B11E57427F0047DDF3 /* Interactor.swift */,
 				C65D26241E3A3F22000A4744 /* Launch Screen.storyboard */,
@@ -97,28 +102,12 @@
 				C648095D1E318B2C00F3EF12 /* CustomClasses.swift */,
 				C648095E1E318B2C00F3EF12 /* extensions.swift */,
 				C64809491E3189FE00F3EF12 /* AppDelegate.swift */,
+				C6DBBF101EB676E200F65CE1 /* PresetCell.swift */,
 				C64809501E3189FE00F3EF12 /* Assets.xcassets */,
 				C64809551E3189FE00F3EF12 /* Info.plist */,
-				C6FFC70C1E83127900E03626 /* GoogleService-Info.plist */,
+				C6DBBF091EB61C2D00F65CE1 /* PresetsModel.xcdatamodeld */,
 			);
 			name = "Supporting files";
-			sourceTree = "<group>";
-		};
-		D84DF39A602EBDD517D89DE0 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				5A992CEEAA66B0FE3383F30E /* Pods-Aspetica.debug.xcconfig */,
-				B42C2EF6560C2414FFE0547F /* Pods-Aspetica.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		F5D6DE14391E781493809D56 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				DC3561468E86089E88566708 /* Pods_Aspetica.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,12 +117,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C64809581E3189FE00F3EF12 /* Build configuration list for PBXNativeTarget "Aspetica" */;
 			buildPhases = (
-				72E5AC902F231F425A25AF20 /* [CP] Check Pods Manifest.lock */,
 				C64809421E3189FD00F3EF12 /* Sources */,
 				C64809431E3189FD00F3EF12 /* Frameworks */,
 				C64809441E3189FD00F3EF12 /* Resources */,
-				AAF14E204B758908561D78CD /* [CP] Embed Pods Frameworks */,
-				EEDAA3BFCFCBF4692BBE60F7 /* [CP] Copy Pods Resources */,
+				C607A4ED1EABDA6100D94374 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -141,7 +128,7 @@
 			);
 			name = Aspetica;
 			productName = Sparzel;
-			productReference = C64809461E3189FE00F3EF12 /* Aspetica.app */;
+			productReference = C6AD4AC21E8D99BD00A5E96A /* Aspetica.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -151,7 +138,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Artem Misesin";
 				TargetAttributes = {
 					C64809451E3189FD00F3EF12 = {
@@ -170,7 +157,7 @@
 				Base,
 			);
 			mainGroup = C648093D1E3189FD00F3EF12;
-			productRefGroup = C64809471E3189FE00F3EF12 /* Products */;
+			productRefGroup = C648093D1E3189FD00F3EF12;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -185,7 +172,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C64809511E3189FE00F3EF12 /* Assets.xcassets in Resources */,
-				C6FFC70D1E83127900E03626 /* GoogleService-Info.plist in Resources */,
 				C65D26251E3A3F22000A4744 /* Launch Screen.storyboard in Resources */,
 				C648094F1E3189FE00F3EF12 /* Main.storyboard in Resources */,
 			);
@@ -194,50 +180,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		72E5AC902F231F425A25AF20 /* [CP] Check Pods Manifest.lock */ = {
+		C607A4ED1EABDA6100D94374 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Interpolate.framework",
 			);
-			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		AAF14E204B758908561D78CD /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Aspetica/Pods-Aspetica-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EEDAA3BFCFCBF4692BBE60F7 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Aspetica/Pods-Aspetica-resources.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -249,12 +204,16 @@
 				C648094C1E3189FE00F3EF12 /* ViewController.swift in Sources */,
 				C66A3B851E36943E0001BC80 /* SettingsViewController.swift in Sources */,
 				C648094A1E3189FE00F3EF12 /* AppDelegate.swift in Sources */,
+				C6DBBF111EB676E200F65CE1 /* PresetCell.swift in Sources */,
 				C62E40B21E57427F0047DDF3 /* Interactor.swift in Sources */,
+				C6DBBF0B1EB61C2D00F65CE1 /* PresetsModel.xcdatamodeld in Sources */,
 				C66A3B811E32A6350001BC80 /* RatioEvaluator.swift in Sources */,
 				C648095F1E318B2C00F3EF12 /* CustomClasses.swift in Sources */,
 				C64809601E318B2C00F3EF12 /* extensions.swift in Sources */,
 				C62E40B41E5742A00047DDF3 /* DismissAnimator.swift in Sources */,
+				C6125BB11EAE509D000B8147 /* Presets.swift in Sources */,
 				C6FC34C91E37ADF7008D8D9A /* Style.swift in Sources */,
+				C6DBBF081EB51B2200F65CE1 /* PresentAnimator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,14 +326,16 @@
 		};
 		C64809591E3189FE00F3EF12 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5A992CEEAA66B0FE3383F30E /* Pods-Aspetica.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = 67459ZGRXW;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
 				INFOPLIST_FILE = Sparzel/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = sparzel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -384,14 +345,16 @@
 		};
 		C648095A1E3189FE00F3EF12 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B42C2EF6560C2414FFE0547F /* Pods-Aspetica.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = 67459ZGRXW;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS";
 				INFOPLIST_FILE = Sparzel/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = sparzel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -421,6 +384,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C6DBBF091EB61C2D00F65CE1 /* PresetsModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C6DBBF0A1EB61C2D00F65CE1 /* PresetsModel.xcdatamodel */,
+			);
+			currentVersion = C6DBBF0A1EB61C2D00F65CE1 /* PresetsModel.xcdatamodel */;
+			path = PresetsModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C648093E1E3189FD00F3EF12 /* Project object */;
 }
