@@ -1,6 +1,0 @@
-framework module Pods_Aspetica {
-  umbrella header "Pods-Aspetica-umbrella.h"
-
-  export *
-  module * { export * }
-}
