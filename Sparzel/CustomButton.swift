@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomButton: UIButton {
+class CustomButton: UIButton, Themable {
 
     @IBInspectable var borderWidth: CGFloat = 0 {
         didSet {
@@ -38,6 +38,13 @@ class CustomButton: UIButton {
         backgroundColor = Color.defaultButtonBackground
         setTitleColor(Color.mainTextColor, for: .normal)
         borderColor = Color.buttonBorder
+    }
+
+    func applyTheme() {
+        backgroundColor = Color.defaultButtonBackground
+        borderColor = Color.buttonBorder
+        tintColor = Color.deleteIconColor
+        setTitleColor(Color.mainTextColor, for: .normal)
     }
     
 }

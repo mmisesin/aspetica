@@ -16,7 +16,7 @@ protocol DigitPadViewDelegate: class {
 
 }
 
-class DigitPadView: UIView {
+class DigitPadView: UIView, Themable {
     
     // MARK: IBs
     
@@ -77,11 +77,19 @@ class DigitPadView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        safeAreaViewHeightConstraint.constant = UIDevice.current.isIPhoneX ? 20 : 0
+        safeAreaViewHeightConstraint.constant = UIDevice.current.isIPhoneX ? 78 : 0
     }
 
     func setDeleteDoubled(_ doubled: Bool) {
         deleteButton.tintColor = doubled ? Color.deleteIconDarkColor : Color.deleteIconColor
+    }
+
+    func applyTheme() {
+        [oneButton, twoButton, threeButton, fourButton, fiveButton, sixButton, sevenButton, eightButton, nineButton, zeroButton, pointButton, deleteButton].forEach {
+            $0.applyTheme()
+        }
+
+        safeAreaView.backgroundColor = Color.defaultButtonBackground
     }
     
 }

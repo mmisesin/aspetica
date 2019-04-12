@@ -23,7 +23,7 @@ enum ActiveValue: Int {
     }
 }
 
-class ValuesDisplayView: UIView {
+class ValuesDisplayView: UIView, Themable {
     
     // MARK: IBs
     
@@ -89,6 +89,13 @@ class ValuesDisplayView: UIView {
         widthValueView.setSelected(true)
 
         setupHelp()
+    }
+
+    func applyTheme() {
+        xValueView.applyTheme()
+        yValueView.applyTheme()
+        widthValueView.applyTheme()
+        heightValueView.applyTheme()
     }
 
     func displayStack(_ stack: CalculationStack? = nil) {

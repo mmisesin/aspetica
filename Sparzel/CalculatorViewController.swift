@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CalculatorViewController: UIViewController, UIGestureRecognizerDelegate, DismissalDelegate {
+class CalculatorViewController: BaseViewController, UIGestureRecognizerDelegate, DismissalDelegate {
     
     // MARK: IBs
     
@@ -54,39 +54,23 @@ class CalculatorViewController: UIViewController, UIGestureRecognizerDelegate, D
         }
 
         valuesDisplay.logicStore = self.logicStore
+        valuesDisplay.delegate = self
         digitPad.delegate = self
-//        let triangleWidth: CGFloat = 8
-//        
-//        let screenHeight = UIScreen.main.bounds.size.height
-//        if screenHeight == 568 {
-//            secondRowBottomSpace.constant = 56
-//            for button in mainButtons {
-//                button.titleLabel?.font = button.titleLabel?.font.withSize(22)
-//            }
-//            for textfield in textfields {
-//                textfield.font = textfield.font.withSize(32)
-//            }
-//            helpOffset = 53
-//        } else if screenHeight == 667 {
-//            helpOffset = 39
-//        } else if screenHeight == 736 {
-//            shadowView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
-//            helpOffset = 30
-//            secondRowBottomSpace.constant = 73
-//            for button in mainButtons {
-//                button.titleLabel?.font = button.titleLabel?.font.withSize(31)
-//            }
-//            for textfield in textfields {
-//                textfield.font = textfield.font.withSize(45)
-//
-//            }
-//        }
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         valuesDisplay.displayStack()
+    }
+
+    override func applyTheme() {
+        settingsButton.tintColor = Color.symbolsColor
+        helpButton.tintColor = Color.symbolsColor
+
+        valuesDisplay.applyTheme()
+        digitPad.applyTheme()
+        roundedView.backgroundColor = Color.mainBackground
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

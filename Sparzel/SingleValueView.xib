@@ -22,11 +22,11 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="32" translatesAutoresizingMaskIntoConstraints="NO" id="STe-SR-eqf" customClass="InsetLabel" customModule="Aspetica" customModuleProvider="target">
-                    <rect key="frame" x="102.5" y="71" width="36" height="56"/>
+                    <rect key="frame" x="98.5" y="71" width="44" height="56"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="56" id="ezn-TR-AlQ"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="40"/>
                     <color key="textColor" red="0.24993193150000001" green="0.28186866640000002" blue="0.31520080569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
@@ -36,7 +36,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <view clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aiS-mA-5qc">
-                    <rect key="frame" x="136.5" y="71" width="2" height="56"/>
+                    <rect key="frame" x="140.5" y="71" width="2" height="56"/>
                     <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="2" id="f4X-av-GxX"/>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SingleValueView: UIView, NibLoadable {
+class SingleValueView: UIView, NibLoadable, Themable {
     
     // MARK: IBs
     
@@ -38,6 +38,7 @@ class SingleValueView: UIView, NibLoadable {
     private var decimalPartStarted:  Bool {
         return stringValue.contains(".")
     }
+    private var isSelected = false
     private var shouldAnimate = false
     private var helpView: UIView?
     
@@ -58,9 +59,15 @@ class SingleValueView: UIView, NibLoadable {
         super.layoutSubviews()
         setupHelp()
     }
+
+    func applyTheme() {
+        carriage.backgroundColor = Color.carriageColor
+        valueLabel.backgroundColor = isSelected ? Color.labelsBackground : .clear
+        valueLabel.textColor = isSelected ? Color.deleteColor : Color.mainTextColor
+    }
     
     func setSelected(_ selected: Bool) {
-
+        isSelected = selected
         valueLabel.textColor = selected ? Color.deleteColor : Color.mainTextColor
         valueLabel.backgroundColor = selected ? Color.labelsBackground : .clear
         

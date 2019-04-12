@@ -39,6 +39,7 @@
 		C6A42C0121D24B140029D5B4 /* DigitPadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A42C0021D24B140029D5B4 /* DigitPadView.swift */; };
 		C6A42C0321D2E3900029D5B4 /* ValuesDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A42C0221D2E3900029D5B4 /* ValuesDisplayView.swift */; };
 		C6B3FCEE2260A8D700F8729C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6B3FCED2260A8D700F8729C /* LaunchScreen.storyboard */; };
+		C6B3FCF22260D46B00F8729C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B3FCF12260D46B00F8729C /* BaseViewController.swift */; };
 		C6FC34C91E37ADF7008D8D9A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FC34C81E37ADF7008D8D9A /* Colors.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,7 @@
 		C6A42C0021D24B140029D5B4 /* DigitPadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitPadView.swift; sourceTree = "<group>"; };
 		C6A42C0221D2E3900029D5B4 /* ValuesDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuesDisplayView.swift; sourceTree = "<group>"; };
 		C6B3FCED2260A8D700F8729C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C6B3FCF12260D46B00F8729C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C6FC34C81E37ADF7008D8D9A /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -214,6 +216,7 @@
 			children = (
 				C648094B1E3189FE00F3EF12 /* CalculatorViewController.swift */,
 				C66A3B841E36943E0001BC80 /* SettingsViewController.swift */,
+				C6B3FCF12260D46B00F8729C /* BaseViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				C68A5DC4225047C400E15469 /* UIView+NibLoadable.swift in Sources */,
 				C66A3B851E36943E0001BC80 /* SettingsViewController.swift in Sources */,
 				C639B070225F478600AA879D /* ValueProcessor.swift in Sources */,
+				C6B3FCF22260D46B00F8729C /* BaseViewController.swift in Sources */,
 				C648094A1E3189FE00F3EF12 /* AppDelegate.swift in Sources */,
 				C63138CD21D6CF4B009C3D64 /* UserDefaultsManager.swift in Sources */,
 				C639B06E225F416600AA879D /* LogicStore.swift in Sources */,
