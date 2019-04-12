@@ -1,5 +1,5 @@
 //
-//  Constants.swift
+//  Colors.swift
 //  Sparzel
 //
 //  Created by Artem Misesin on 1/24/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct ColorConstants {
+struct Color {
     static var defaultButtonBackground = UIColor.white
     static var pressedButtonColor = UIColor(hexString: "#FFE6E1", alpha: 1)
     static var pressedButtonTextColor = UIColor(hexString: "#AA3821", alpha: 1)
