@@ -28,6 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C6B3FCF82264FF0B00F8729C"
+               BuildableName = "AspeticaTests.xctest"
+               BlueprintName = "AspeticaTests"
+               ReferencedContainer = "container:Aspetica.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C6B3FD062264FF1700F8729C"
+               BuildableName = "AspeticaUITests.xctest"
+               BlueprintName = "AspeticaUITests"
+               ReferencedContainer = "container:Aspetica.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

@@ -10,16 +10,16 @@ import UIKit
 
 class CustomButton: UIButton, Themable {
 
-    @IBInspectable var borderWidth: CGFloat = 0 {
-        didSet {
-            layer.borderWidth = CGFloat(borderWidth)
-        }
+    init(symbol: String) {
+        super.init(frame: .zero)
+
+        setTitle(symbol, for: .normal)
+        layer.borderWidth = 0.5
+        titleLabel?.font = .systemFont(ofSize: 28)
     }
-    
-    @IBInspectable var borderColor: UIColor? {
-        didSet {
-            layer.borderColor = borderColor?.cgColor
-        }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func awakeFromNib() {
@@ -31,18 +31,18 @@ class CustomButton: UIButton, Themable {
     @objc func touchDown() {
         backgroundColor = Color.pressedButtonColor
         setTitleColor(Color.pressedButtonTextColor, for: .normal)
-        borderColor = Color.pressedButtonBorder
+        layer.borderColor = Color.pressedButtonBorder.cgColor
     }
 
     @objc func dragAway() {
         backgroundColor = Color.defaultButtonBackground
         setTitleColor(Color.mainTextColor, for: .normal)
-        borderColor = Color.buttonBorder
+        layer.borderColor = Color.buttonBorder.cgColor
     }
 
     func applyTheme() {
         backgroundColor = Color.defaultButtonBackground
-        borderColor = Color.buttonBorder
+        layer.borderColor = Color.buttonBorder.cgColor
         tintColor = Color.deleteIconColor
         setTitleColor(Color.mainTextColor, for: .normal)
     }

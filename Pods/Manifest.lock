@@ -1,0 +1,24 @@
+PODS:
+  - Nimble (8.0.1)
+  - Quick (1.3.1)
+  - SnapKit (4.0.1)
+
+DEPENDENCIES:
+  - Nimble (= 8.0.1)
+  - Quick (= 1.3.1)
+  - SnapKit (~> 4.0.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Nimble
+    - Quick
+    - SnapKit
+
+SPEC CHECKSUMS:
+  Nimble: 45f786ae66faa9a709624227fae502db55a8bdd0
+  Quick: d17304d58d0d169dd0bd1c6e5c28e3318de32a1a
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
+
+PODFILE CHECKSUM: 5cdff3ef867e002c65ddfe858733c5f11b64db05
+
+COCOAPODS: 1.6.1

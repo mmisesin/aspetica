@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30F57B504795964A2C5F09AE /* libPods-Aspetica.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9283FC3DFDF17B80B291E78F /* libPods-Aspetica.a */; };
+		40D19281C424DB7DE446302F /* libPods-AspeticaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBC8A5F05D4E8B2E566EA7A0 /* libPods-AspeticaTests.a */; };
+		872F8E8B4343D15642DDF62E /* libPods-AspeticaUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DDCFD7B53F384803B2B0321D /* libPods-AspeticaUITests.a */; };
+		C6167257226F33D0006F04B1 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6167256226F33D0006F04B1 /* HelpView.swift */; };
 		C62E40B21E57427F0047DDF3 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62E40B11E57427F0047DDF3 /* Interactor.swift */; };
 		C62E40B41E5742A00047DDF3 /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C62E40B31E5742A00047DDF3 /* DismissAnimator.swift */; };
 		C63138CD21D6CF4B009C3D64 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63138CC21D6CF4B009C3D64 /* UserDefaultsManager.swift */; };
@@ -24,7 +28,6 @@
 		C64809601E318B2C00F3EF12 /* DismissalDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C648095E1E318B2C00F3EF12 /* DismissalDelegate.swift */; };
 		C66A3B811E32A6350001BC80 /* RatioEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66A3B801E32A6350001BC80 /* RatioEvaluator.swift */; };
 		C66A3B851E36943E0001BC80 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C66A3B841E36943E0001BC80 /* SettingsViewController.swift */; };
-		C68A5DC4225047C400E15469 /* UIView+NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68A5DC3225047C400E15469 /* UIView+NibLoadable.swift */; };
 		C6A42BE321D2377E0029D5B4 /* UIDevice+ModelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A42BE221D2377E0029D5B4 /* UIDevice+ModelName.swift */; };
 		C6A42BE721D237B80029D5B4 /* UILabel+Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A42BE621D237B80029D5B4 /* UILabel+Point.swift */; };
 		C6A42BE921D237FC0029D5B4 /* UITableViewCell+Disclosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A42BE821D237FC0029D5B4 /* UITableViewCell+Disclosure.swift */; };
@@ -40,10 +43,37 @@
 		C6A42C0321D2E3900029D5B4 /* ValuesDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A42C0221D2E3900029D5B4 /* ValuesDisplayView.swift */; };
 		C6B3FCEE2260A8D700F8729C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6B3FCED2260A8D700F8729C /* LaunchScreen.storyboard */; };
 		C6B3FCF22260D46B00F8729C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B3FCF12260D46B00F8729C /* BaseViewController.swift */; };
+		C6B3FCFC2264FF0B00F8729C /* AspeticaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B3FCFB2264FF0B00F8729C /* AspeticaTests.swift */; };
+		C6B3FD0A2264FF1700F8729C /* AspeticaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B3FD092264FF1700F8729C /* AspeticaUITests.swift */; };
 		C6FC34C91E37ADF7008D8D9A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FC34C81E37ADF7008D8D9A /* Colors.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C6B3FCFE2264FF0B00F8729C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C648093E1E3189FD00F3EF12 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C64809451E3189FD00F3EF12;
+			remoteInfo = Aspetica;
+		};
+		C6B3FD0C2264FF1700F8729C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C648093E1E3189FD00F3EF12 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C64809451E3189FD00F3EF12;
+			remoteInfo = Aspetica;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		242FC02EFD1212E2D3AD2C24 /* Pods-Aspetica.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aspetica.release.xcconfig"; path = "Target Support Files/Pods-Aspetica/Pods-Aspetica.release.xcconfig"; sourceTree = "<group>"; };
+		3D504DBCE51E5E081486A6E0 /* Pods-AspeticaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AspeticaTests.release.xcconfig"; path = "Target Support Files/Pods-AspeticaTests/Pods-AspeticaTests.release.xcconfig"; sourceTree = "<group>"; };
+		50BFCB05BB311D9C89D3627A /* Pods-AspeticaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AspeticaUITests.debug.xcconfig"; path = "Target Support Files/Pods-AspeticaUITests/Pods-AspeticaUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		7FF706126ADAA77C13E93339 /* Pods-Aspetica.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aspetica.debug.xcconfig"; path = "Target Support Files/Pods-Aspetica/Pods-Aspetica.debug.xcconfig"; sourceTree = "<group>"; };
+		9283FC3DFDF17B80B291E78F /* libPods-Aspetica.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Aspetica.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE1186DD5B5A35D6CB12EF14 /* Pods-AspeticaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AspeticaUITests.release.xcconfig"; path = "Target Support Files/Pods-AspeticaUITests/Pods-AspeticaUITests.release.xcconfig"; sourceTree = "<group>"; };
+		BBC8A5F05D4E8B2E566EA7A0 /* libPods-AspeticaTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AspeticaTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6167256226F33D0006F04B1 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		C62E40B11E57427F0047DDF3 /* Interactor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
 		C62E40B31E5742A00047DDF3 /* DismissAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
 		C63138CC21D6CF4B009C3D64 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
@@ -63,7 +93,6 @@
 		C648095E1E318B2C00F3EF12 /* DismissalDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissalDelegate.swift; sourceTree = "<group>"; };
 		C66A3B801E32A6350001BC80 /* RatioEvaluator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatioEvaluator.swift; sourceTree = "<group>"; };
 		C66A3B841E36943E0001BC80 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		C68A5DC3225047C400E15469 /* UIView+NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+NibLoadable.swift"; sourceTree = "<group>"; };
 		C6A42BE221D2377E0029D5B4 /* UIDevice+ModelName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+ModelName.swift"; sourceTree = "<group>"; };
 		C6A42BE621D237B80029D5B4 /* UILabel+Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Point.swift"; sourceTree = "<group>"; };
 		C6A42BE821D237FC0029D5B4 /* UITableViewCell+Disclosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Disclosure.swift"; sourceTree = "<group>"; };
@@ -79,7 +108,15 @@
 		C6A42C0221D2E3900029D5B4 /* ValuesDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuesDisplayView.swift; sourceTree = "<group>"; };
 		C6B3FCED2260A8D700F8729C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C6B3FCF12260D46B00F8729C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C6B3FCF92264FF0B00F8729C /* AspeticaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AspeticaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6B3FCFB2264FF0B00F8729C /* AspeticaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspeticaTests.swift; sourceTree = "<group>"; };
+		C6B3FCFD2264FF0B00F8729C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6B3FD072264FF1700F8729C /* AspeticaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AspeticaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6B3FD092264FF1700F8729C /* AspeticaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspeticaUITests.swift; sourceTree = "<group>"; };
+		C6B3FD0B2264FF1700F8729C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C6FC34C81E37ADF7008D8D9A /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		DDCFD7B53F384803B2B0321D /* libPods-AspeticaUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AspeticaUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDFC0EE4AFED8264DA26FF5B /* Pods-AspeticaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AspeticaTests.debug.xcconfig"; path = "Target Support Files/Pods-AspeticaTests/Pods-AspeticaTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,12 +124,52 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30F57B504795964A2C5F09AE /* libPods-Aspetica.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6B3FCF62264FF0B00F8729C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40D19281C424DB7DE446302F /* libPods-AspeticaTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6B3FD042264FF1700F8729C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				872F8E8B4343D15642DDF62E /* libPods-AspeticaUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		42E169FA1B5B9CDD77398BFC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9283FC3DFDF17B80B291E78F /* libPods-Aspetica.a */,
+				BBC8A5F05D4E8B2E566EA7A0 /* libPods-AspeticaTests.a */,
+				DDCFD7B53F384803B2B0321D /* libPods-AspeticaUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		60032A2F4EF46AEBBD70717D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7FF706126ADAA77C13E93339 /* Pods-Aspetica.debug.xcconfig */,
+				242FC02EFD1212E2D3AD2C24 /* Pods-Aspetica.release.xcconfig */,
+				DDFC0EE4AFED8264DA26FF5B /* Pods-AspeticaTests.debug.xcconfig */,
+				3D504DBCE51E5E081486A6E0 /* Pods-AspeticaTests.release.xcconfig */,
+				50BFCB05BB311D9C89D3627A /* Pods-AspeticaUITests.debug.xcconfig */,
+				AE1186DD5B5A35D6CB12EF14 /* Pods-AspeticaUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		C63138D221D6E62F009C3D64 /* SingleValueView */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,7 +183,11 @@
 			isa = PBXGroup;
 			children = (
 				C64809481E3189FE00F3EF12 /* Aspetica */,
+				C6B3FCFA2264FF0B00F8729C /* AspeticaTests */,
+				C6B3FD082264FF1700F8729C /* AspeticaUITests */,
 				C64809471E3189FE00F3EF12 /* Products */,
+				60032A2F4EF46AEBBD70717D /* Pods */,
+				42E169FA1B5B9CDD77398BFC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,6 +195,8 @@
 			isa = PBXGroup;
 			children = (
 				C64809461E3189FE00F3EF12 /* Aspetica.app */,
+				C6B3FCF92264FF0B00F8729C /* AspeticaTests.xctest */,
+				C6B3FD072264FF1700F8729C /* AspeticaUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -162,7 +245,6 @@
 				C6A42BE621D237B80029D5B4 /* UILabel+Point.swift */,
 				C6A42BE821D237FC0029D5B4 /* UITableViewCell+Disclosure.swift */,
 				C6A42BF021D2389C0029D5B4 /* UIColor+Hex.swift */,
-				C68A5DC3225047C400E15469 /* UIView+NibLoadable.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -178,6 +260,7 @@
 				C6A42C0021D24B140029D5B4 /* DigitPadView.swift */,
 				C6A42C0221D2E3900029D5B4 /* ValuesDisplayView.swift */,
 				C639B071225FA2BB00AA879D /* IconButton.swift */,
+				C6167256226F33D0006F04B1 /* HelpView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -232,6 +315,24 @@
 			name = Services;
 			sourceTree = "<group>";
 		};
+		C6B3FCFA2264FF0B00F8729C /* AspeticaTests */ = {
+			isa = PBXGroup;
+			children = (
+				C6B3FCFB2264FF0B00F8729C /* AspeticaTests.swift */,
+				C6B3FCFD2264FF0B00F8729C /* Info.plist */,
+			);
+			path = AspeticaTests;
+			sourceTree = "<group>";
+		};
+		C6B3FD082264FF1700F8729C /* AspeticaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C6B3FD092264FF1700F8729C /* AspeticaUITests.swift */,
+				C6B3FD0B2264FF1700F8729C /* Info.plist */,
+			);
+			path = AspeticaUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -239,6 +340,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C64809581E3189FE00F3EF12 /* Build configuration list for PBXNativeTarget "Aspetica" */;
 			buildPhases = (
+				EB342DC9085519DFB4ABD543 /* [CP] Check Pods Manifest.lock */,
 				C64809421E3189FD00F3EF12 /* Sources */,
 				C64809431E3189FD00F3EF12 /* Frameworks */,
 				C64809441E3189FD00F3EF12 /* Resources */,
@@ -252,13 +354,51 @@
 			productReference = C64809461E3189FE00F3EF12 /* Aspetica.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C6B3FCF82264FF0B00F8729C /* AspeticaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C6B3FD022264FF0B00F8729C /* Build configuration list for PBXNativeTarget "AspeticaTests" */;
+			buildPhases = (
+				5A9EB64CC32FEA00995D3001 /* [CP] Check Pods Manifest.lock */,
+				C6B3FCF52264FF0B00F8729C /* Sources */,
+				C6B3FCF62264FF0B00F8729C /* Frameworks */,
+				C6B3FCF72264FF0B00F8729C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C6B3FCFF2264FF0B00F8729C /* PBXTargetDependency */,
+			);
+			name = AspeticaTests;
+			productName = AspeticaTests;
+			productReference = C6B3FCF92264FF0B00F8729C /* AspeticaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		C6B3FD062264FF1700F8729C /* AspeticaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C6B3FD0E2264FF1700F8729C /* Build configuration list for PBXNativeTarget "AspeticaUITests" */;
+			buildPhases = (
+				001FE59ED8C45D7BA5AFC6C3 /* [CP] Check Pods Manifest.lock */,
+				C6B3FD032264FF1700F8729C /* Sources */,
+				C6B3FD042264FF1700F8729C /* Frameworks */,
+				C6B3FD052264FF1700F8729C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C6B3FD0D2264FF1700F8729C /* PBXTargetDependency */,
+			);
+			name = AspeticaUITests;
+			productName = AspeticaUITests;
+			productReference = C6B3FD072264FF1700F8729C /* AspeticaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		C648093E1E3189FD00F3EF12 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Artem Misesin";
 				TargetAttributes = {
@@ -266,6 +406,18 @@
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 67459ZGRXW;
 						ProvisioningStyle = Automatic;
+					};
+					C6B3FCF82264FF0B00F8729C = {
+						CreatedOnToolsVersion = 10.2;
+						DevelopmentTeam = 67459ZGRXW;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C64809451E3189FD00F3EF12;
+					};
+					C6B3FD062264FF1700F8729C = {
+						CreatedOnToolsVersion = 10.2;
+						DevelopmentTeam = 67459ZGRXW;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C64809451E3189FD00F3EF12;
 					};
 				};
 			};
@@ -284,6 +436,8 @@
 			projectRoot = "";
 			targets = (
 				C64809451E3189FD00F3EF12 /* Aspetica */,
+				C6B3FCF82264FF0B00F8729C /* AspeticaTests */,
+				C6B3FD062264FF1700F8729C /* AspeticaUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -300,7 +454,90 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C6B3FCF72264FF0B00F8729C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6B3FD052264FF1700F8729C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		001FE59ED8C45D7BA5AFC6C3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AspeticaUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5A9EB64CC32FEA00995D3001 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AspeticaTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EB342DC9085519DFB4ABD543 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Aspetica-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C64809421E3189FD00F3EF12 /* Sources */ = {
@@ -309,7 +546,6 @@
 			files = (
 				C648094C1E3189FE00F3EF12 /* CalculatorViewController.swift in Sources */,
 				C6A42BF821D23A070029D5B4 /* CustomButton.swift in Sources */,
-				C68A5DC4225047C400E15469 /* UIView+NibLoadable.swift in Sources */,
 				C66A3B851E36943E0001BC80 /* SettingsViewController.swift in Sources */,
 				C639B070225F478600AA879D /* ValueProcessor.swift in Sources */,
 				C6B3FCF22260D46B00F8729C /* BaseViewController.swift in Sources */,
@@ -321,6 +557,7 @@
 				C6A42BE921D237FC0029D5B4 /* UITableViewCell+Disclosure.swift in Sources */,
 				C62E40B21E57427F0047DDF3 /* Interactor.swift in Sources */,
 				C66A3B811E32A6350001BC80 /* RatioEvaluator.swift in Sources */,
+				C6167257226F33D0006F04B1 /* HelpView.swift in Sources */,
 				C639B072225FA2BB00AA879D /* IconButton.swift in Sources */,
 				C6A42BFF21D24A630029D5B4 /* Keys.swift in Sources */,
 				C6A42BEF21D2388D0029D5B4 /* Bundle+Version.swift in Sources */,
@@ -340,7 +577,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C6B3FCF52264FF0B00F8729C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6B3FCFC2264FF0B00F8729C /* AspeticaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6B3FD032264FF1700F8729C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6B3FD0A2264FF1700F8729C /* AspeticaUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C6B3FCFF2264FF0B00F8729C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C64809451E3189FD00F3EF12 /* Aspetica */;
+			targetProxy = C6B3FCFE2264FF0B00F8729C /* PBXContainerItemProxy */;
+		};
+		C6B3FD0D2264FF1700F8729C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C64809451E3189FD00F3EF12 /* Aspetica */;
+			targetProxy = C6B3FD0C2264FF1700F8729C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C648094D1E3189FE00F3EF12 /* Main.storyboard */ = {
@@ -449,6 +715,7 @@
 		};
 		C64809591E3189FE00F3EF12 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FF706126ADAA77C13E93339 /* Pods-Aspetica.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 67459ZGRXW;
@@ -457,13 +724,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sparzel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		C648095A1E3189FE00F3EF12 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 242FC02EFD1212E2D3AD2C24 /* Pods-Aspetica.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 67459ZGRXW;
@@ -472,8 +740,140 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sparzel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		C6B3FD002264FF0B00F8729C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DDFC0EE4AFED8264DA26FF5B /* Pods-AspeticaTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 67459ZGRXW;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = AspeticaTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = Misesin.AspeticaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Aspetica.app/Aspetica";
+			};
+			name = Debug;
+		};
+		C6B3FD012264FF0B00F8729C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D504DBCE51E5E081486A6E0 /* Pods-AspeticaTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 67459ZGRXW;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = AspeticaTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = Misesin.AspeticaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Aspetica.app/Aspetica";
+			};
+			name = Release;
+		};
+		C6B3FD0F2264FF1700F8729C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50BFCB05BB311D9C89D3627A /* Pods-AspeticaUITests.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 67459ZGRXW;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = AspeticaUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = Misesin.AspeticaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Aspetica;
+			};
+			name = Debug;
+		};
+		C6B3FD102264FF1700F8729C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE1186DD5B5A35D6CB12EF14 /* Pods-AspeticaUITests.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 67459ZGRXW;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = AspeticaUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = Misesin.AspeticaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Aspetica;
 			};
 			name = Release;
 		};
@@ -494,6 +894,24 @@
 			buildConfigurations = (
 				C64809591E3189FE00F3EF12 /* Debug */,
 				C648095A1E3189FE00F3EF12 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C6B3FD022264FF0B00F8729C /* Build configuration list for PBXNativeTarget "AspeticaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6B3FD002264FF0B00F8729C /* Debug */,
+				C6B3FD012264FF0B00F8729C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C6B3FD0E2264FF1700F8729C /* Build configuration list for PBXNativeTarget "AspeticaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6B3FD0F2264FF1700F8729C /* Debug */,
+				C6B3FD102264FF1700F8729C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

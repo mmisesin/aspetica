@@ -30,6 +30,8 @@ class TriangleView : UIView {
         
         context.setFillColor(Color.helpColor.cgColor)
         context.fillPath()
+
+        backgroundColor = .clear
     }
 }
 

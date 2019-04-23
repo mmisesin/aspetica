@@ -1,0 +1,6 @@
+module Pods_AspeticaTests {
+  umbrella header "Pods-AspeticaTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

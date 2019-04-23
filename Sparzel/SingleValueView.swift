@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import SnapKit
 
-class SingleValueView: UIView, NibLoadable, Themable {
+class SingleValueView: UIView, Themable {
     
     // MARK: IBs
     
-    @IBOutlet private weak var valueLabel: InsetLabel!
-    @IBOutlet private weak var carriage: UIView!
+    private let valueLabel: InsetLabel = InsetLabel()
+    private let carriage: UIView = UIView()
     
     // MARK: Public properties
     
@@ -31,7 +32,11 @@ class SingleValueView: UIView, NibLoadable, Themable {
         return valueLabel.text ?? "1"
     }
 
-    var helpText: String?
+    var helpText: String = "" {
+        didSet {
+            helpView.textLabel.text = helpText
+        }
+    }
 
     // MARK: Private properties
 
@@ -40,24 +45,20 @@ class SingleValueView: UIView, NibLoadable, Themable {
     }
     private var isSelected = false
     private var shouldAnimate = false
-    private var helpView: UIView?
+    private var helpView: HelpView = HelpView()
     
     // MARK: Public methods
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    init() {
+        super.init(frame: .zero)
 
-        setupFromNib()
-
-        carriage.backgroundColor = Color.carriageColor
-        carriage.alpha = 0
-
-        valueLabel.sizeToFit()
+        setupValueLabel()
+        setupCarriage()
+        setupHelp()
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        setupHelp()
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     func applyTheme() {
@@ -99,9 +100,11 @@ class SingleValueView: UIView, NibLoadable, Themable {
 
     func setHelpVisible(_ visible: Bool) {
         UIView.animate(withDuration: 0.3, animations: {
-            self.helpView?.alpha = visible ? 1 : 0
+            self.helpView.alpha = visible ? 1 : 0
         })
     }
+
+    // MARK: Private methods
 
     private func processValueToDisplay(_ value: Double?) -> String {
         guard let value = value, value < 999999 else {
@@ -114,37 +117,6 @@ class SingleValueView: UIView, NibLoadable, Themable {
         } else {
             return String(format: "%g", value.roundTo(places: 2))
         }
-    }
-
-    private func setupHelp() {
-        let triangleWidth: CGFloat = 8
-        let helpHeight: CGFloat = 28
-        let helpWidth: CGFloat = 79
-
-        let helpView = UIView(frame: CGRect(
-            x: bounds.midX - helpWidth / 2,
-            y: valueLabel.bounds.minY - 10,
-            width: helpWidth,
-            height: helpHeight
-            )
-        )
-
-        helpView.layer.cornerRadius = 4
-        helpView.backgroundColor = Color.helpColor
-        let triangle = TriangleView(frame: CGRect(x: helpView.bounds.midX - triangleWidth/2, y: helpView.bounds.maxY - 1, width: triangleWidth , height: triangleWidth * 0.5))
-        triangle.backgroundColor = .clear
-        helpView.bringSubviewToFront(triangle)
-        helpView.addSubview(triangle)
-        let helpLabel = UILabel(frame: CGRect(x: helpView.bounds.minX, y: helpView.bounds.minY, width: helpWidth, height: helpHeight))
-        helpLabel.textAlignment = .center
-        helpLabel.text = helpText
-        helpLabel.textColor = Color.mainBackground
-        helpLabel.font = helpLabel.font.withSize(12)
-        helpView.alpha = 0
-        helpView.addSubview(helpLabel)
-        addSubview(helpView)
-        self.helpView = helpView
-        sizeToFit()
     }
     
     private func startAnimation() {
@@ -189,6 +161,54 @@ class SingleValueView: UIView, NibLoadable, Themable {
                 }
             }
         )
+    }
+
+}
+
+// MARK: Setup Methods
+
+private extension SingleValueView {
+
+    func setupValueLabel() {
+        addSubview(valueLabel)
+
+        valueLabel.sizeToFit()
+        valueLabel.textAlignment = .center
+        valueLabel.layer.cornerRadius = 4
+        valueLabel.layer.masksToBounds = true
+        valueLabel.font = .systemFont(ofSize: 40, weight: .medium)
+
+        valueLabel.snp.makeConstraints { make in
+            make.center.equalTo(self)
+            make.height.equalTo(56)
+        }
+    }
+
+    func setupCarriage() {
+        addSubview(carriage)
+
+        carriage.backgroundColor = Color.carriageColor
+        carriage.alpha = 0
+        carriage.layer.cornerRadius = 4
+        carriage.layer.masksToBounds = true
+
+        carriage.snp.makeConstraints { make in
+            make.trailing.equalTo(valueLabel)
+            make.width.equalTo(2)
+            make.centerY.equalTo(valueLabel.snp.centerY)
+            make.height.equalTo(valueLabel.snp.height)
+        }
+    }
+
+    func setupHelp() {
+        addSubview(helpView)
+
+        helpView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
+        }
+
+        helpView.alpha = 0
     }
 
 }

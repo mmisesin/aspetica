@@ -27,15 +27,15 @@ class ValuesDisplayView: UIView, Themable {
     
     // MARK: IBs
     
-    @IBOutlet weak var xValueView: SingleValueView!
-    @IBOutlet weak var yValueView: SingleValueView!
-    @IBOutlet weak var widthValueView: SingleValueView!
-    @IBOutlet weak var heightValueView: SingleValueView!
+    private let xValueView = SingleValueView()
+    private let yValueView = SingleValueView()
+    private let widthValueView = SingleValueView()
+    private let heightValueView = SingleValueView()
     
-    @IBOutlet weak var divSymbol: UILabel!
-    @IBOutlet weak var multiSymbol: UILabel!
+    private let divSymbol = UILabel()
+    private let multiSymbol = UILabel()
     
-    @IBOutlet weak var shadowView: UIView!
+    private let shadowView = UIView()
     
     // MARK: Public properties
     
@@ -74,21 +74,15 @@ class ValuesDisplayView: UIView, Themable {
             return yValueView
         }
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        valueViews = [xValueView, yValueView, widthValueView, heightValueView]
 
-        valueViews.forEach {
-            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleValueTap(_:)))
-            $0.addGestureRecognizer(tapRecognizer)
-            $0.isUserInteractionEnabled = true
-        }
+    init() {
+        super.init(frame: .zero)
 
-        widthValueView.setSelected(true)
+        setupValueViews()
+    }
 
-        setupHelp()
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     func applyTheme() {
@@ -167,9 +161,128 @@ class ValuesDisplayView: UIView, Themable {
         delegate?.valuesDisplayView(self, didSelectValue: logicStore.activeValue)
     }
 
+    @objc
+    func handleLockTap() {
+        divSymbol.
+    }
+
 }
 
+// MARK: Setup Methods
+
 private extension ValuesDisplayView {
+
+    func setupValueViews() {
+        setupHelp()
+        valueViews = [xValueView, yValueView, widthValueView, heightValueView]
+
+        for (index, valueView) in valueViews.enumerated() {
+            let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleValueTap(_:)))
+            valueView.addGestureRecognizer(tapRecognizer)
+            valueView.isUserInteractionEnabled = true
+
+            valueViews[index].tag = index
+        }
+
+        widthValueView.setSelected(true)
+
+        let containerStackView = UIStackView()
+        containerStackView.axis = .vertical
+        containerStackView.alignment = .fill
+        containerStackView.distribution = .fill
+        containerStackView.spacing = 0
+
+        addSubview(containerStackView)
+
+        containerStackView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+
+        setupAdditionalViews()
+        let topRow = makeTopRowValuesView()
+        containerStackView.addArrangedSubview(topRow)
+        let bottomRow = makeBottomRowValuesView()
+        containerStackView.addArrangedSubview(bottomRow)
+
+        bottomRow.snp.makeConstraints { make in
+            make.height.equalTo(topRow.snp.height)
+        }
+    }
+
+    func makeTopRowValuesView() -> UIView {
+        let shadowView = UIView()
+
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.spacing = 0
+
+        stackView.addArrangedSubview(xValueView)
+
+        let divSymbolContainer = UIView()
+        divSymbolContainer.addSubview(divSymbol)
+        divSymbol.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        divSymbolContainer.snp.makeConstraints { make in
+            make.width.equalTo(45)
+        }
+
+        let lockGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleLockTap))
+        divSymbolContainer.addGestureRecognizer(lockGestureRecognizer)
+
+        stackView.addArrangedSubview(divSymbolContainer)
+
+        stackView.addArrangedSubview(yValueView)
+        yValueView.snp.makeConstraints { make in
+            make.width.equalTo(xValueView.snp.width)
+        }
+
+        shadowView.addSubview(stackView)
+
+        stackView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+
+        return shadowView
+    }
+
+    func makeBottomRowValuesView() -> UIStackView {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.spacing = 0
+
+        stackView.addArrangedSubview(widthValueView)
+
+        let multiSymbolContainer = UIView()
+        multiSymbolContainer.addSubview(multiSymbol)
+        multiSymbol.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        multiSymbolContainer.snp.makeConstraints { make in
+            make.width.equalTo(45)
+        }
+        stackView.addArrangedSubview(multiSymbolContainer)
+        stackView.addArrangedSubview(heightValueView)
+        heightValueView.snp.makeConstraints { make in
+            make.width.equalTo(widthValueView.snp.width)
+        }
+
+        return stackView
+    }
+
+    func setupAdditionalViews() {
+        multiSymbol.text = "×"
+        multiSymbol.font = .systemFont(ofSize: 20)
+        multiSymbol.textColor = UIColor(hexString: "8B9EB1", alpha: 1)
+
+        divSymbol.text = ":"
+        divSymbol.font = .systemFont(ofSize: 20)
+        divSymbol.textColor = UIColor(hexString: "8B9EB1", alpha: 1)
+    }
 
     func setupHelp() {
         self.clipsToBounds = false
